@@ -8,12 +8,18 @@ const config: Config = {
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    colors: {
-      'text': '#010204',
-      'background': '#ffffff',
-      'primary': '#15c68e',
-      'secondary': '#d1defa',
-      'accent': '#3a599c',
+    daisyui: {
+      themes: [
+        {
+          myTheme: {
+            "primary": "#15c68e",
+            "secondary": "#d1defa",
+            "accent": "#3a599c",
+            "neutral": "#262626",
+            "base-100": "#ffffff",
+          },
+        },
+      ],
     },
     extend: {
       backgroundImage: {
