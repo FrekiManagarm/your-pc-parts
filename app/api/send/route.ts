@@ -8,9 +8,9 @@ export async function POST() {
     try {
         const { data, error } = await resend.emails.send({
             from: "PetConnect <contact@your-pc-parts.fr>",
-            to: ["mathchambaud2000@gmail.com"],
+            to: ["ylcoz@icloud.com"],
             subject: "Welcome to PetConnect",
-            react: WelcomeEmailTemplate({ firstname: "Mathieu" })
+            react: WelcomeEmailTemplate(),
         });
 
         if (error) {
