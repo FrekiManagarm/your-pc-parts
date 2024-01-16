@@ -61,6 +61,46 @@ const components: { title: string, href: string, description: string }[] = [
     href: "/components/motherboard",
     description: "The motherboard is the main circuit board in a PC that connects and allows communication between crucial components like the CPU, RAM, and hard drives",
   },
+  {
+    title: "Headphones",
+    href: "/components/headphones",
+    description: "De bons écouteurs pour une bonne écoute ou pour détecter vos ennemis !",
+  },
+  {
+    title: "Keyboard",
+    href: "/components/keyboard",
+    description: "Un clavier adapté pour vos usages est un confort assuré",
+  },
+  {
+    title: "Monitor",
+    href: "/components/monitor",
+    description: "Un bon écran. Pour aller plus loin !",
+  },
+  {
+    title: "Mouse",
+    href: "/components/mouse",
+    description: "Un mulot rapide pour les plus aguéris",
+  },
+  {
+    title: "Sound Card",
+    href: "/components/sound-card",
+    description: "",
+  },
+  {
+    title: "Speaker",
+    href: "/components/speaker",
+    description: "",
+  },
+  {
+    title: "Thermal Paste",
+    href: "/components/thermal-paste",
+    description: "",
+  },
+  {
+    title: "Webcam",
+    href: "/components/webcam",
+    description: "",
+  },
 ]
 
 const features : { title: string, href: string, description: string }[] = [
@@ -89,7 +129,7 @@ export default function MainNav() {
       <NavigationMenu className='flex items-center w-[28rem] flex-wrap gap-y-1 text-[0.9rem] font-medium lg:w-[initial] lg:flex-nowrap lg:gap-5 pl-5'>
         <NavigationMenuList>
           <NavigationMenuItem className='pl-5'>
-            <NavigationMenuTrigger className='bg-transparent rounded-full dark:bg-transparent hover:bg-gray-100 hover:dark:bg-gray-800'>Composants</NavigationMenuTrigger>
+            <NavigationMenuTrigger className='bg-transparent rounded-full dark:bg-transparent hover:bg-gray-100 hover:dark:bg-gray-800'>Components</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className='grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]'>
                 {components.map((component) => (
