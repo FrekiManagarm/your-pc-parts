@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth";
-import { options } from "@/app/api/auth/[...nextauth]/route";
+import { options } from "./authOptions";
 import { GetServerSidePropsContext, NextApiRequest, NextApiResponse } from "next";
 import { Role } from "./types";
 
