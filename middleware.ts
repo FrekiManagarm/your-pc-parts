@@ -1,8 +1,4 @@
-import { NextApiResponse } from "next";
-import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
-import { options } from "./app/api/auth/[...nextauth]/route";
-import { getToken } from "next-auth/jwt";
 
 export const config = { matcher: ['/dashboard', '/configurator'] }
 
