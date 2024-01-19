@@ -12,10 +12,10 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle
-} from './ui/navigation-menu';
+} from '@/components/ui/navigation-menu';
 import { cn } from '@/lib/utils';
-import { components, features } from './main-nav-links';
-import { usePathname, useRouter } from 'next/navigation'; 
+import { components, features } from '../main-nav-links';
+import { usePathname } from 'next/navigation'; 
 
 export default function MainNav() {
 
@@ -29,7 +29,7 @@ export default function MainNav() {
       <Link
         href="/"
       >
-        <Image src="https://i.imgur.com/RyzFxN9.png" alt='logo website' width={40} height={40} className='rounded-full' />
+        <Image src="/logo-ypcp.png" alt='logo website' width={40} height={40} className='rounded-md' />
       </Link>
       <NavigationMenu className='flex items-center w-[28rem] flex-wrap gap-y-1 text-[0.9rem] font-medium lg:w-[initial] lg:flex-nowrap lg:gap-5 pl-5'>
         <NavigationMenuList>
@@ -66,7 +66,7 @@ export default function MainNav() {
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem className='bg-transparent rounded-full transition-all duration-300 hover:bg-accent/50 hover:dark:bg-accent/50 focus:bg-accent/50 focus:dark:bg-accent/50'>
-            <Link href="/our-api" legacyBehavior passHref>
+            <Link href="/pricing" legacyBehavior passHref>
               <NavigationMenuLink className={cn(
                 "bg-transparent hover:bg-transparent focus:bg-transparent",
                 navigationMenuTriggerStyle()

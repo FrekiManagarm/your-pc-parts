@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { cn } from '@/lib/utils'
-import MainNav from '@/components/main-nav'
+import MainNav from '@/components/layout/Header'
 import Providers from './Providers'
 
 const inter = Inter({ subsets: ['latin'], variable: "--font-sans" })

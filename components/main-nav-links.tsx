@@ -1,7 +1,7 @@
 export const components: { title: string, href: string, description: string }[] = [
     {
       title: "Processor",
-      href: "/cpu",
+      href: "/components/cpu",
       description: "The CPU in a PC acts as the brain, swiftly processing instructions and making decisions to drive the computer's actions and tasks",
     },
     {
@@ -47,12 +47,12 @@ export const components: { title: string, href: string, description: string }[] 
     {
       title: "Headphones",
       href: "/components/headphones",
-      description: "De bons écouteurs pour une bonne écoute ou pour détecter vos ennemis !",
+      description: "Good earphones for good listening or to detect your enemies!",
     },
     {
       title: "Keyboard",
       href: "/components/keyboard",
-      description: "Un clavier adapté pour vos usages est un confort assuré",
+      description: "A keyboard adapted to your needs ensures comfort.",
     },
     {
       title: "Monitor",
@@ -84,6 +84,11 @@ export const components: { title: string, href: string, description: string }[] 
       href: "/components/webcam",
       description: "",
     },
+    {
+      title: "Case Fan",
+      href: "/components/case-fan",
+      description: ""
+    }
   ]
   
   export const features : { title: string, href: string, description: string }[] = [

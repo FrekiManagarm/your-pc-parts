@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <main className="flex-1">
-        <section className="w-full py-6 sm:py-12 md:py-24 lg:py-32 xl:py-48">
+        <section className="w-full py-6 sm:py-12 md:py-28 lg:py-32 xl:py-48">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
               <Image
@@ -14,7 +14,7 @@ export default function Home() {
                 quality={80}
                 width={550}
                 height={550}
-                className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square"
+                className="mx-auto aspect-video overflow-hidden mt-20 lg:mt-0 rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square"
               />
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
