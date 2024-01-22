@@ -1,3 +1,4 @@
+import CardComponent from "@/components/card-component";
 import Image from "next/image";
 import Link from "next/link";
 

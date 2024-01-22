@@ -1,4 +1,4 @@
-import { SiGoogle, SiFacebook } from 'react-icons/si';
+import { SiFacebook, SiGoogle } from 'react-icons/si';
 
 export default function LoginPage() {
   return (
@@ -30,3 +30,5 @@ export default function LoginPage() {
     </div>
   )
 }
+
+

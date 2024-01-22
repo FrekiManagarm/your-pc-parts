@@ -1,3 +1,4 @@
+import CardComponent from "@/components/card-component";
 import { components } from "@/components/main-nav-links";
 
 export default function CPUListPage() {
@@ -9,9 +10,9 @@ export default function CPUListPage() {
           <p className="font-semibold break-words text-xl text-gray-300">{components[0].description}</p>
         </div>
       </div>
-      <div className="container w-full">
-
-      </div>
+      <section className="w-full">
+        <CardComponent title="i9 12900K" category="CPU" image="https://i.imgur.com/ykx3VxH.jpg" />
+      </section>
     </div>
   )
 }
