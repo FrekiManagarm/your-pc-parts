@@ -1,8 +1,12 @@
-import CardComponent from "@/components/card-component";
+import { options } from "@/lib/authOptions";
+import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Home() {
+export default async function Home() {
+  const session = await getServerSession(options);
+  console.log(session);
+
   return (
     <>
       <main className="flex-1">

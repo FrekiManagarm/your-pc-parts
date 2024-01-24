@@ -1,37 +1,24 @@
 import { NextAuthOptions, Session } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { RefreshTokens } from "./types";
+import { AuthModel, BackendTokens, RefreshTokens } from "./types";
+import { JWT } from "next-auth/jwt";
 
 const apiUrl = process.env.API_URL;
 
-async function refreshAccessToken(session: Session) {
-  try {
-    const response = await fetch(apiUrl + "/users/refresh", {
-      headers: {
-        Authorization: `Bearer ${session.tokens.accessToken}`,
-      },
-    });
+async function refreshAccessToken(token: JWT) {
+  const response = await fetch(apiUrl + "/auth/refresh", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token.tokens.refreshToken}`,
+    },
+  });
 
-    const newTokens: RefreshTokens = await response.json();
+  const refreshedTokens = await response.json();
 
-    if (!response.ok) {
-      throw newTokens;
-    }
-
-    return {
-      ...session,
-      accessToken: newTokens.accessToken,
-      accessTokenExpires: Date.now() + newTokens.expires_in * 1000,
-      refreshToken: newTokens.refreshToken ?? session.tokens.refreshToken,
-    };
-  } catch (err) {
-    console.log(err);
-
-    return {
-      ...session,
-      error: "RefreshAccessTokenError",
-    };
-  }
+  return {
+    ...token,
+    tokens: refreshedTokens,
+  };
 }
 
 export const options: NextAuthOptions = {
@@ -42,35 +29,31 @@ export const options: NextAuthOptions = {
         emailAdress: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials) {
+      async authorize(credentials, req) {
         const { emailAdress, password } = credentials as any;
 
-        if (!credentials?.emailAdress && !credentials?.password) return null;
+        if (!emailAdress || !password) return null;
 
-        const res = await fetch(apiUrl + "/auth/login", {
+        const response = await fetch(apiUrl + "/auth/login", {
           method: "POST",
+          body: JSON.stringify({
+            emailAddress: emailAdress,
+            password: password,
+          }),
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            emailAdress,
-            password,
-          }),
         });
 
-        if (res.status == 401) {
-          console.log(res.statusText);
+        if (response.status == 401) {
+          console.log(response.statusText);
 
           return null;
         }
 
-        const user = await res.json();
+        const user = await response.json();
 
-        if (user) {
-          return user;
-        } else {
-          return null;
-        }
+        return user;
       },
     }),
   ],
@@ -78,7 +61,9 @@ export const options: NextAuthOptions = {
     async jwt({ token, user }) {
       if (user) return { ...token, ...user };
 
-      return token;
+      if (new Date().getTime() < token.tokens.expiresIn) return token;
+
+      return await refreshAccessToken(token);
     },
     async session({ session, token }) {
       session.user = token.user;
@@ -89,8 +74,6 @@ export const options: NextAuthOptions = {
   },
   pages: {
     signIn: "/login",
-    newUser: "/register",
-    signOut: "/logOut",
   },
   session: {
     strategy: "jwt",
