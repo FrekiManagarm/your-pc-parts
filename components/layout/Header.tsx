@@ -10,7 +10,7 @@ import {
   navigationMenuTriggerStyle
 } from '@/components/ui/navigation-menu';
 import { cn } from '@/lib/utils';
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -28,15 +28,15 @@ export default function MainNav() {
   return pathname == "/login" ||
     pathname == "/dashboard" ? null : (
     <header
-      className='flex flex-row w-screen items-center justify-center content-center'
+      className='flex flex-row md:pt-6 pt-0'
     >
-      <motion.div className='flex flex-row items-center justify-between px-5 fixed top-0 lg:left-[30%] md:left-[5%] md:top-6 md:rounded-full md:h-[3.25rem] md:w-[45rem] left-0 h-[7rem] w-full rounded-none border border-white border-opacity-40 bg-white bg-opacity-80 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] lg:top-6 lg:h-[3.25rem] lg:w-[45rem] lg:rounded-full dark:bg-gray-950 dark:border-black/40 dark:bg-opacity-75'>
+      <motion.div className='md:w-fit w-full flex flex-row justify-between items-center mx-auto px-5 py-1 md:rounded-full rounded-none bg-white bg-opacity-80 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] dark:bg-gray-950 dark:border-black/40 dark:bg-opacity-75'>
         <Link
           href="/"
         >
           <Image src="/logo-ypcp.png" alt='logo website' width={40} height={40} className='rounded-md' />
         </Link>
-        <NavigationMenu className='flex items-center w-[28rem] flex-wrap gap-y-1 text-[0.9rem] font-medium lg:w-[initial] lg:flex-nowrap lg:gap-5 pl-5'>
+        <NavigationMenu className='flex items-center w-fit flex-wrap gap-y-1 text-[0.9rem] font-medium lg:w-[initial] lg:flex-nowrap lg:gap-5 pl-5 pr-5'>
           <NavigationMenuList>
             <NavigationMenuItem className='pl-5'>
               <NavigationMenuTrigger className='bg-transparent rounded-full dark:bg-primary/50 hover:text-white focus:text-white hover:bg-primary/50 hover:dark:bg-primary/50'>Components</NavigationMenuTrigger>
@@ -99,7 +99,6 @@ export default function MainNav() {
             Login
           </Link>
         }
-
       </motion.div>
     </header>
   );
@@ -127,3 +126,4 @@ const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWit
   )
 })
 ListItem.displayName = "ListItem"
+
