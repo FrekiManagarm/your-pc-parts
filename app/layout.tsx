@@ -1,9 +1,10 @@
+import MainNav from '@/components/layout/Header'
+import { cn } from '@/lib/utils'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import './globals.css'
-import { cn } from '@/lib/utils'
-import MainNav from '@/components/layout/Header'
 import Providers from './Providers'
+import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: "--font-sans" })
 
@@ -28,6 +29,7 @@ export default function RootLayout({
           <MainNav />
           {children}
         </Providers>
+        <SpeedInsights />
       </body>
     </html>
   )
