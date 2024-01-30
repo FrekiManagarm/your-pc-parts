@@ -2,6 +2,7 @@
 
 import { getRequiredAuthSession } from "@/lib/auth";
 import { Case, Role } from "@/lib/types";
+import { toast } from "sonner";
 
 const apiUrl = process.env.API_URL;
 
@@ -16,12 +17,12 @@ export async function getCases() {
 
   const data: Case[] = await res.json();
 
-  if (!data) return Error("Cannot find cases");
+  if (!data) {
+    toast.error("Cases not found");
+    return;
+  }
 
-  return Response.json(data, {
-    status: 200,
-    statusText: "Cases found",
-  });
+  return data;
 }
 
 export async function getCaseById(caseId: number) {
@@ -35,17 +36,17 @@ export async function getCaseById(caseId: number) {
 
   const data: Case = await res.json();
 
-  if (!data) return Error("Cannot found this case");
+  if (!data) {
+    toast.error("Case not found");
+    return;
+  }
 
-  return Response.json(data, {
-    status: 200,
-    statusText: "Case found",
-  });
+  return data;
 }
 
 export async function createCase(formData: FormData) {
   const session = await getRequiredAuthSession(
-    Role.MODERATOR && Role.ADMINISTRATOR,
+    Role.MODERATOR || Role.ADMINISTRATOR,
   );
 
   const res = await fetch(apiUrl + "/case", {
@@ -60,17 +61,17 @@ export async function createCase(formData: FormData) {
 
   const data: Case = await res.json();
 
-  if (!data) return Error("Case not created");
+  if (!data) {
+    toast.error("Case not created");
+    return;
+  }
 
-  return Response.json(data, {
-    status: 201,
-    statusText: "Case created",
-  });
+  return data;
 }
 
 export async function updateCase(caseId: number, formData: FormData) {
   const session = await getRequiredAuthSession(
-    Role.MODERATOR && Role.ADMINISTRATOR,
+    Role.MODERATOR || Role.ADMINISTRATOR,
   );
 
   const res = await fetch(apiUrl + `/case/${caseId}`, {
@@ -84,16 +85,18 @@ export async function updateCase(caseId: number, formData: FormData) {
 
   const data: Case = await res.json();
 
-  if (!data) return Error("Cannot update this case");
+  if (!data) {
+    toast.error("Case not updated !");
+    return;
+  }
 
-  return Response.json(data, {
-    status: 203,
-    statusText: "Case updated",
-  });
+  return data;
 }
 
 export async function deleteCase(caseId: number) {
-  const session = await getRequiredAuthSession(Role.ADMINISTRATOR);
+  const session = await getRequiredAuthSession(
+    Role.ADMINISTRATOR || Role.MODERATOR,
+  );
 
   const res = await fetch(apiUrl + `/case/${caseId}`, {
     method: "DELETE",
@@ -105,10 +108,10 @@ export async function deleteCase(caseId: number) {
 
   const data: Case = await res.json();
 
-  if (!data) return Error("Cannot delete this case");
+  if (!data) {
+    toast.error("Case not deleted");
+    return;
+  }
 
-  return Response.json(data, {
-    status: 204,
-    statusText: "Case deleted",
-  });
+  return data;
 }

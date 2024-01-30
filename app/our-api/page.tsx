@@ -1,5 +1,10 @@
 export default function OurAPIPage() {
   return (
-    <div>OurAPIPage</div>
+    <div>
+      <h1>Our API</h1>
+      <div>
+
+      </div>
+    </div>
   )
 }

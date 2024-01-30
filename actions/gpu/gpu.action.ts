@@ -1,3 +1,5 @@
+"use server";
+
 import { getRequiredAuthSession } from "@/lib/auth";
 import { GPU, Role } from "@/lib/types";
 import { toast } from "sonner";
@@ -20,10 +22,7 @@ export async function getGPUs() {
     return;
   }
 
-  return Response.json(data, {
-    status: 200,
-    statusText: "GPUs found",
-  });
+  return data;
 }
 
 export async function getGPUById(gpuId: number) {
@@ -42,10 +41,7 @@ export async function getGPUById(gpuId: number) {
     return;
   }
 
-  return Response.json(data, {
-    status: 200,
-    statusText: "GPU found",
-  });
+  return data;
 }
 
 export async function createGPU(formData: FormData) {
@@ -70,10 +66,7 @@ export async function createGPU(formData: FormData) {
     return;
   }
 
-  return Response.json(data, {
-    status: 201,
-    statusText: "GPU created",
-  });
+  return data;
 }
 
 export async function updateGPU(gpuId: number, formData: FormData) {
@@ -98,10 +91,7 @@ export async function updateGPU(gpuId: number, formData: FormData) {
     return;
   }
 
-  return Response.json(data, {
-    status: 203,
-    statusText: "GPU updated",
-  });
+  return data;
 }
 
 export async function deleteGPU(gpuId: number) {
@@ -125,8 +115,5 @@ export async function deleteGPU(gpuId: number) {
     return;
   }
 
-  return Response.json(data, {
-    status: 204,
-    statusText: "",
-  });
+  return data;
 }

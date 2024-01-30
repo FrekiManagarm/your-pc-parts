@@ -16,12 +16,12 @@ export async function getCaseFans() {
 
   const data: CaseFan[] = await res.json();
 
-  if (!data) toast.error("Can't get Case Fans");
+  if (!data) {
+    toast.error("Can't get Case Fans");
+    return;
+  }
 
-  return Response.json(data, {
-    status: 200,
-    statusText: "Case Fans found",
-  });
+  return data;
 }
 
 export async function getCaseFansById(caseFanId: number) {
@@ -35,17 +35,17 @@ export async function getCaseFansById(caseFanId: number) {
 
   const data: CaseFan = await res.json();
 
-  if (!data) toast.error("Can't get this Case Fan");
+  if (!data) {
+    toast.error("Case Fan not found");
+    return;
+  }
 
-  return Response.json(data, {
-    status: 200,
-    statusText: "Case Fan found",
-  });
+  return data;
 }
 
 export async function createCaseFan(formData: FormData) {
   const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR && Role.MODERATOR,
+    Role.ADMINISTRATOR || Role.MODERATOR,
   );
 
   const response = await fetch(apiUrl + "/case-fan", {
@@ -60,17 +60,17 @@ export async function createCaseFan(formData: FormData) {
 
   const data: CaseFan = await response.json();
 
-  if (!data) toast.error("Cannot create Case Fan");
+  if (!data) {
+    toast.error("Case Fan not created");
+    return;
+  }
 
-  return Response.json(data, {
-    status: 201,
-    statusText: "Case Fan created",
-  });
+  return data;
 }
 
 export async function updateCaseFan(caseFanId: number, formData: FormData) {
   const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR && Role.MODERATOR,
+    Role.ADMINISTRATOR || Role.MODERATOR,
   );
 
   const response = await fetch(apiUrl + `/case-fan/${caseFanId}`, {
@@ -85,17 +85,17 @@ export async function updateCaseFan(caseFanId: number, formData: FormData) {
 
   const data: CaseFan = await response.json();
 
-  if (!data) toast.error("Can't update this Case Fan");
+  if (!data) {
+    toast.error("Can't update this Case Fan");
+    return;
+  }
 
-  return Response.json(data, {
-    status: 203,
-    statusText: "Case Fan updated",
-  });
+  return data;
 }
 
 export async function deleteCaseFan(caseFanId: number) {
   const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR && Role.MODERATOR,
+    Role.ADMINISTRATOR || Role.MODERATOR,
   );
 
   const res = await fetch(apiUrl + `/case-fan/${caseFanId}`, {
@@ -113,8 +113,5 @@ export async function deleteCaseFan(caseFanId: number) {
     return;
   }
 
-  return Response.json(data, {
-    status: 204,
-    statusText: "Case Fan deleted",
-  });
+  return data;
 }

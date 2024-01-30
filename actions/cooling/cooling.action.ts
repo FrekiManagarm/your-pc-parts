@@ -22,10 +22,7 @@ export async function getCoolings() {
     return;
   }
 
-  return Response.json(data, {
-    status: 200,
-    statusText: "Coolings found",
-  });
+  return data;
 }
 
 export async function getCoolingById(coolingId: number) {
@@ -44,15 +41,12 @@ export async function getCoolingById(coolingId: number) {
     return;
   }
 
-  return Response.json(data, {
-    status: 200,
-    statusText: "Cooling found",
-  });
+  return data;
 }
 
 export async function createCooling(formData: FormData) {
   const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR && Role.MODERATOR,
+    Role.ADMINISTRATOR || Role.MODERATOR,
   );
 
   const res = await fetch(apiUrl + "/cpu-cooler", {
@@ -72,15 +66,12 @@ export async function createCooling(formData: FormData) {
     return;
   }
 
-  return Response.json(data, {
-    status: 201,
-    statusText: "Cooling created",
-  });
+  return data;
 }
 
 export async function updateCooling(coolingId: number, formData: FormData) {
   const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR && Role.MODERATOR,
+    Role.ADMINISTRATOR || Role.MODERATOR,
   );
 
   const res = await fetch(apiUrl + `/cpu-cooler/${coolingId}`, {
@@ -100,18 +91,28 @@ export async function updateCooling(coolingId: number, formData: FormData) {
     return;
   }
 
-  return Response.json(data, {
-    status: 203,
-    statusText: "Cooling updated",
-  });
+  return data;
 }
 
 export async function deleteCooling(coolingId: number) {
   const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR && Role.MODERATOR,
+    Role.ADMINISTRATOR || Role.MODERATOR,
   );
 
   const res = await fetch(apiUrl + `/cpu-cooler/${coolingId}`, {
     method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${session.tokens.accessToken}`,
+    },
   });
+
+  const data: CPUCooler = await res.json();
+
+  if (!data) {
+    toast.error("Cooling not deleted");
+    return;
+  }
+
+  return data;
 }

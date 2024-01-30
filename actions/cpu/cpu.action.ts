@@ -22,10 +22,7 @@ export async function getCPUs() {
     return;
   }
 
-  return Response.json(data, {
-    status: 200,
-    statusText: "CPUs found",
-  });
+  return data;
 }
 
 export async function getCPUById(cpuId: number) {
@@ -44,10 +41,7 @@ export async function getCPUById(cpuId: number) {
     return;
   }
 
-  return Response.json(data, {
-    status: 200,
-    statusText: "CPU found",
-  });
+  return data;
 }
 
 export async function createCPU(formData: FormData) {
@@ -72,10 +66,7 @@ export async function createCPU(formData: FormData) {
     return;
   }
 
-  return Response.json(data, {
-    status: 201,
-    statusText: "CPU created",
-  });
+  return data;
 }
 
 export async function updateCPU(cpuId: number, formData: FormData) {
@@ -100,10 +91,7 @@ export async function updateCPU(cpuId: number, formData: FormData) {
     return;
   }
 
-  return Response.json(data, {
-    status: 203,
-    statusText: "CPU updated",
-  });
+  return data;
 }
 
 export async function deleteCPU(cpuId: number) {
@@ -126,8 +114,5 @@ export async function deleteCPU(cpuId: number) {
     return;
   }
 
-  return Response.json(data, {
-    status: 204,
-    statusText: "",
-  });
+  return data;
 }
