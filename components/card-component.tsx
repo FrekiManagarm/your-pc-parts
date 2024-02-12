@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Card, CardContent, CardHeader } from "./ui/card";
 
 type CardProps = {
     title: string;
@@ -9,24 +8,32 @@ type CardProps = {
 
 const CardComponent = ({ title, category, image }: CardProps) => {
     return (
-        <Card className="w-[250px]">
-            <CardHeader>
+        <div className="relative overflow-hidden h-[32rem] w-[20rem] rounded-2xl transition duration-200 group bg-white hover:shadow-xl border border-zinc-100">
+            <div className="w-[20rem] aspect-w-16 aspect-h-10 bg-gray-100 rounded-tr-lg rounded-tl-lg overflow-hidden xl:aspect-w-16 xl:aspect-h-10 relative">
                 <Image
                     src={image}
-                    width={300}
+                    alt="thumbnail"
+                    width={350}
                     height={200}
-                    alt="card image"
+                    objectFit="cover"
+                    className="group-hover:scale-95 group-hover:rounded-2xl transform object-cover transition duration-200"
                 />
-            </CardHeader>
-            <CardContent>
-
-
-                <h3 className="font-bold text-2xl">{title}</h3>
-                <div className="p-1 bg-black text-white font-semibold rounded-full w-[3rem] text-center">
+            </div>
+            <div className="p-4">
+                <h2 className="font-bold my-4 text-lg text-zinc-700">
+                    {title}
+                </h2>
+                <h2 className="font-normal my-4 text-sm text-zinc-500">
                     {category}
+                </h2>
+                <div className="flex flex-row justify-between items-center mt-10">
+                    <span className="text-sm text-gray-500">{Date.now()}</span>
+                    <div className="relative z-10 px-6 py-2 bg-black text-white font-bold rounded-xl block text-xs">
+                        Read More
+                    </div>
                 </div>
-            </CardContent>
-        </Card>
+            </div>
+        </div>
     )
 }
 

@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { Toaster } from 'sonner'
 import Providers from './Providers'
 import './globals.css'
 
@@ -20,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className='dark'>
       <body className={cn(
         "min-h-screen bg-background font-sans antialiased",
         inter.variable
@@ -30,6 +31,7 @@ export default function RootLayout({
           {children}
         </Providers>
         <SpeedInsights />
+        <Toaster />
       </body>
     </html>
   )

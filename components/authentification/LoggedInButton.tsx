@@ -18,7 +18,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { LogOut, User2 } from "lucide-react";
+import { LayoutDashboard, LogOut, User2 } from "lucide-react";
 import { Session } from "next-auth";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
@@ -32,7 +32,7 @@ export const LoggedInButton = (props: LoggedInButtonProps) => {
         <DropdownMenu>
             <AlertDialog>
                 <DropdownMenuTrigger asChild>
-                    <Avatar>
+                    <Avatar className="cursor-pointer">
                         <AvatarFallback>{props.user.firstname}</AvatarFallback>
                         {props.user.avatarUrl && (
                             <AvatarImage
@@ -45,22 +45,28 @@ export const LoggedInButton = (props: LoggedInButtonProps) => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                     <DropdownMenuItem>
-                        <Link href="/dashboard/profile">
-                            <User2 className="mr-2" size={12} />
-                            Account
+                        <Link href="/dashboard/profile" className="flex flex-row justify-center items-center h-6">
+                            <User2 className="mr-2" size={14} />
+                            <p>Account</p>
                         </Link>
                     </DropdownMenuItem>
-                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>
+                        <Link href="/dashboard" className="flex flex-row justify-center items-center h-6">
+                            <LayoutDashboard size={14} className="mr-2" />
+                            <p>Dashboard</p>
+                        </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator className="bg-gray-300 px-2" />
                     <AlertDialogTrigger asChild>
-                        <DropdownMenuItem>
-                            <LogOut className="mr-2" size={12} />
+                        <DropdownMenuItem className="h-8">
+                            <LogOut className="mr-2" size={14} />
                             Logout
                         </DropdownMenuItem>
                     </AlertDialogTrigger>
                 </DropdownMenuContent>
                 <AlertDialogContent>
-                    <AlertDialogHeader>
-                        <AlertDialogTitle>Are you sur you want to logout ?</AlertDialogTitle>
+                    <AlertDialogHeader className="text-center">
+                        <AlertDialogTitle>Are you sure you want to logout ?</AlertDialogTitle>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
                         <AlertDialogCancel asChild>

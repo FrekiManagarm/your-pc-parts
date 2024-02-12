@@ -1,7 +1,6 @@
-import { NextAuthOptions, Session } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-import { AuthModel, BackendTokens, RefreshTokens } from "./types";
+import { NextAuthOptions } from "next-auth";
 import { JWT } from "next-auth/jwt";
+import CredentialsProvider from "next-auth/providers/credentials";
 
 const apiUrl = process.env.API_URL;
 
