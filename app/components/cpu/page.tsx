@@ -10,7 +10,8 @@ export default function CPUListPage() {
           <p className="font-semibold break-words text-xl text-gray-300">{components[0].description}</p>
         </div>
       </div>
-      <section className="w-full">
+      <section className="w-full grid grid-cols-4 gap-3 px-10 py-5">
+        <CardComponent title="i9 12900K" category="CPU" image="https://i.imgur.com/ykx3VxH.jpg" />
         <CardComponent title="i9 12900K" category="CPU" image="https://i.imgur.com/ykx3VxH.jpg" />
       </section>
     </div>
