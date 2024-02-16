@@ -4,7 +4,6 @@ import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GitHubProvider from "next-auth/providers/github";
 import prisma from "./prisma";
-import { User } from "@prisma/client";
 
 const apiUrl = process.env.API_URL;
 
@@ -26,7 +25,12 @@ async function refreshAccessToken(token: JWT) {
 
 export const options: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
+    GitHubProvider({
+      clientId: process.env.GITHUB_ID ?? "",
+      clientSecret: process.env.GITHUB_SECRET ?? "",
+    }),
     CredentialsProvider({
       name: "Credentials",
       credentials: {
