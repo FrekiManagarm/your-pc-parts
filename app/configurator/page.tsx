@@ -1,5 +1,10 @@
+import ConfiguratorStepper from "@/components/Configurator/stepper";
+
 export default function ConfiguratorHomePage() {
   return (
-    <div>ConfiguratorHomePage</div>
+    <div>
+      <h1>Bonjour,</h1>
+      <ConfiguratorStepper />
+    </div>
   )
 }

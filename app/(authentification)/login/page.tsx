@@ -1,8 +1,8 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import { SiFacebook, SiGoogle } from "react-icons/si";
-import { useState, ChangeEvent, FormEvent } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { SiFacebook, SiGithub, SiGoogle } from "react-icons/si";
 
 type LoginPageProps = {
   searchParams: { error?: string };
@@ -82,6 +82,11 @@ export default function LoginPage({ searchParams }: LoginPageProps) {
             <button className="flex flex-row items-center rounded-xl bg-blue-500 p-3 font-medium text-white transition-shadow duration-300 hover:shadow-xl">
               <SiFacebook className="mx-1 h-5 w-5 fill-white" />
               <p>Facebook</p>
+            </button>
+            <div className="px-5" />
+            <button className="flex flex-row items-center rounded-xl bg-black p-3 font-medium text-white transition-shadow duration-300 hover:shadow-xl" onClick={async () => { await signIn("github", { callbackUrl: "/" }) }}>
+              <SiGithub className="mx-1 h-5 w-5 fill-white" />
+              <p>GitHub</p>
             </button>
           </div>
         </form>

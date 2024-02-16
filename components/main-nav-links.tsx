@@ -62,32 +62,32 @@ export const components: { title: string, href: string, description: string }[] 
   {
     title: "Mouse",
     href: "/components/mouse",
-    description: "Un mulot rapide pour les plus aguéris",
+    description: "A fast field mouse for the most seasoned users",
   },
   {
     title: "Sound Card",
     href: "/components/sound-card",
-    description: "",
+    description: "Good sound for good immersion",
   },
   {
     title: "Speaker",
     href: "/components/speaker",
-    description: "",
+    description: "Turn it up!",
   },
   {
     title: "Thermal Paste",
     href: "/components/thermal-paste",
-    description: "",
+    description: "Good conductivity for good cooling",
   },
   {
     title: "Webcam",
     href: "/components/webcam",
-    description: "",
+    description: "A webcam for every good streamer",
   },
   {
     title: "Case Fan",
     href: "/components/case-fan",
-    description: ""
+    description: "It is important to ventilate well"
   }
 ]
 

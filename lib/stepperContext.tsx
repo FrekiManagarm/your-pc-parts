@@ -1,9 +1,14 @@
-"use client"
-import React, { createContext, useState } from "react";
+"use client";
+import React, { Dispatch, SetStateAction, createContext, useContext, useState } from "react";
 
-export const StepperContext = createContext({});
+type StepperContextInterface = {
+  currentStep: number;
+  setCurrentStep: Dispatch<SetStateAction<number>>;
+}
 
-export const StepperProvider = ({ children }: { children: React.ReactNode }) => {
+const StepperContext = createContext<StepperContextInterface | null>(null);
+
+export default function StepperProvider({ children }: { children: React.ReactNode }) {
   const [currentStep, setCurrentStep] = useState(0);
 
   return (
@@ -16,4 +21,16 @@ export const StepperProvider = ({ children }: { children: React.ReactNode }) => 
       {children}
     </StepperContext.Provider>
   )
+}
+
+export function useStepperContext() {
+  const context = useContext(StepperContext);
+
+  if (context === null) {
+    throw new Error(
+      "useStepperContext must be used within an StepperProvider"
+    );
+  }
+
+  return context
 }

@@ -1,46 +1,22 @@
-import { WavyBackground } from '../wavy-background'
+
 
 const HomeHero = () => {
   return (
-    <WavyBackground className='max-w-4xl mx-auto pb-40' blur={15}>
-      <p className='text-2xl md:text-3xl lg:text-7xl text-white font-bold inter-var text-center'>
-        The Ultimate Hardware Experience
-      </p>
-      <p className='text-base md:text-lg mt-4 text-white font-normal inter-var text-center'>
-        Experience the power of your hardware like never before. Unleash potential.
-      </p>
-    </WavyBackground>
-    // <section className="w-full py-6 sm:py-12 md:py-28 h-full">
-    //   <div className="container px-4 md:px-6">
-    //     <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
-    //       <div className="flex flex-col justify-center space-y-4">
-    //         <div className="space-y-2">
-    //           <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent tracking-tighter sm:text-5xl xl:text-6xl/none">
-    //             The Ultimate Hardware Experience
-    //           </h1>
-    //           <p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
-    //             Experience the power of your hardware like never before. Unleash potential.
-    //           </p>
-    //         </div>
-    //         <div className="flex flex-col gap-2 min-[400px]:flex-row">
-    //           <Link
-    //             href="/configurator"
-    //             className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
-    //           >
-    //             Get Started
-    //           </Link>
-    //           <Link
-    //             className="inline-flex h-10 items-center justify-center rounded-md border border-gray-200 bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
-    //             href="/configurator"
-    //           >
-    //             Learn More
-    //           </Link>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </section>
-  )
-}
+    <section className="h-screen w-screen flex flex-row justify-center items-start">
+      <div className="h-screen w-1/2 flex flex-col justify-center">
+        <h1 className="pl-12 max-w-[600px] from-primary to-secondary bg-gradient-to-r bg-clip-text text-3xl font-bold tracking-tighter text-transparent sm:text-5xl xl:text-6xl/none">
+          The Ultimate Hardware Experience
+        </h1>
+        <p className="pl-12 max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
+          Experience the power of your hardware like never before. Unleash
+          potential.
+        </p>
+      </div>
+      <div className="w-1/2 h-screen flex justify-center items-center">
 
-export default HomeHero
+      </div>
+    </section>
+  );
+};
+
+export default HomeHero;

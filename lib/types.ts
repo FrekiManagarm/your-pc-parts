@@ -62,7 +62,7 @@ export interface CPU {
   core_count: number;
   threads_count: number;
   name: string;
-  imageUrl?: string | null;
+  imageUrl: string;
   core_clock: number;
   boost_clock: number;
   tdp?: number | null;

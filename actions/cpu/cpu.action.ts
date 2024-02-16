@@ -19,7 +19,6 @@ export async function getCPUs() {
 
   if (!data) {
     toast.error("Can't get CPUs");
-    return;
   }
 
   return data;
@@ -38,7 +37,6 @@ export async function getCPUById(cpuId: number) {
 
   if (!data) {
     toast.error("CPU not found");
-    return;
   }
 
   return data;
