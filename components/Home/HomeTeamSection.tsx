@@ -19,7 +19,7 @@ export default function HomeTeamSection() {
               <p className="text-sm text-gray-500 dark:text-gray-400">Developer</p>
             </div>
             <p className="text-sm text-gray-500/70 md:text-base/relaxed dark:text-gray-400/70">
-              Mathieu is a young developer with a passion for innovation. He's committed to creating a positive work
+              Mathieu is a young developer with a passion for innovation. He&apos;s committed to creating a positive work
               environment and delivering exceptional results for our clients.
             </p>
           </div>
