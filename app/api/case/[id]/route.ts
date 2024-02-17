@@ -5,7 +5,10 @@ import { getRequiredAuthSession } from "@/lib/auth";
 import { Role } from "@/lib/types";
 import { toast } from "sonner";
 
-export async function GET({ params }: { params: { id: number } }) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { id: number } },
+) {
   const data = await prisma.case.findUnique({
     where: {
       id: params.id,
@@ -56,7 +59,10 @@ export async function PUT(
   });
 }
 
-export async function DELETE({ params }: { params: { id: number } }) {
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: { id: number } },
+) {
   const session = await getRequiredAuthSession(Role.ADMINISTRATOR);
 
   if (!session) {

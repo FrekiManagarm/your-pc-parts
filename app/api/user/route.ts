@@ -1,16 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
-export async function POST(req: NextRequest) {
-  const data = await req.json();
+export async function GET() {
+  const data = await prisma.user.findMany();
 
-  const user = await prisma.user.findUnique({
-    where: {
-      emailAddress: data.email,
-    },
-  });
-
-  return NextResponse.json({
-    ok: true,
+  return NextResponse.json(data, {
+    status: 200,
+    statusText: "Users found",
   });
 }

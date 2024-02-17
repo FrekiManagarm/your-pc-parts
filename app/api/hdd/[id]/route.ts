@@ -1,7 +1,10 @@
 import prisma from "@/lib/prisma";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET({ params }: { params: { id: number } }) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { id: number } },
+) {
   const data = await prisma.hDD.findUnique({
     where: {
       id: params.id,
