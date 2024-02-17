@@ -12,7 +12,7 @@ const CardComponent = ({ title, category, image }: CardProps) => {
             <div className="w-[20rem] aspect-w-16 aspect-h-10 bg-gray-100 rounded-tr-lg rounded-tl-lg overflow-hidden xl:aspect-w-16 xl:aspect-h-10 relative">
                 <Image
                     src={image}
-                    alt="thumbnail"
+                    alt="thumbnail photo"
                     width={350}
                     height={200}
                     objectFit="cover"
