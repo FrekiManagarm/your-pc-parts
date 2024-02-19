@@ -1,17 +1,11 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { NextAuthOptions } from "next-auth";
-import { JWT } from "next-auth/jwt";
-// import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
 import prisma from "./prisma";
-import { PrismaClient } from "@prisma/client";
-
-const apiUrl = process.env.API_URL;
-const client = new PrismaClient();
 
 export const options: NextAuthOptions = {
-  adapter: PrismaAdapter(client),
+  adapter: PrismaAdapter(prisma),
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
     GoogleProvider({
@@ -29,16 +23,23 @@ export const options: NextAuthOptions = {
       clientId: process.env.GITHUB_ID ?? "",
       clientSecret: process.env.GITHUB_SECRET ?? "",
     }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_ID ?? "",
+      clientSecret: process.env.GOOGLE_SECRET ?? "",
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code",
+        },
+      },
+    }),
   ],
   callbacks: {
-    async session({ session, token }) {
-      // session.user = token.user;
-      // session.tokens = token.tokens;
+    async session({ session, user }) {
+      session.user = user;
 
       return session;
     },
-  },
-  session: {
-    strategy: "jwt",
   },
 };

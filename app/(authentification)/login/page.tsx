@@ -25,7 +25,7 @@ export default function LoginPage({ searchParams }: LoginPageProps) {
   const handlerSubmit = async (event: FormEvent) => {
     event.preventDefault();
     await signIn("credentials", {
-      emailAdress: inputs.email,
+      email: inputs.email,
       password: inputs.password,
       callbackUrl: "/",
     });
