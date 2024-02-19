@@ -25,6 +25,7 @@ export async function POST(request: NextRequest) {
   const session = await getRequiredAuthSession(
     Role.ADMINISTRATOR || Role.MODERATOR,
   );
+
   const body: Case = await request.json();
 
   if (!session) {

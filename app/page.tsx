@@ -3,12 +3,12 @@ import HomePricingsSection from "@/components/Home/HomePricingsSection";
 import HomeTeamSection from "@/components/Home/HomeTeamSection";
 import KeyFeaturesSection from "@/components/Home/KeyFeaturesSection";
 import Footer from "@/components/layout/Footer";
-import { options } from "@/lib/authOptions";
+import { authConfig } from "@/pages/api/auth/[...nextauth]";
 import { getServerSession } from "next-auth";
 
 export default async function Home() {
-  const session = await getServerSession(options);
-  console.log(session);
+  const session = await getServerSession(authConfig);
+  console.log(session, 'user session')
 
   return (
     <>
