@@ -13,9 +13,8 @@ datasource db {
 
 model User {
   id Int @default(autoincrement()) @id
-  emailAddress String @unique
-  firstname String
-  lastname String
+  email String @unique
+  username String
   avatarUrl String? @default("")
   stripeId String? @default("")
   password String @default("")
@@ -65,6 +64,7 @@ model CPUCooler {
   rpm Int? @default(0)
   name String
   imageUrl String? @default("")
+  amazonLink String? @default("")
   noise_level Int? @default(0)
   color String?
   size Int?
@@ -79,6 +79,7 @@ model Motherboard {
   memory_slots Int @default(0)
   name String
   imageUrl String? @default("")
+  amazonLink String? @default("")
   color String?
   setups Setup[]
 }
@@ -90,6 +91,7 @@ model RAM {
   price_per_gb Int @default(0)
   color String?
   imageUrl String? @default("")
+  amazonLink String? @default("")
   name String
   first_word_latency String? @default("")
   cas_latency String? @default("")
@@ -104,6 +106,7 @@ model CPU {
   imageUrl String? @default("")
   core_clock Float @default(0.0)
   boost_clock Float @default(0.0)
+  amazonLink String? @default("")
   tdp Int? @default(0)
   graphics Boolean? @default(false)
   smt Boolean? @default(false)
@@ -114,6 +117,7 @@ model HDD {
   id Int @default(autoincrement()) @id
   capacity Int @default(0)
   price_per_gb Int @default(0)
+  amazonLink String? @default("")
   name String
   imageUrl String? @default("")
   type String? @default("")
@@ -129,6 +133,7 @@ model SSD {
   price_per_gb Int @default(0)
   name String
   imageUrl String? @default("")
+  amazonLink String? @default("")
   type String?
   cache Int? @default(0)
   form_factor String?
@@ -142,6 +147,7 @@ model GPU {
   memory Int? @default(0)
   name String
   imageUrl String? @default("")
+  amazonLink String? @default("")
   core_clock Int? @default(0)
   boost_clock Int? @default(0)
   color String? @default("")
@@ -156,6 +162,7 @@ model Case {
   name String
   imageUrl String? @default("")
   included_PSU_W Int? @default(0)
+  amazonLink String? @default("")
   side_panel String?
   external_volume String?
   internal_35_bays Int? @default(0)
@@ -168,6 +175,7 @@ model PSU {
   name String
   imageUrl String? @default("")
   efficiency PSUEff @default(bronze)
+  amazonLink String? @default("")
   wattage Int? @default(0)
   modular PSUModul @default(none)
   setups Setup[]
@@ -281,6 +289,7 @@ model Monitor {
   id  Int @default(autoincrement()) @id
   screen_size Int? @default(0) // inches
   resolution Int[] @default([0, 0])
+  amazonLink String? @default("")
   name String
   imageUrl String? @default("")
   refresh_rate Int? @default(60)
@@ -296,6 +305,7 @@ model SoundCard {
   digital_audio String?
   name String
   imageUrl String? @default("")
+  amazonLink String? @default("")
   snr Int? @default(0)
   sample_rate Int? @default(0)
   chipset String?
@@ -311,6 +321,7 @@ model Headphones {
   frequency_response Int[] @default([0, 0])
   microphone Boolean? @default(false)
   wireless Boolean? @default(false)
+  amazonLink String? @default("")
   name String
   imageUrl String? @default("")
   noise_cancellation Boolean? @default(false)
@@ -325,6 +336,7 @@ model Keyboard {
   switches String?
   backlit String?
   name String
+  amazonLink String? @default("")
   imageUrl String? @default("")
   tenkeyless Boolean? @default(true)
   connection_type ConnectionType @default(Wired)
@@ -337,6 +349,7 @@ model Mouse {
   tracking_method MouseTrackMethod @default(Laser)
   connection_type ConnectionType @default(Wired)
   max_dpi Int? @default(0)
+  amazonLink String? @default("")
   name String
   imageUrl String? @default("")
   hand_orientation MouseOrientation @default(Right)
@@ -351,6 +364,7 @@ model Speakers {
   imageUrl String? @default("")
   wattage Int? @default(0)
   frequency_response Int? @default(0)
+  amazonLink String? @default("")
   color String?
   setups SpeakersOfSetup[]
 }
@@ -363,6 +377,7 @@ model Webcam {
   connection ConnectionType @default(Wired)
   focus_type FocusType @default(Auto)
   os String[] @default([])
+  amazonLink String? @default("")
   fov Int? @default(0)
   setups Setup[]
 }
@@ -373,6 +388,7 @@ model CaseFan {
   name String
   imageUrl String? @default("")
   color String?
+  amazonLink String? @default("")
   rpm Int[] @default([0, 0])
   airflow Int[] @default([0, 0])
   setups CaseFanOfSetup[]

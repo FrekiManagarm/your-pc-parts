@@ -40,9 +40,8 @@ CREATE TYPE "MonitorPanelType" AS ENUM ('IPS', 'TN', 'VA', 'OLED');
 -- CreateTable
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
-    "emailAddress" TEXT NOT NULL,
-    "firstname" TEXT NOT NULL,
-    "lastname" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "username" TEXT NOT NULL,
     "avatarUrl" TEXT DEFAULT '',
     "stripeId" TEXT DEFAULT '',
     "password" TEXT NOT NULL DEFAULT '',
@@ -87,6 +86,7 @@ CREATE TABLE "CPUCooler" (
     "rpm" INTEGER DEFAULT 0,
     "name" TEXT NOT NULL,
     "imageUrl" TEXT DEFAULT '',
+    "amazonLink" TEXT DEFAULT '',
     "noise_level" INTEGER DEFAULT 0,
     "color" TEXT,
     "size" INTEGER,
@@ -103,6 +103,7 @@ CREATE TABLE "Motherboard" (
     "memory_slots" INTEGER NOT NULL DEFAULT 0,
     "name" TEXT NOT NULL,
     "imageUrl" TEXT DEFAULT '',
+    "amazonLink" TEXT DEFAULT '',
     "color" TEXT,
 
     CONSTRAINT "Motherboard_pkey" PRIMARY KEY ("id")
@@ -116,6 +117,7 @@ CREATE TABLE "RAM" (
     "price_per_gb" INTEGER NOT NULL DEFAULT 0,
     "color" TEXT,
     "imageUrl" TEXT DEFAULT '',
+    "amazonLink" TEXT DEFAULT '',
     "name" TEXT NOT NULL,
     "first_word_latency" TEXT DEFAULT '',
     "cas_latency" TEXT DEFAULT '',
@@ -132,6 +134,7 @@ CREATE TABLE "CPU" (
     "imageUrl" TEXT DEFAULT '',
     "core_clock" DOUBLE PRECISION NOT NULL DEFAULT 0.0,
     "boost_clock" DOUBLE PRECISION NOT NULL DEFAULT 0.0,
+    "amazonLink" TEXT DEFAULT '',
     "tdp" INTEGER DEFAULT 0,
     "graphics" BOOLEAN DEFAULT false,
     "smt" BOOLEAN DEFAULT false,
@@ -144,6 +147,7 @@ CREATE TABLE "HDD" (
     "id" SERIAL NOT NULL,
     "capacity" INTEGER NOT NULL DEFAULT 0,
     "price_per_gb" INTEGER NOT NULL DEFAULT 0,
+    "amazonLink" TEXT DEFAULT '',
     "name" TEXT NOT NULL,
     "imageUrl" TEXT DEFAULT '',
     "type" TEXT DEFAULT '',
@@ -161,6 +165,7 @@ CREATE TABLE "SSD" (
     "price_per_gb" INTEGER NOT NULL DEFAULT 0,
     "name" TEXT NOT NULL,
     "imageUrl" TEXT DEFAULT '',
+    "amazonLink" TEXT DEFAULT '',
     "type" TEXT,
     "cache" INTEGER DEFAULT 0,
     "form_factor" TEXT,
@@ -176,6 +181,7 @@ CREATE TABLE "GPU" (
     "memory" INTEGER DEFAULT 0,
     "name" TEXT NOT NULL,
     "imageUrl" TEXT DEFAULT '',
+    "amazonLink" TEXT DEFAULT '',
     "core_clock" INTEGER DEFAULT 0,
     "boost_clock" INTEGER DEFAULT 0,
     "color" TEXT DEFAULT '',
@@ -192,6 +198,7 @@ CREATE TABLE "Case" (
     "name" TEXT NOT NULL,
     "imageUrl" TEXT DEFAULT '',
     "included_PSU_W" INTEGER DEFAULT 0,
+    "amazonLink" TEXT DEFAULT '',
     "side_panel" TEXT,
     "external_volume" TEXT,
     "internal_35_bays" INTEGER DEFAULT 0,
@@ -206,6 +213,7 @@ CREATE TABLE "PSU" (
     "name" TEXT NOT NULL,
     "imageUrl" TEXT DEFAULT '',
     "efficiency" "PSUEff" NOT NULL DEFAULT 'bronze',
+    "amazonLink" TEXT DEFAULT '',
     "wattage" INTEGER DEFAULT 0,
     "modular" "PSUModul" NOT NULL DEFAULT 'none',
     "color" TEXT,
@@ -275,6 +283,7 @@ CREATE TABLE "Monitor" (
     "id" SERIAL NOT NULL,
     "screen_size" INTEGER DEFAULT 0,
     "resolution" INTEGER[] DEFAULT ARRAY[0, 0]::INTEGER[],
+    "amazonLink" TEXT DEFAULT '',
     "name" TEXT NOT NULL,
     "imageUrl" TEXT DEFAULT '',
     "refresh_rate" INTEGER DEFAULT 60,
@@ -292,6 +301,7 @@ CREATE TABLE "SoundCard" (
     "digital_audio" TEXT,
     "name" TEXT NOT NULL,
     "imageUrl" TEXT DEFAULT '',
+    "amazonLink" TEXT DEFAULT '',
     "snr" INTEGER DEFAULT 0,
     "sample_rate" INTEGER DEFAULT 0,
     "chipset" TEXT,
@@ -307,6 +317,7 @@ CREATE TABLE "Headphones" (
     "frequency_response" INTEGER[] DEFAULT ARRAY[0, 0]::INTEGER[],
     "microphone" BOOLEAN DEFAULT false,
     "wireless" BOOLEAN DEFAULT false,
+    "amazonLink" TEXT DEFAULT '',
     "name" TEXT NOT NULL,
     "imageUrl" TEXT DEFAULT '',
     "noise_cancellation" BOOLEAN DEFAULT false,
@@ -323,6 +334,7 @@ CREATE TABLE "Keyboard" (
     "switches" TEXT,
     "backlit" TEXT,
     "name" TEXT NOT NULL,
+    "amazonLink" TEXT DEFAULT '',
     "imageUrl" TEXT DEFAULT '',
     "tenkeyless" BOOLEAN DEFAULT true,
     "connection_type" "ConnectionType" NOT NULL DEFAULT 'Wired',
@@ -337,6 +349,7 @@ CREATE TABLE "Mouse" (
     "tracking_method" "MouseTrackMethod" NOT NULL DEFAULT 'Laser',
     "connection_type" "ConnectionType" NOT NULL DEFAULT 'Wired',
     "max_dpi" INTEGER DEFAULT 0,
+    "amazonLink" TEXT DEFAULT '',
     "name" TEXT NOT NULL,
     "imageUrl" TEXT DEFAULT '',
     "hand_orientation" "MouseOrientation" NOT NULL DEFAULT 'Right',
@@ -353,6 +366,7 @@ CREATE TABLE "Speakers" (
     "imageUrl" TEXT DEFAULT '',
     "wattage" INTEGER DEFAULT 0,
     "frequency_response" INTEGER DEFAULT 0,
+    "amazonLink" TEXT DEFAULT '',
     "color" TEXT,
 
     CONSTRAINT "Speakers_pkey" PRIMARY KEY ("id")
@@ -367,6 +381,7 @@ CREATE TABLE "Webcam" (
     "connection" "ConnectionType" NOT NULL DEFAULT 'Wired',
     "focus_type" "FocusType" NOT NULL DEFAULT 'Auto',
     "os" TEXT[] DEFAULT ARRAY[]::TEXT[],
+    "amazonLink" TEXT DEFAULT '',
     "fov" INTEGER DEFAULT 0,
 
     CONSTRAINT "Webcam_pkey" PRIMARY KEY ("id")
@@ -379,6 +394,7 @@ CREATE TABLE "CaseFan" (
     "name" TEXT NOT NULL,
     "imageUrl" TEXT DEFAULT '',
     "color" TEXT,
+    "amazonLink" TEXT DEFAULT '',
     "rpm" INTEGER[] DEFAULT ARRAY[0, 0]::INTEGER[],
     "airflow" INTEGER[] DEFAULT ARRAY[0, 0]::INTEGER[],
 
@@ -386,7 +402,7 @@ CREATE TABLE "CaseFan" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "User_emailAddress_key" ON "User"("emailAddress");
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Account_provider_provider_account_id_key" ON "Account"("provider", "provider_account_id");

@@ -1,27 +1,10 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { NextAuthOptions } from "next-auth";
-import { JWT } from "next-auth/jwt";
-import CredentialsProvider from "next-auth/providers/credentials";
+// import { JWT } from "next-auth/jwt";
+// import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
 import prisma from "./prisma";
-
-const apiUrl = process.env.API_URL;
-
-async function refreshAccessToken(token: JWT) {
-  const response = await fetch(apiUrl + "/auth/refresh", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token.tokens.refreshToken}`,
-    },
-  });
-
-  const refreshedTokens = await response.json();
-
-  return {
-    ...token,
-    tokens: refreshedTokens,
-  };
-}
 
 export const options: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -31,57 +14,50 @@ export const options: NextAuthOptions = {
       clientId: process.env.GITHUB_ID ?? "",
       clientSecret: process.env.GITHUB_SECRET ?? "",
     }),
-    CredentialsProvider({
-      name: "Credentials",
-      credentials: {
-        emailAdress: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" },
-      },
-      async authorize(credentials, req) {
-        const { emailAdress, password } = credentials as any;
-
-        if (!emailAdress || !password) return null;
-
-        const response = await fetch(apiUrl + "/auth/login", {
-          method: "POST",
-          body: JSON.stringify({
-            emailAddress: emailAdress,
-            password: password,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-
-        if (response.status == 401) {
-          console.log(response.statusText);
-
-          return null;
-        }
-
-        const user = await response.json();
-
-        return user;
+    GoogleProvider({
+      clientId: process.env.GOOGLE_ID ?? "",
+      clientSecret: process.env.GOOGLE_SECRET ?? "",
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code",
+        },
       },
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
-      if (user) return { ...token, ...user };
-
-      if (new Date().getTime() < token.tokens.expiresIn) return token;
-
-      return await refreshAccessToken(token);
+    async signIn({ user, account, profile, email, credentials }) {
+      console.log("fire signin Callback");
+      return true;
     },
-    async session({ session, token }) {
-      session.user = token.user;
-      session.tokens = token.tokens;
-
-      return session;
+    // async redirect({ url, baseUrl }) {
+    //   console.log("fire redirect Callback");
+    //   return baseUrl;
+    // },
+    async session({ session, user, token }) {
+      console.log("fire SESSION Callback");
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.id,
+          randomKey: token.randomKey,
+        },
+      };
     },
-  },
-  pages: {
-    signIn: "/login",
+    async jwt({ token, user, account, profile, isNewUser }) {
+      console.log("fire jwt Callback");
+      if (user) {
+        const u = user as unknown as any;
+        return {
+          ...token,
+          id: u.id,
+          randomKey: u.randomKey,
+        };
+      }
+      return token;
+    },
   },
   session: {
     strategy: "jwt",
