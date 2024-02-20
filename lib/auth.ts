@@ -4,8 +4,9 @@ import {
   NextApiResponse,
 } from "next";
 import { getServerSession } from "next-auth";
-import { options } from "./authOptions";
+import { authConfig } from "@/pages/api/auth/[...nextauth]";
 import { Role } from "./types";
+import { UserRole } from "@prisma/client";
 
 type ParametersGetServerSession =
   | []
@@ -15,12 +16,12 @@ type ParametersGetServerSession =
 export const getAuthSession = async (
   ...parameters: ParametersGetServerSession
 ) => {
-  const session = await getServerSession(...parameters, options);
+  const session = await getServerSession(...parameters, authConfig);
   return session;
 };
 
-export const getRequiredAuthSession = async (role: Role) => {
-  const session = await getServerSession(options);
+export const getRequiredAuthSession = async (role: UserRole) => {
+  const session = await getServerSession(authConfig);
 
   if (session?.user.role != role || !session.user.id) {
     throw new Error("Unauthorized");
