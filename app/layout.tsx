@@ -5,9 +5,11 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Toaster } from 'sonner'
 import Providers from './Providers'
+import { GeistSans } from 'geist/font/sans';
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'], variable: "--font-sans" })
+// const inter = Inter({ subsets: ['latin'], variable: "--font-sans" })
+const geist = GeistSans
 
 export const metadata: Metadata = {
   title: 'YourPCParts',
@@ -24,7 +26,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className='dark'>
       <body className={cn(
         "min-h-screen bg-background font-sans antialiased",
-        inter.variable
+        geist.variable
       )}>
         <Providers>
           <MainNav />

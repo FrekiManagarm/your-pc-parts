@@ -38,6 +38,8 @@ export const authConfig = {
     async session({ session, token, user }) {
       session.user = user;
 
+      console.log(user, "user in session");
+
       return session;
     },
   },

@@ -1,5 +1,3 @@
-
-
 const HomeHero = () => {
   return (
     <section className="h-screen w-screen flex flex-row justify-center items-start">

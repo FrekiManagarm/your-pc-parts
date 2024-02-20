@@ -1,14 +1,10 @@
-import HomeHero from "@/components/Home/HomeHero";
-import HomePricingsSection from "@/components/Home/HomePricingsSection";
-import HomeTeamSection from "@/components/Home/HomeTeamSection";
-import KeyFeaturesSection from "@/components/Home/KeyFeaturesSection";
+import HomeHero from "@/components/HomePage/HomeHero";
+import HomePricingsSection from "@/components/HomePage/HomePricingsSection";
+import HomeTeamSection from "@/components/HomePage/HomeTeamSection";
+import KeyFeaturesSection from "@/components/HomePage/KeyFeaturesSection";
 import Footer from "@/components/layout/Footer";
-import { authConfig } from "@/pages/api/auth/[...nextauth]";
-import { getServerSession } from "next-auth";
 
 export default async function Home() {
-  const session = await getServerSession(authConfig);
-  console.log(session, 'user session')
 
   return (
     <>
