@@ -2,6 +2,7 @@
 
 import { getRequiredAuthSession } from "@/lib/auth";
 import { Case, Role } from "@/lib/types";
+import { UserRole } from "@prisma/client";
 import { toast } from "sonner";
 
 const apiUrl = process.env.API_URL;
@@ -46,7 +47,7 @@ export async function getCaseById(caseId: number) {
 
 export async function createCase(formData: FormData) {
   const session = await getRequiredAuthSession(
-    Role.MODERATOR || Role.ADMINISTRATOR,
+    UserRole.MODERATOR || UserRole.ADMINISTRATOR,
   );
 
   const res = await fetch(apiUrl + "/case", {

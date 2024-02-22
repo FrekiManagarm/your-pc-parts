@@ -3,6 +3,7 @@ import GoogleProvider from "next-auth/providers/google";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/lib/prisma";
+import { toast } from "sonner";
 
 export const authConfig = {
   providers: [
@@ -37,6 +38,7 @@ export const authConfig = {
     // },
     async session({ session, token, user }) {
       session.user = user;
+      toast.success("You are successfully logged in !");
 
       console.log(user, "user in session");
 

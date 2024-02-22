@@ -1,11 +1,11 @@
 
 export default function HomeTeamSection() {
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32">
+    <section className="w-full py-12 md:py-24 lg:py-[20rem]">
       <div className="container px-4 space-y-10 md:space-y-12">
         <div className="text-center">
           <div className="inline-block rounded-lg px-3 py-1 dark:bg-gray-800 shadow-lg bg-gradient-to-r from-primary to-secondary">
-            <span className="font-semibold dark:text-white shadow-lg bg-gradient-to-r from-primary to-secondary">Team</span>
+            <span className="font-semibold text-white">Team</span>
           </div>
           <h2 className="text-sm font-bold tracking-tighter dark:text-white sm:text-4xl md:text-5xl">Meet the team</h2>
           <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">

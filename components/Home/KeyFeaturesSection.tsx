@@ -2,15 +2,18 @@ import { Blocks, Component, LayoutDashboard, Workflow } from "lucide-react"
 
 export default function KeyFeaturesSection() {
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-black">
+    <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
       <div className="container px-4 md:px-6">
         <div className="grid gap-6 items-center">
           <div className="flex flex-col justify-center space-y-8 text-center">
             <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+              <div className="inline-block rounded-lg text-white shadow-lg bg-gradient-to-r from-primary to-secondary px-3 py-1 text-sm font-medium dark:bg-gray-800">
+                Key features
+              </div>
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
                 Discover Our Unique Features
               </h1>
-              <p className="max-w-[600px] text-zinc-200 md:text-xl dark:text-zinc-100 mx-auto">
+              <p className="max-w-[600px] text-gray-500 md:text-xl dark:text-zinc-100 mx-auto">
                 Our features are designed to enjoy your hardware and push it even further.
               </p>
             </div>
@@ -18,18 +21,18 @@ export default function KeyFeaturesSection() {
               <div className="grid grid-cols-3 gap-8">
                 <div className="flex flex-col items-center space-y-2 border-gray-800 p-4 rounded-lg">
                   <div className="p-2 bg-black bg-opacity-50 rounded-full">
-                    <InboxIcon className="text-white h-6 w-6 mb-2 opacity-75" />
+                    <InboxIcon className="text-white h-6 w-6 opacity-75" />
                   </div>
-                  <h2 className="text-xl font-bold text-white">Smart Inbox</h2>
+                  <h2 className="text-xl font-bold dark:text-white">Smart Inbox</h2>
                   <p className="text-gray-500">
                     Our Smart Inbox feature helps you manage your emails efficiently by prioritizing important emails.
                   </p>
                 </div>
                 <div className="flex flex-col items-center space-y-2 border-gray-800 p-4 rounded-lg">
                   <div className="p-2 bg-black bg-opacity-50 rounded-full">
-                    <MergeIcon className="text-white h-6 w-6 mb-2 opacity-75" />
+                    <MergeIcon className="text-white h-6 w-6 opacity-75" />
                   </div>
-                  <h2 className="text-xl font-bold text-white">Seamless Integration</h2>
+                  <h2 className="text-xl font-bold dark:text-white">Seamless Integration</h2>
                   <p className="text-gray-500">
                     Seamless Integration allows you to connect with your favorite apps and services without leaving your
                     inbox.
@@ -37,9 +40,9 @@ export default function KeyFeaturesSection() {
                 </div>
                 <div className="flex flex-col items-center space-y-2 border-gray-800 p-4 rounded-lg">
                   <div className="p-2 bg-black bg-opacity-50 rounded-full">
-                    <SettingsIcon className="text-white h-6 w-6 mb-2 opacity-75" />
+                    <SettingsIcon className="text-white h-6 w-6 opacity-75" />
                   </div>
-                  <h2 className="text-xl font-bold text-white">Advanced Customization</h2>
+                  <h2 className="text-xl font-bold dark:text-white">Advanced Customization</h2>
                   <p className="text-gray-500">
                     With Advanced Customization, you can personalize your email client to suit your preferences and work
                     style.
@@ -47,27 +50,27 @@ export default function KeyFeaturesSection() {
                 </div>
                 <div className="flex flex-col items-center space-y-2 border-gray-800 p-4 rounded-lg">
                   <div className="p-2 bg-black bg-opacity-50 rounded-full">
-                    <SearchIcon className="text-white h-6 w-6 mb-2 opacity-75" />
+                    <SearchIcon className="text-white h-6 w-6 opacity-75" />
                   </div>
-                  <h2 className="text-xl font-bold text-white">Powerful Search</h2>
+                  <h2 className="text-xl font-bold dark:text-white">Powerful Search</h2>
                   <p className="text-gray-500">
                     Our Powerful Search feature allows you to find any email, contact, or file in seconds.
                   </p>
                 </div>
                 <div className="flex flex-col items-center space-y-2 border-gray-800 p-4 rounded-lg">
                   <div className="p-2 bg-black bg-opacity-50 rounded-full">
-                    <LockIcon className="text-white h-6 w-6 mb-2 opacity-75" />
+                    <LockIcon className="text-white h-6 w-6 opacity-75" />
                   </div>
-                  <h2 className="text-xl font-bold text-white">Reliable Security</h2>
+                  <h2 className="text-xl font-bold dark:text-white">Reliable Security</h2>
                   <p className="text-gray-500">
                     With Reliable Security, your data is always safe and protected.
                   </p>
                 </div>
                 <div className="flex flex-col items-center space-y-2 border-gray-800 p-4 rounded-lg">
                   <div className="p-2 bg-black bg-opacity-50 rounded-full">
-                    <MergeIcon className="text-white h-6 w-6 mb-2 opacity-75" />
+                    <MergeIcon className="text-white h-6 w-6 opacity-75" />
                   </div>
-                  <h2 className="text-xl font-bold text-white">Easy Collaboration</h2>
+                  <h2 className="text-xl font-bold dark:text-white">Easy Collaboration</h2>
                   <p className="text-gray-500">
                     Easy Collaboration allows you to share and edit documents with your team in real time.
                   </p>

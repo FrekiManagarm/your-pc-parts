@@ -1,7 +1,7 @@
-import HomeHero from "@/components/HomePage/HomeHero";
-import HomePricingsSection from "@/components/HomePage/HomePricingsSection";
-import HomeTeamSection from "@/components/HomePage/HomeTeamSection";
-import KeyFeaturesSection from "@/components/HomePage/KeyFeaturesSection";
+import HomeHero from "@/components/Home/HomeHero";
+import HomePricingsSection from "@/components/Home/HomePricingsSection";
+import HomeTeamSection from "@/components/Home/HomeTeamSection";
+import KeyFeaturesSection from "@/components/Home/KeyFeaturesSection";
 import Footer from "@/components/layout/Footer";
 
 export default async function Home() {
