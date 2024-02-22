@@ -5,7 +5,6 @@ import {
 } from "next";
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/pages/api/auth/[...nextauth]";
-import { Role } from "./types";
 import { UserRole } from "@prisma/client";
 
 type ParametersGetServerSession =
