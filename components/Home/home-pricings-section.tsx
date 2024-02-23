@@ -13,7 +13,7 @@ export default function HomePricingSection() {
             </div>
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Simple, transparent pricing.</h2>
             <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Choose the plan that's right for your team. All plans include unlimited projects and bandwidth. No hidden
+              Choose the plan that&apos;s right for your team. All plans include unlimited projects and bandwidth. No hidden
               fees. No surprises.
             </p>
           </div>
