@@ -1,0 +1,17 @@
+const HomeHero = () => {
+  return (
+    <section className="h-screen w-screen flex flex-col justify-center items-center text-center pb-40">
+      <div className="h-screen w-screen flex flex-col justify-center items-center text-center">
+        <h1 className="max-w-[1000px] from-primary via-accent to-secondary bg-gradient-to-r bg-clip-text text-8xl font-bold tracking-tighter text-transparent sm:text-6xl xl:text-8xl/none animate-gradient">
+          The Ultimate Hardware Experience
+        </h1>
+        <p className="max-w-[1000px] text-gray-500 md:text-xl dark:text-gray-400">
+          Experience the power of your hardware like never before. Unleash
+          potential.
+        </p>
+      </div>
+    </section>
+  );
+};
+
+export default HomeHero;

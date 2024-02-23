@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
 
 @layer base {
   :root {
@@ -35,12 +34,31 @@
     --ring: 142.4 71.8% 29.2%;
   }
 }
- 
+
 @layer base {
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+.animate-gradient {
+  background-size: 200%;
+  -webkit-animation: animatedgradient 15s ease infinite;
+  -moz-animation: animatedgradient 15s ease infinite;
+  animation: animatedgradient 15s ease infinite;
+}
+
+@keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }

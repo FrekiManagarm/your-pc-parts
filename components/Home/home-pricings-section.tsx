@@ -1,5 +1,6 @@
 
 import Link from "next/link"
+import { Button } from "../animations/moving-border"
 
 export default function HomePricingSection() {
   return (
@@ -20,28 +21,28 @@ export default function HomePricingSection() {
         <div className="mx-auto grid max-w-sm pt-5 items-start gap-8 sm:max-w-4xl sm:grid-cols-2 md:gap-12 lg:max-w-5xl lg:grid-cols-3">
           <div className="flex flex-col items-center justify-start space-y-2 border border-gray-200 rounded-xl bg-white shadow-sm px-4 py-6 sm:border-0 sm:shadow-none sm:bg-transparent sm:px-6 sm:py-10">
             <div className="space-y-2 text-center">
-              <h3 className="text-xl font-bold">Free</h3>
-              <p className="text-3xl font-bold">$0</p>
+              <h3 className="text-xl font-bold dark:text-white">Free</h3>
+              <p className="text-3xl font-bold dark:text-white">$0</p>
               <p className="text-sm text-gray-500">
                 Perfect if you are just using the application and GET requests.
               </p>
             </div>
             <ul className="grid gap-2 py-4 text-left">
-              <li>
+              <li className="dark:text-white">
                 <CheckIcon className="mr-2 inline-block h-4 w-4" />
                 3 team members
               </li>
-              <li>
+              <li className="dark:text-white">
                 <CheckIcon className="mr-2 inline-block h-4 w-4" />
                 5GB file storage
               </li>
-              <li>
+              <li className="dark:text-white">
                 <CheckIcon className="mr-2 inline-block h-4 w-4" />
                 Email support
               </li>
             </ul>
             <Link
-              className="inline-flex h-9 items-center justify-center rounded-md border border-primary bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
+              className="inline-flex h-9 items-center justify-center rounded-md bg-white px-8 text-sm font-medium shadow transition-colors hover:bg-gray-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
               href="#"
             >
               Sign Up
@@ -69,12 +70,17 @@ export default function HomePricingSection() {
                 Priority support
               </li>
             </ul>
-            <Link
+            <Button
+              className="inline-flex h-9 items-center justify-center rounded-md bg-white px-8 text-sm font-medium shadow transition-colors hover:bg-gray-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
+            >
+              Sign Up
+            </Button>
+            {/* <Link
               className="inline-flex h-9 items-center justify-center rounded-md bg-gray-900 px-8 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
               href="#"
             >
               Sign Up
-            </Link>
+            </Link> */}
           </div>
           <div className="flex flex-col items-center justify-start space-y-2 border border-gray-200 rounded-xl bg-white shadow-sm px-4 py-6 sm:border-0 sm:shadow-none sm:bg-transparent sm:px-6 sm:py-10">
             <div className="space-y-2 text-center">
@@ -99,7 +105,7 @@ export default function HomePricingSection() {
               </li>
             </ul>
             <Link
-              className="inline-flex h-9 items-center justify-center rounded-md border border-gray-200 bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 dark:border-gray-800 dark:bg-gray-950 dark:hover:bg-gray-800 dark:hover:text-gray-50 dark:focus-visible:ring-gray-300"
+              className="inline-flex h-9 items-center justify-center rounded-md bg-white px-8 text-sm font-medium shadow transition-colors hover:bg-gray-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
               href="#"
             >
               Sign Up

@@ -1,7 +1,7 @@
-import HomeHero from "@/components/Home/HomeHero";
-import HomePricingsSection from "@/components/Home/HomePricingsSection";
-import HomeTeamSection from "@/components/Home/HomeTeamSection";
-import KeyFeaturesSection from "@/components/Home/KeyFeaturesSection";
+import HomeHero from "@/components/Home/home-hero-section";
+import HomePricingsSection from "@/components/Home/home-pricings-section";
+import HomeTeamSection from "@/components/Home/home-team-section";
+import KeyFeaturesSection from "@/components/Home/key-features-section";
 import Footer from "@/components/layout/Footer";
 
 export default async function Home() {
@@ -13,7 +13,7 @@ export default async function Home() {
         {/* <BentoGridThirdDemo /> */}
         <KeyFeaturesSection />
         <HomePricingsSection />
-        <HomeTeamSection />
+        {/* <HomeTeamSection /> */}
       </main>
       <Footer />
     </>
