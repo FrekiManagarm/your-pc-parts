@@ -45,16 +45,11 @@ export async function getMouseById(mouseId: number) {
 }
 
 export async function createMouse(formData: FormData) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + "/mouse", {
     method: "POST",
     body: JSON.stringify({}),
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
       "Content-Type": "application/json",
     },
   });
@@ -68,17 +63,12 @@ export async function createMouse(formData: FormData) {
 }
 
 export async function updateMouse(mouseId: number, formData: FormData) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + `/mouse/${mouseId}`, {
     method: "PUT",
     body: JSON.stringify({}),
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
     },
   });
 
@@ -93,13 +83,10 @@ export async function updateMouse(mouseId: number, formData: FormData) {
 }
 
 export async function deleteMouse(mouseId: number) {
-  const session = await getRequiredAuthSession(Role.ADMINISTRATOR);
-
   const res = await fetch(apiUrl + `/mouse/${mouseId}`, {
     method: "DELETE",
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
     },
   });
 

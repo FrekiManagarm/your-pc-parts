@@ -46,15 +46,10 @@ export async function getCaseById(caseId: number) {
 }
 
 export async function createCase(formData: FormData) {
-  const session = await getRequiredAuthSession(
-    UserRole.MODERATOR || UserRole.ADMINISTRATOR,
-  );
-
   const res = await fetch(apiUrl + "/case", {
     method: "POST",
     body: JSON.stringify({}),
     headers: {
-      Authorization: `Bearer ${session.tokens.accessToken}`,
       "Content-Type": "application/json",
       Accept: "application/json",
     },
@@ -71,16 +66,12 @@ export async function createCase(formData: FormData) {
 }
 
 export async function updateCase(caseId: number, formData: FormData) {
-  const session = await getRequiredAuthSession(
-    Role.MODERATOR || Role.ADMINISTRATOR,
-  );
-
   const res = await fetch(apiUrl + `/case/${caseId}`, {
     method: "PUT",
     body: JSON.stringify({}),
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
+      Accept: "application/json",
     },
   });
 
@@ -95,14 +86,9 @@ export async function updateCase(caseId: number, formData: FormData) {
 }
 
 export async function deleteCase(caseId: number) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + `/case/${caseId}`, {
     method: "DELETE",
     headers: {
-      Authorization: `Bearer ${session.tokens.accessToken}`,
       Accept: "application/json",
     },
   });

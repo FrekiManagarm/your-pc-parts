@@ -1,6 +1,5 @@
 "use server";
 
-import { getRequiredAuthSession } from "@/lib/auth";
 import { CPU, Role } from "@/lib/types";
 import { toast } from "sonner";
 
@@ -43,15 +42,10 @@ export async function getCPUById(cpuId: number) {
 }
 
 export async function createCPU(formData: FormData) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + "/cpu", {
     method: "POST",
     body: JSON.stringify({}),
     headers: {
-      Authorization: `Bearer ${session.tokens.accessToken}`,
       Accept: "application/json",
       "Content-Type": "application/json",
     },
@@ -68,15 +62,10 @@ export async function createCPU(formData: FormData) {
 }
 
 export async function updateCPU(cpuId: number, formData: FormData) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + `/cpu/${cpuId}`, {
     method: "PUT",
     body: JSON.stringify({}),
     headers: {
-      Authorization: `Bearer ${session.tokens.accessToken}`,
       Accept: "application/json",
       "Content-Type": "application/json",
     },
@@ -93,15 +82,10 @@ export async function updateCPU(cpuId: number, formData: FormData) {
 }
 
 export async function deleteCPU(cpuId: number) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + `/cpu/${cpuId}`, {
     method: "DELETE",
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
     },
   });
 

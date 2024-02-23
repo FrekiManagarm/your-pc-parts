@@ -44,16 +44,11 @@ export async function getMotherboardById(motherboardId: number) {
 }
 
 export async function createMotherboard(formData: FormData) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + "/motherboard", {
     method: "POST",
     body: JSON.stringify({}),
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
       "Content-Type": "application/json",
     },
   });
@@ -72,16 +67,11 @@ export async function updateMotherboard(
   motherboardId: number,
   formData: FormData,
 ) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + `/motherboard/${motherboardId}`, {
     method: "PUT",
     body: JSON.stringify({}),
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
       "Content-Type": "application/json",
     },
   });
@@ -97,10 +87,6 @@ export async function updateMotherboard(
 }
 
 export async function deleteMotherboard(motherboardId: number) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + `/motherboard/${motherboardId}`, {
     method: "DELETE",
     headers: {

@@ -44,17 +44,12 @@ export async function getSpeakerById(speakerId: number) {
 }
 
 export async function createSpeaker(formData: FormData) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + "/speaker", {
     method: "POST",
     body: JSON.stringify({}),
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
     },
   });
 
@@ -69,17 +64,12 @@ export async function createSpeaker(formData: FormData) {
 }
 
 export async function updateSpeaker(speakerId: number, formData: FormData) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + `/speaker/${speakerId}`, {
     method: "PUT",
     body: JSON.stringify({}),
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
     },
   });
 
@@ -94,13 +84,10 @@ export async function updateSpeaker(speakerId: number, formData: FormData) {
 }
 
 export async function deleteSpeaker() {
-  const session = await getRequiredAuthSession(Role.ADMINISTRATOR);
-
   const res = await fetch(apiUrl + "/speaker", {
     method: "DELETE",
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
     },
   });
 

@@ -45,17 +45,12 @@ export async function getSSDById(ssdId: number) {
 }
 
 export async function createSSD(formData: FormData) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + "/ssd", {
     method: "POST",
     body: JSON.stringify({}),
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
     },
   });
 
@@ -70,17 +65,12 @@ export async function createSSD(formData: FormData) {
 }
 
 export async function updateSSD(ssdId: number, formData: FormData) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + `/ssd/${ssdId}`, {
     method: "PUT",
     body: JSON.stringify({}),
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
     },
   });
 
@@ -95,13 +85,10 @@ export async function updateSSD(ssdId: number, formData: FormData) {
 }
 
 export async function deleteSSD(ssdId: number) {
-  const session = await getRequiredAuthSession(Role.ADMINISTRATOR);
-
   const res = await fetch(apiUrl + `/ssd/${ssdId}`, {
     method: "DELETE",
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
     },
   });
 

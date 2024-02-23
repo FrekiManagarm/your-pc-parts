@@ -1,7 +1,6 @@
 "use server";
 
-import { getRequiredAuthSession } from "@/lib/auth";
-import { Role, Webcam } from "@/lib/types";
+import { Webcam } from "@/lib/types";
 import { toast } from "sonner";
 
 const apiUrl = process.env.API_URL;
@@ -45,17 +44,12 @@ export async function getWebcamById(webcamId: number) {
 }
 
 export async function createWebcam(formData: FormData) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + "/webcam", {
     method: "POST",
     body: JSON.stringify({}),
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
     },
   });
 
@@ -70,17 +64,12 @@ export async function createWebcam(formData: FormData) {
 }
 
 export async function updateWebcam(webcamId: number, formData: FormData) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + `/webcam/${webcamId}`, {
     method: "PUT",
     body: JSON.stringify({}),
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
     },
   });
 
@@ -95,13 +84,10 @@ export async function updateWebcam(webcamId: number, formData: FormData) {
 }
 
 export async function deleteWebcam(webcamId: number) {
-  const session = await getRequiredAuthSession(Role.ADMINISTRATOR);
-
   const res = await fetch(apiUrl + `/webcam/${webcamId}`, {
     method: "DELETE",
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
     },
   });
 

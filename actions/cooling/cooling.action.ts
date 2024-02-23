@@ -45,15 +45,10 @@ export async function getCoolingById(coolingId: number) {
 }
 
 export async function createCooling(formData: FormData) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + "/cpu-cooler", {
     method: "POST",
     body: JSON.stringify({}),
     headers: {
-      Authorization: `Bearer ${session.tokens.accessToken}`,
       Accept: "application/json",
       "Content-Type": "application/json",
     },
@@ -70,16 +65,11 @@ export async function createCooling(formData: FormData) {
 }
 
 export async function updateCooling(coolingId: number, formData: FormData) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + `/cpu-cooler/${coolingId}`, {
     method: "PUT",
     body: JSON.stringify({}),
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
       "Content-Type": "application/json",
     },
   });
@@ -95,15 +85,10 @@ export async function updateCooling(coolingId: number, formData: FormData) {
 }
 
 export async function deleteCooling(coolingId: number) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + `/cpu-cooler/${coolingId}`, {
     method: "DELETE",
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
     },
   });
 

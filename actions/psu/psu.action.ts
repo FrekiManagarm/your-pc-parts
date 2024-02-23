@@ -43,17 +43,12 @@ export async function getPSUById(psuId: number) {
 }
 
 export async function createPSU(formData: FormData) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + "/psu", {
     method: "POST",
     body: JSON.stringify({}),
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
     },
   });
 
@@ -68,17 +63,12 @@ export async function createPSU(formData: FormData) {
 }
 
 export async function updatePSU(formData: FormData, psuId: number) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + `/psu${psuId}`, {
     method: "PUT",
     body: JSON.stringify({}),
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
     },
   });
 
@@ -93,13 +83,10 @@ export async function updatePSU(formData: FormData, psuId: number) {
 }
 
 export async function deletePSU(psuId: number) {
-  const session = await getRequiredAuthSession(Role.ADMINISTRATOR);
-
   const res = await fetch(apiUrl + `/psu/${psuId}`, {
     method: "DELETE",
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
     },
   });
 

@@ -45,17 +45,12 @@ export async function getGPUById(gpuId: number) {
 }
 
 export async function createGPU(formData: FormData) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + "/gpu", {
     method: "POST",
     body: JSON.stringify({}),
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
     },
   });
 
@@ -70,16 +65,11 @@ export async function createGPU(formData: FormData) {
 }
 
 export async function updateGPU(gpuId: number, formData: FormData) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + `/gpu/${gpuId}`, {
     method: "PUT",
     body: JSON.stringify({}),
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
       "Content-Type": "application/json",
     },
   });
@@ -95,15 +85,10 @@ export async function updateGPU(gpuId: number, formData: FormData) {
 }
 
 export async function deleteGPU(gpuId: number) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + `/gpu/${gpuId}`, {
     method: "DELETE",
     headers: {
       Accept: "application/json",
-      Authorization: "application/json",
       "Content-Type": "application/json",
     },
   });

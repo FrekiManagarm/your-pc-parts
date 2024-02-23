@@ -44,17 +44,12 @@ export async function getSoundCardById(soundCardId: number) {
 }
 
 export async function createSoundCard(formData: FormData) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + "/sound-card", {
     method: "POST",
     body: JSON.stringify({}),
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
     },
   });
 
@@ -69,17 +64,12 @@ export async function createSoundCard(formData: FormData) {
 }
 
 export async function updateSoundCard(soundCardId: number, formData: FormData) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + "/sound-card", {
     method: "PUT",
     body: JSON.stringify({}),
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
     },
   });
 
@@ -94,8 +84,6 @@ export async function updateSoundCard(soundCardId: number, formData: FormData) {
 }
 
 export async function deleteSoundCard(soundCardId: number) {
-  const session = await getRequiredAuthSession(Role.ADMINISTRATOR);
-
   const res = await fetch(apiUrl + "/sound-card", {
     method: "DELETE",
     headers: {

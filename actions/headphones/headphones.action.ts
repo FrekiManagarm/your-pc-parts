@@ -44,16 +44,11 @@ export async function getHeaphonesById(heaphonesId: number) {
 }
 
 export async function createHeaphones(formData: FormData) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + "/headphones", {
     method: "POST",
     body: JSON.stringify({}),
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
       "Content-Type": "application/json",
     },
   });
@@ -69,15 +64,10 @@ export async function createHeaphones(formData: FormData) {
 }
 
 export async function updateHeadphones(heaphonesId: number) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + `/headphones/${heaphonesId}`, {
     method: "PUT",
     body: JSON.stringify({}),
     headers: {
-      Authorization: `Bearer ${session.tokens.accessToken}`,
       Accept: "application/json",
       "Content-Type": "application/json",
     },
@@ -94,14 +84,9 @@ export async function updateHeadphones(heaphonesId: number) {
 }
 
 export async function deleteHeadphones(headphonesId: number) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + `/headphones/${headphonesId}`, {
     method: "DELETE",
     headers: {
-      Authorization: `Bearer ${session.tokens.accessToken}`,
       Accept: "application/json",
     },
   });

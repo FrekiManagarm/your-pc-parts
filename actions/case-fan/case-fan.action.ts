@@ -44,17 +44,12 @@ export async function getCaseFansById(caseFanId: number) {
 }
 
 export async function createCaseFan(formData: FormData) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const response = await fetch(apiUrl + "/case-fan", {
     method: "POST",
     body: JSON.stringify({}),
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
     },
   });
 
@@ -69,16 +64,11 @@ export async function createCaseFan(formData: FormData) {
 }
 
 export async function updateCaseFan(caseFanId: number, formData: FormData) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const response = await fetch(apiUrl + `/case-fan/${caseFanId}`, {
     method: "PUT",
     body: JSON.stringify({}),
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
       "Content-Type": "application/json",
     },
   });
@@ -94,14 +84,9 @@ export async function updateCaseFan(caseFanId: number, formData: FormData) {
 }
 
 export async function deleteCaseFan(caseFanId: number) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + `/case-fan/${caseFanId}`, {
     method: "DELETE",
     headers: {
-      Authorization: `Bearer ${session.tokens.accessToken}`,
       Accept: "application/json",
     },
   });

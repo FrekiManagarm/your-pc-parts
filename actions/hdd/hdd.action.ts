@@ -43,15 +43,10 @@ export async function getHDDById(hddId: number) {
 }
 
 export async function createHDD(formData: FormData) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + "/hdd", {
     method: "POST",
     body: JSON.stringify({}),
     headers: {
-      Authorization: `Bearer ${session.tokens.accessToken}`,
       "Content-Type": "application/json",
       Accept: "application/json",
     },
@@ -68,17 +63,12 @@ export async function createHDD(formData: FormData) {
 }
 
 export async function updateHDD(hddId: number, formData: FormData) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + `/hdd/${hddId}`, {
     method: "PUT",
     body: JSON.stringify({}),
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
     },
   });
 
@@ -93,15 +83,10 @@ export async function updateHDD(hddId: number, formData: FormData) {
 }
 
 export async function deleteHDD(hddId: number) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
-
   const res = await fetch(apiUrl + `/hdd/${hddId}`, {
     method: "DELETE",
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${session.tokens.accessToken}`,
     },
   });
 
