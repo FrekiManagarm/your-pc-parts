@@ -1,7 +1,6 @@
 import { getRequiredAuthSession } from "@/lib/auth";
 import prisma from "@/lib/prisma";
-import { Role } from "@/lib/types";
-import { CPU } from "@prisma/client";
+import { CPU, UserRole } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { toast } from "sonner";
 
@@ -34,7 +33,7 @@ export async function PUT(
   { params }: { params: { id: number } },
 ) {
   const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
+    UserRole.ADMINISTRATOR || UserRole.MODERATOR,
   );
   const body: CPU = await request.json();
 
@@ -71,9 +70,7 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: number } },
 ) {
-  const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
-  );
+  const session = await getRequiredAuthSession(UserRole.ADMINISTRATOR);
 
   if (!session) {
     toast.error("You can't do this action");

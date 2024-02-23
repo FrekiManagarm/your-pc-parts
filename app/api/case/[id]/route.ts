@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import { Case } from "@prisma/client";
+import { Case, UserRole } from "@prisma/client";
 import { getRequiredAuthSession } from "@/lib/auth";
-import { Role } from "@/lib/types";
 import { toast } from "sonner";
 
 export async function GET(
@@ -34,7 +33,7 @@ export async function PUT(
   { params }: { params: { id: number } },
 ) {
   const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
+    UserRole.ADMINISTRATOR || UserRole.MODERATOR,
   );
   const body: Case = await request.json();
 
@@ -63,7 +62,7 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: number } },
 ) {
-  const session = await getRequiredAuthSession(Role.ADMINISTRATOR);
+  const session = await getRequiredAuthSession(UserRole.ADMINISTRATOR);
 
   if (!session) {
     toast.error("You can't do this action");

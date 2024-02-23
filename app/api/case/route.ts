@@ -1,7 +1,6 @@
 import { getRequiredAuthSession } from "@/lib/auth";
 import prisma from "@/lib/prisma";
-import { Role } from "@/lib/types";
-import { Case, Prisma } from "@prisma/client";
+import { Case, Prisma, UserRole } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { toast } from "sonner";
 
@@ -23,7 +22,7 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   const session = await getRequiredAuthSession(
-    Role.ADMINISTRATOR || Role.MODERATOR,
+    UserRole.ADMINISTRATOR || UserRole.MODERATOR,
   );
 
   const body: Case = await request.json();
