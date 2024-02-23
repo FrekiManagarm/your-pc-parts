@@ -24,7 +24,7 @@ export async function getCaseFans() {
   return data;
 }
 
-export async function getCaseFansById(caseFanId: number) {
+export async function getCaseFansById(caseFanId: string) {
   const res = await fetch(apiUrl + `/case-fan/${caseFanId}`, {
     method: "GET",
     headers: {
@@ -63,7 +63,7 @@ export async function createCaseFan(formData: FormData) {
   return data;
 }
 
-export async function updateCaseFan(caseFanId: number, formData: FormData) {
+export async function updateCaseFan(caseFanId: string, formData: FormData) {
   const response = await fetch(apiUrl + `/case-fan/${caseFanId}`, {
     method: "PUT",
     body: JSON.stringify({}),
@@ -83,7 +83,7 @@ export async function updateCaseFan(caseFanId: number, formData: FormData) {
   return data;
 }
 
-export async function deleteCaseFan(caseFanId: number) {
+export async function deleteCaseFan(caseFanId: string) {
   const res = await fetch(apiUrl + `/case-fan/${caseFanId}`, {
     method: "DELETE",
     headers: {

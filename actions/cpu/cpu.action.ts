@@ -23,7 +23,7 @@ export async function getCPUs() {
   return data;
 }
 
-export async function getCPUById(cpuId: number) {
+export async function getCPUById(cpuId: string) {
   const res = await fetch(apiUrl + `/cpu/${cpuId}`, {
     method: "GET",
     headers: {
@@ -61,7 +61,7 @@ export async function createCPU(formData: FormData) {
   return data;
 }
 
-export async function updateCPU(cpuId: number, formData: FormData) {
+export async function updateCPU(cpuId: string, formData: FormData) {
   const res = await fetch(apiUrl + `/cpu/${cpuId}`, {
     method: "PUT",
     body: JSON.stringify({}),
@@ -81,7 +81,7 @@ export async function updateCPU(cpuId: number, formData: FormData) {
   return data;
 }
 
-export async function deleteCPU(cpuId: number) {
+export async function deleteCPU(cpuId: string) {
   const res = await fetch(apiUrl + `/cpu/${cpuId}`, {
     method: "DELETE",
     headers: {

@@ -23,7 +23,7 @@ export async function getHDDs() {
   return data;
 }
 
-export async function getHDDById(hddId: number) {
+export async function getHDDById(hddId: string) {
   const res = await fetch(apiUrl + `/hdd/${hddId}`, {
     method: "GET",
     headers: {
@@ -62,7 +62,7 @@ export async function createHDD(formData: FormData) {
   return data;
 }
 
-export async function updateHDD(hddId: number, formData: FormData) {
+export async function updateHDD(hddId: string, formData: FormData) {
   const res = await fetch(apiUrl + `/hdd/${hddId}`, {
     method: "PUT",
     body: JSON.stringify({}),
@@ -82,7 +82,7 @@ export async function updateHDD(hddId: number, formData: FormData) {
   return data;
 }
 
-export async function deleteHDD(hddId: number) {
+export async function deleteHDD(hddId: string) {
   const res = await fetch(apiUrl + `/hdd/${hddId}`, {
     method: "DELETE",
     headers: {

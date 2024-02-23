@@ -24,7 +24,7 @@ export async function getSpeakers() {
   return data;
 }
 
-export async function getSpeakerById(speakerId: number) {
+export async function getSpeakerById(speakerId: string) {
   const res = await fetch(apiUrl + `/speaker/${speakerId}`, {
     method: "GET",
     headers: {
@@ -63,7 +63,7 @@ export async function createSpeaker(formData: FormData) {
   return data;
 }
 
-export async function updateSpeaker(speakerId: number, formData: FormData) {
+export async function updateSpeaker(speakerId: string, formData: FormData) {
   const res = await fetch(apiUrl + `/speaker/${speakerId}`, {
     method: "PUT",
     body: JSON.stringify({}),
@@ -83,8 +83,8 @@ export async function updateSpeaker(speakerId: number, formData: FormData) {
   return data;
 }
 
-export async function deleteSpeaker() {
-  const res = await fetch(apiUrl + "/speaker", {
+export async function deleteSpeaker(speakerId: string) {
+  const res = await fetch(apiUrl + `/speaker/${speakerId}`, {
     method: "DELETE",
     headers: {
       Accept: "application/json",

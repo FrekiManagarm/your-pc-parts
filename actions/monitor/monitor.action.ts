@@ -24,7 +24,7 @@ export async function getMonitors() {
   return data;
 }
 
-export async function getMonitorById(monitorId: number) {
+export async function getMonitorById(monitorId: string) {
   const res = await fetch(apiUrl + `/monitor/${monitorId}`, {
     method: "GET",
     headers: {
@@ -63,7 +63,7 @@ export async function createMonitor(formData: FormData) {
   return data;
 }
 
-export async function updateMonitor(monitorId: number, formData: FormData) {
+export async function updateMonitor(monitorId: string, formData: FormData) {
   const res = await fetch(apiUrl + `/monitor/${monitorId}`, {
     method: "PUT",
     body: JSON.stringify({}),
@@ -83,7 +83,7 @@ export async function updateMonitor(monitorId: number, formData: FormData) {
   return data;
 }
 
-export async function deleteMonitor(monitorId: number) {
+export async function deleteMonitor(monitorId: string) {
   const res = await fetch(apiUrl + `/monitor/${monitorId}`, {
     method: "DELETE",
     headers: {

@@ -25,8 +25,8 @@ export async function getCoolings() {
   return data;
 }
 
-export async function getCoolingById(coolingId: number) {
-  const res = await fetch(apiUrl + "/cpu-cooler", {
+export async function getCoolingById(coolingId: string) {
+  const res = await fetch(apiUrl + `/cpu-cooler/${coolingId}`, {
     method: "GET",
     cache: "no-store",
     headers: {
@@ -64,7 +64,7 @@ export async function createCooling(formData: FormData) {
   return data;
 }
 
-export async function updateCooling(coolingId: number, formData: FormData) {
+export async function updateCooling(coolingId: string, formData: FormData) {
   const res = await fetch(apiUrl + `/cpu-cooler/${coolingId}`, {
     method: "PUT",
     body: JSON.stringify({}),
@@ -84,7 +84,7 @@ export async function updateCooling(coolingId: number, formData: FormData) {
   return data;
 }
 
-export async function deleteCooling(coolingId: number) {
+export async function deleteCooling(coolingId: string) {
   const res = await fetch(apiUrl + `/cpu-cooler/${coolingId}`, {
     method: "DELETE",
     headers: {

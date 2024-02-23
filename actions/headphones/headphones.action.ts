@@ -24,7 +24,7 @@ export async function getHeadphones() {
   return data;
 }
 
-export async function getHeaphonesById(heaphonesId: number) {
+export async function getHeaphonesById(heaphonesId: string) {
   const res = await fetch(apiUrl + `/headphones/${heaphonesId}`, {
     method: "GET",
     headers: {
@@ -63,7 +63,7 @@ export async function createHeaphones(formData: FormData) {
   return data;
 }
 
-export async function updateHeadphones(heaphonesId: number) {
+export async function updateHeadphones(heaphonesId: string) {
   const res = await fetch(apiUrl + `/headphones/${heaphonesId}`, {
     method: "PUT",
     body: JSON.stringify({}),
@@ -83,7 +83,7 @@ export async function updateHeadphones(heaphonesId: number) {
   return data;
 }
 
-export async function deleteHeadphones(headphonesId: number) {
+export async function deleteHeadphones(headphonesId: string) {
   const res = await fetch(apiUrl + `/headphones/${headphonesId}`, {
     method: "DELETE",
     headers: {

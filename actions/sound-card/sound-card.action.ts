@@ -24,7 +24,7 @@ export async function getSoundCard() {
   return data;
 }
 
-export async function getSoundCardById(soundCardId: number) {
+export async function getSoundCardById(soundCardId: string) {
   const res = await fetch(apiUrl + `/sound-card/${soundCardId}`, {
     method: "GET",
     headers: {
@@ -63,8 +63,8 @@ export async function createSoundCard(formData: FormData) {
   return data;
 }
 
-export async function updateSoundCard(soundCardId: number, formData: FormData) {
-  const res = await fetch(apiUrl + "/sound-card", {
+export async function updateSoundCard(soundCardId: string, formData: FormData) {
+  const res = await fetch(apiUrl + `/sound-card/${soundCardId}`, {
     method: "PUT",
     body: JSON.stringify({}),
     headers: {
@@ -83,8 +83,8 @@ export async function updateSoundCard(soundCardId: number, formData: FormData) {
   return data;
 }
 
-export async function deleteSoundCard(soundCardId: number) {
-  const res = await fetch(apiUrl + "/sound-card", {
+export async function deleteSoundCard(soundCardId: string) {
+  const res = await fetch(apiUrl + `/sound-card/${soundCardId}`, {
     method: "DELETE",
     headers: {
       Accept: "application/json",

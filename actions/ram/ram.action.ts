@@ -24,7 +24,7 @@ export async function getRAMs() {
   return data;
 }
 
-export async function getRAMById(ramId: number) {
+export async function getRAMById(ramId: string) {
   const res = await fetch(apiUrl + `/ram/${ramId}`, {
     method: "GET",
     headers: {
@@ -63,7 +63,7 @@ export async function createRAM(formData: FormData) {
   return data;
 }
 
-export async function updateRAM(ramId: number, formData: FormData) {
+export async function updateRAM(ramId: string, formData: FormData) {
   const res = await fetch(apiUrl + `/ram/${ramId}`, {
     method: "PUT",
     body: JSON.stringify({}),
@@ -83,7 +83,7 @@ export async function updateRAM(ramId: number, formData: FormData) {
   return data;
 }
 
-export async function deleteRAM(ramId: number) {
+export async function deleteRAM(ramId: string) {
   const res = await fetch(apiUrl + `/ram/${ramId}`, {
     method: "DELETE",
     headers: {

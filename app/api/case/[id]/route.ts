@@ -6,7 +6,7 @@ import { toast } from "sonner";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: number } },
+  { params }: { params: { id: string } },
 ) {
   const data = await prisma.case.findUnique({
     where: {
@@ -30,7 +30,7 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: number } },
+  { params }: { params: { id: string } },
 ) {
   const session = await getRequiredAuthSession(
     UserRole.ADMINISTRATOR || UserRole.MODERATOR,
@@ -60,7 +60,7 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: number } },
+  { params }: { params: { id: string } },
 ) {
   const session = await getRequiredAuthSession(UserRole.ADMINISTRATOR);
 

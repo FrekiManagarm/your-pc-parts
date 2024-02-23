@@ -26,7 +26,7 @@ export async function getCases() {
   return data;
 }
 
-export async function getCaseById(caseId: number) {
+export async function getCaseById(caseId: string) {
   const res = await fetch(apiUrl + `/case/${caseId}`, {
     method: "GET",
     headers: {
@@ -65,7 +65,7 @@ export async function createCase(formData: FormData) {
   return data;
 }
 
-export async function updateCase(caseId: number, formData: FormData) {
+export async function updateCase(caseId: string, formData: FormData) {
   const res = await fetch(apiUrl + `/case/${caseId}`, {
     method: "PUT",
     body: JSON.stringify({}),
@@ -85,7 +85,7 @@ export async function updateCase(caseId: number, formData: FormData) {
   return data;
 }
 
-export async function deleteCase(caseId: number) {
+export async function deleteCase(caseId: string) {
   const res = await fetch(apiUrl + `/case/${caseId}`, {
     method: "DELETE",
     headers: {

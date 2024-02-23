@@ -3,7 +3,7 @@ import { Case } from "@/lib/types";
 
 type CaseDetailsPageProps = {
   params: {
-    id: number;
+    id: string;
   };
 };
 

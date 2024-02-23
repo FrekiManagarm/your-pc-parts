@@ -25,7 +25,7 @@ export async function getGPUs() {
   return data;
 }
 
-export async function getGPUById(gpuId: number) {
+export async function getGPUById(gpuId: string) {
   const res = await fetch(apiUrl + `/gpu/${gpuId}`, {
     method: "GET",
     headers: {
@@ -64,7 +64,7 @@ export async function createGPU(formData: FormData) {
   return data;
 }
 
-export async function updateGPU(gpuId: number, formData: FormData) {
+export async function updateGPU(gpuId: string, formData: FormData) {
   const res = await fetch(apiUrl + `/gpu/${gpuId}`, {
     method: "PUT",
     body: JSON.stringify({}),
@@ -84,7 +84,7 @@ export async function updateGPU(gpuId: number, formData: FormData) {
   return data;
 }
 
-export async function deleteGPU(gpuId: number) {
+export async function deleteGPU(gpuId: string) {
   const res = await fetch(apiUrl + `/gpu/${gpuId}`, {
     method: "DELETE",
     headers: {

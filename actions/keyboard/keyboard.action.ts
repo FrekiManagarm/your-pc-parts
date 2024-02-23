@@ -24,7 +24,7 @@ export async function getKeyboards() {
   return data;
 }
 
-export async function getKeyboardById(keyboardId: number) {
+export async function getKeyboardById(keyboardId: string) {
   const res = await fetch(apiUrl + `/keyboard/${keyboardId}`, {
     method: "GET",
     headers: {
@@ -62,7 +62,7 @@ export async function createKeyboard(formData: FormData) {
   return data;
 }
 
-export async function updateKeyboard(keyboardId: number, formData: FormData) {
+export async function updateKeyboard(keyboardId: string, formData: FormData) {
   const res = await fetch(apiUrl + `/keyboard/${keyboardId}`, {
     method: "PUT",
     body: JSON.stringify({}),
@@ -82,7 +82,7 @@ export async function updateKeyboard(keyboardId: number, formData: FormData) {
   return data;
 }
 
-export async function deleteKeyboard(keyboardId: number) {
+export async function deleteKeyboard(keyboardId: string) {
   const res = await fetch(apiUrl + `/keyboard/${keyboardId}`, {
     method: "DELETE",
     headers: {

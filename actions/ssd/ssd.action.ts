@@ -25,7 +25,7 @@ export async function getSSDs() {
   return data;
 }
 
-export async function getSSDById(ssdId: number) {
+export async function getSSDById(ssdId: string) {
   const res = await fetch(apiUrl + `/ssd/${ssdId}`, {
     method: "GET",
     headers: {
@@ -64,7 +64,7 @@ export async function createSSD(formData: FormData) {
   return data;
 }
 
-export async function updateSSD(ssdId: number, formData: FormData) {
+export async function updateSSD(ssdId: string, formData: FormData) {
   const res = await fetch(apiUrl + `/ssd/${ssdId}`, {
     method: "PUT",
     body: JSON.stringify({}),
@@ -84,7 +84,7 @@ export async function updateSSD(ssdId: number, formData: FormData) {
   return data;
 }
 
-export async function deleteSSD(ssdId: number) {
+export async function deleteSSD(ssdId: string) {
   const res = await fetch(apiUrl + `/ssd/${ssdId}`, {
     method: "DELETE",
     headers: {

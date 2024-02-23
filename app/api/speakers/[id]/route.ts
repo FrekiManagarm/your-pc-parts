@@ -3,7 +3,7 @@ import prisma from "@/lib/prisma";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: number } },
+  { params }: { params: { id: string } },
 ) {
   const data = await prisma.speakers.findUnique({
     where: {

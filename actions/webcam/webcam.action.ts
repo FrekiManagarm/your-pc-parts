@@ -24,7 +24,7 @@ export async function getWebcams() {
   return data;
 }
 
-export async function getWebcamById(webcamId: number) {
+export async function getWebcamById(webcamId: string) {
   const res = await fetch(apiUrl + `/webcam/${webcamId}`, {
     method: "GET",
     headers: {
@@ -63,7 +63,7 @@ export async function createWebcam(formData: FormData) {
   return data;
 }
 
-export async function updateWebcam(webcamId: number, formData: FormData) {
+export async function updateWebcam(webcamId: string, formData: FormData) {
   const res = await fetch(apiUrl + `/webcam/${webcamId}`, {
     method: "PUT",
     body: JSON.stringify({}),
@@ -83,7 +83,7 @@ export async function updateWebcam(webcamId: number, formData: FormData) {
   return data;
 }
 
-export async function deleteWebcam(webcamId: number) {
+export async function deleteWebcam(webcamId: string) {
   const res = await fetch(apiUrl + `/webcam/${webcamId}`, {
     method: "DELETE",
     headers: {

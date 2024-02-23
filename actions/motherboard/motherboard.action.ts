@@ -24,7 +24,7 @@ export async function getMotherboards() {
   return data;
 }
 
-export async function getMotherboardById(motherboardId: number) {
+export async function getMotherboardById(motherboardId: string) {
   const res = await fetch(apiUrl + `/motherboard/${motherboardId}`, {
     method: "GET",
     headers: {
@@ -64,7 +64,7 @@ export async function createMotherboard(formData: FormData) {
 }
 
 export async function updateMotherboard(
-  motherboardId: number,
+  motherboardId: string,
   formData: FormData,
 ) {
   const res = await fetch(apiUrl + `/motherboard/${motherboardId}`, {
@@ -86,7 +86,7 @@ export async function updateMotherboard(
   return data;
 }
 
-export async function deleteMotherboard(motherboardId: number) {
+export async function deleteMotherboard(motherboardId: string) {
   const res = await fetch(apiUrl + `/motherboard/${motherboardId}`, {
     method: "DELETE",
     headers: {

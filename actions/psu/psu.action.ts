@@ -23,7 +23,7 @@ export async function getPSUs() {
   return data;
 }
 
-export async function getPSUById(psuId: number) {
+export async function getPSUById(psuId: string) {
   const res = await fetch(apiUrl + `/psu/${psuId}`, {
     method: "GET",
     headers: {
@@ -62,7 +62,7 @@ export async function createPSU(formData: FormData) {
   return data;
 }
 
-export async function updatePSU(formData: FormData, psuId: number) {
+export async function updatePSU(formData: FormData, psuId: string) {
   const res = await fetch(apiUrl + `/psu${psuId}`, {
     method: "PUT",
     body: JSON.stringify({}),
@@ -82,7 +82,7 @@ export async function updatePSU(formData: FormData, psuId: number) {
   return data;
 }
 
-export async function deletePSU(psuId: number) {
+export async function deletePSU(psuId: string) {
   const res = await fetch(apiUrl + `/psu/${psuId}`, {
     method: "DELETE",
     headers: {

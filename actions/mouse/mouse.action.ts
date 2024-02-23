@@ -25,7 +25,7 @@ export async function getMouses() {
   return data;
 }
 
-export async function getMouseById(mouseId: number) {
+export async function getMouseById(mouseId: string) {
   const res = await fetch(apiUrl + `/mouse/${mouseId}`, {
     method: "GET",
     headers: {
@@ -62,7 +62,7 @@ export async function createMouse(formData: FormData) {
   }
 }
 
-export async function updateMouse(mouseId: number, formData: FormData) {
+export async function updateMouse(mouseId: string, formData: FormData) {
   const res = await fetch(apiUrl + `/mouse/${mouseId}`, {
     method: "PUT",
     body: JSON.stringify({}),
@@ -82,7 +82,7 @@ export async function updateMouse(mouseId: number, formData: FormData) {
   return data;
 }
 
-export async function deleteMouse(mouseId: number) {
+export async function deleteMouse(mouseId: string) {
   const res = await fetch(apiUrl + `/mouse/${mouseId}`, {
     method: "DELETE",
     headers: {
