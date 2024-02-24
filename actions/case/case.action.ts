@@ -1,8 +1,6 @@
 "use server";
 
-import { getRequiredAuthSession } from "@/lib/auth";
-import { Case, Role } from "@/lib/types";
-import { UserRole } from "@prisma/client";
+import { Case } from "@prisma/client";
 import { toast } from "sonner";
 
 const apiUrl = process.env.API_URL;

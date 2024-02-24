@@ -1,6 +1,6 @@
 "use server";
-import { getRequiredAuthSession } from "@/lib/auth";
-import { RAM, Role } from "@/lib/types";
+
+import { RAM } from "@prisma/client";
 import { toast } from "sonner";
 
 const apiUrl = process.env.API_URL;
@@ -14,7 +14,7 @@ export async function getRAMs() {
     cache: "no-store",
   });
 
-  const data: RAM = await res.json();
+  const data: RAM[] = await res.json();
 
   if (!data) {
     toast.error("RAM not found");

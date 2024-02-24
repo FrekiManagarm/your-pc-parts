@@ -1,6 +1,6 @@
 "use server";
-import { getRequiredAuthSession } from "@/lib/auth";
-import { Headphones, Role } from "@/lib/types";
+
+import { Headphones } from "@prisma/client";
 import { toast } from "sonner";
 
 const apiUrl = process.env.API_URL;

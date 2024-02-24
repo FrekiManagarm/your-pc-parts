@@ -2,9 +2,8 @@ import MainNav from '@/components/layout/Header'
 import { cn } from '@/lib/utils'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import { Toaster } from 'sonner'
-import Providers from './Providers'
+import Providers from './providers'
 import { GeistSans } from 'geist/font/sans';
 import './globals.css'
 

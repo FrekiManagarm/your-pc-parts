@@ -1,6 +1,6 @@
 "use server";
-import { getRequiredAuthSession } from "@/lib/auth";
-import { Monitor, Role } from "@/lib/types";
+
+import { Monitor } from "@prisma/client";
 import { toast } from "sonner";
 
 const apiUrl = process.env.API_URL;
@@ -14,7 +14,7 @@ export async function getMonitors() {
     cache: "no-store",
   });
 
-  const data: Monitor = await res.json();
+  const data: Monitor[] = await res.json();
 
   if (!data) {
     toast.error("Monitors not found");

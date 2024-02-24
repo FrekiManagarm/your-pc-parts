@@ -1,5 +1,6 @@
-import { getRequiredAuthSession } from "@/lib/auth";
-import { HDD, Role } from "@/lib/types";
+"use server";
+
+import { HDD } from "@prisma/client";
 import { toast } from "sonner";
 
 const apiUrl = process.env.API_URL;

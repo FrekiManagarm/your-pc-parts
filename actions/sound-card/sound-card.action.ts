@@ -1,6 +1,6 @@
 "use server";
-import { getRequiredAuthSession } from "@/lib/auth";
-import { Role, SoundCard } from "@/lib/types";
+
+import { SoundCard } from "@prisma/client";
 import { toast } from "sonner";
 
 const apiUrl = process.env.API_URL;
@@ -14,7 +14,7 @@ export async function getSoundCard() {
     cache: "no-store",
   });
 
-  const data: SoundCard = await res.json();
+  const data: SoundCard[] = await res.json();
 
   if (!data) {
     toast.error("Sound Cards not found");

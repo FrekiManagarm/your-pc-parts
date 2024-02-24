@@ -1,6 +1,6 @@
 "use server";
 
-import { Webcam } from "@/lib/types";
+import { Webcam } from "@prisma/client";
 import { toast } from "sonner";
 
 const apiUrl = process.env.API_URL;

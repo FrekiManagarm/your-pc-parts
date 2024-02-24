@@ -1,7 +1,6 @@
 "use server";
 
-import { getRequiredAuthSession } from "@/lib/auth";
-import { Mouse, Role } from "@/lib/types";
+import { Mouse } from "@prisma/client";
 import { toast } from "sonner";
 
 const apiUrl = process.env.API_URL;
