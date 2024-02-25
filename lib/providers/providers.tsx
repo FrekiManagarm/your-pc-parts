@@ -1,5 +1,5 @@
 "use client";
-import StepperProvider from "@/lib/stepperContext";
+import StepperProvider from "@/lib/providers/stepperContext";
 import { SessionProvider } from "next-auth/react";
 import { PropsWithChildren } from "react";
 

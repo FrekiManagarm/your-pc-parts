@@ -1,5 +1,5 @@
 "use client"
-import { useStepperContext } from '@/lib/stepperContext';
+import { useStepperContext } from '@/lib/providers/stepperContext';
 import { Step, Stepper } from 'react-form-stepper';
 
 export default function ConfiguratorStepper() {

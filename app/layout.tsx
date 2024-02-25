@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { Metadata } from 'next'
 import { Toaster } from 'sonner'
-import Providers from './providers'
+import Providers from '../lib/providers/providers'
 import { GeistSans } from 'geist/font/sans';
 import './globals.css'
 
