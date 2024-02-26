@@ -1,5 +1,5 @@
 import { getCaseById } from "@/actions/case/case.action";
-import { Case } from "@/lib/types";
+import { Case } from "@prisma/client";
 
 type CaseDetailsPageProps = {
   params: {
