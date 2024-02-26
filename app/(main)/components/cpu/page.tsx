@@ -1,7 +1,7 @@
 import { getCPUs } from "@/actions/cpu/cpu.action";
 import CardComponent from "@/components/card-component";
 import { components } from "@/components/main-nav-links";
-import { CPU } from "@/lib/types";
+import { CPU } from "@prisma/client";
 
 export default async function CPUListPage() {
   const cpus: CPU[] = await getCPUs();
