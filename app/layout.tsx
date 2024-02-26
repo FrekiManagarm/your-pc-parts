@@ -5,6 +5,7 @@ import type { Metadata } from 'next'
 import { Toaster } from 'sonner'
 import Providers from '../lib/providers/providers'
 import { GeistSans } from 'geist/font/sans';
+import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 
 // const inter = Inter({ subsets: ['latin'], variable: "--font-sans" })
@@ -32,6 +33,7 @@ export default function RootLayout({
           {children}
         </Providers>
         <SpeedInsights />
+        <Analytics />
         <Toaster />
       </body>
     </html>
