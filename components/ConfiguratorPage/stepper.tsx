@@ -1,10 +1,10 @@
 "use client"
-import { useStepperContext } from '@/lib/providers/stepperContext';
+import useConfiguration from '@/lib/providers/configuratorProvider';
 import { Step, Stepper } from 'react-form-stepper';
 
 export default function ConfiguratorStepper() {
 
-  const { currentStep } = useStepperContext();
+  const { currentStep } = useConfiguration();
 
   return (
     <Stepper className='' activeStep={currentStep}>
