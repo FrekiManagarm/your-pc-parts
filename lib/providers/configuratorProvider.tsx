@@ -14,7 +14,7 @@ type ConfiguratorContext = {
 const ConfiguratorContext = createContext<ConfiguratorContext>({
   addNewComponent: (component: any) => { },
   configuration: {},
-  currentStep: 0,
+  currentStep: 1,
   nextStep: () => { },
   previousStep: () => { },
   removeComponent: () => { },
@@ -22,7 +22,7 @@ const ConfiguratorContext = createContext<ConfiguratorContext>({
 
 export function ConfiguratorProvider({ children }: { children: React.ReactNode }) {
   const [configuration, setConfiguration] = useState({});
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(1);
 
   function addNewComponent(component: any) {
     setConfiguration({ ...configuration, component });

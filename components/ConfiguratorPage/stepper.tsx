@@ -6,11 +6,11 @@ export default function ConfiguratorStepper() {
 
   const { currentStep } = useConfiguration();
 
-  return (
-    <Stepper className='' activeStep={currentStep}>
-      <Step label='CPU' />
-      <Step label='GPU' />
-      <Step label='HDD' />
-    </Stepper>
-  )
+  switch (currentStep) {
+    case 1:
+      return
+
+    default:
+      break;
+  }
 }
