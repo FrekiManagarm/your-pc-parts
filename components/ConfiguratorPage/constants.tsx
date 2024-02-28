@@ -8,18 +8,42 @@ const steps: StepDTO[] = [
     label: "GPU Step",
   },
   {
-    label: "",
+    label: "RAM Step",
   },
   {
-    label: "",
+    label: "Motherboard Step",
   },
   {
-    label: "",
+    label: "SSD Step",
   },
   {
-    label: "",
+    label: "HDD Step",
   },
   {
-    label: "",
+    label: "PSU Step",
+  },
+  {
+    label: "Case Step",
+  },
+  {
+    label: "Cooling Step",
+  },
+  {
+    label: "Webcam Step",
+  },
+  {
+    label: "Speaker Step",
+  },
+  {
+    label: "Sound Card Step",
+  },
+  {
+    label: "Mouse Step",
+  },
+  {
+    label: "Monitor Step",
+  },
+  {
+    label: "Headphones Step",
   },
 ]
