@@ -1,9 +1,10 @@
-import React from 'react'
-import { Stepper } from 'react-form-stepper'
 
-const HDDStep = () => {
+
+async function HDDStep() {
   return (
-    <Stepper>HDDStep</Stepper>
+    <div>
+      HDDStep
+    </div>
   )
 }
 

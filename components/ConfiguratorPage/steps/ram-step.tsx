@@ -1,9 +1,8 @@
-import React from 'react'
-import { Stepper } from 'react-form-stepper'
 
-const RAMStep = () => {
+
+async function RAMStep() {
   return (
-    <Stepper>RAMStep</Stepper>
+    <div>RAMStep</div>
   )
 }
 

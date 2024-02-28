@@ -1,11 +1,12 @@
 import React from 'react'
 import { Stepper } from 'react-form-stepper'
+import { steps } from '../constants'
 
-const CaseStep = () => {
+async function CaseStep() {
   return (
-    <Stepper>
+    <div>
 
-    </Stepper>
+    </div>
   )
 }
 

@@ -1,9 +1,10 @@
-import React from 'react'
-import { Stepper } from 'react-form-stepper'
 
-const KeyboardStep = () => {
+
+async function KeyboardStep() {
   return (
-    <Stepper>KeyboardStep</Stepper>
+    <div>
+
+    </div>
   )
 }
 

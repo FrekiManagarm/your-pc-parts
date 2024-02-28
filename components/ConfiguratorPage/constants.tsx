@@ -1,6 +1,6 @@
 import { StepDTO } from "react-form-stepper/dist/components/Step/StepTypes";
 
-const steps: StepDTO[] = [
+export const steps: StepDTO[] = [
   {
     label: "CPU Step",
   },

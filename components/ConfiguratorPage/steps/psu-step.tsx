@@ -1,9 +1,8 @@
-import React from 'react'
-import { Stepper } from 'react-form-stepper'
 
-const PSUStep = () => {
+
+async function PSUStep() {
   return (
-    <Stepper></Stepper>
+    <div></div>
   )
 }
 

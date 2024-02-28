@@ -1,9 +1,10 @@
-import React from 'react'
-import { Stepper } from 'react-form-stepper'
 
-const HeaphonesStep = () => {
+
+async function HeaphonesStep() {
   return (
-    <Stepper>HeaphonesStep</Stepper>
+    <div>
+      HeaphonesStep
+    </div>
   )
 }
 

@@ -1,6 +1,6 @@
-import React from 'react'
 
-const MouseStep = () => {
+
+async function MouseStep() {
   return (
     <div>MouseStep</div>
   )

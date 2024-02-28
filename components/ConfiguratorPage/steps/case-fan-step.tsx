@@ -1,9 +1,8 @@
 import React from 'react'
-import { Stepper } from 'react-form-stepper'
 
-const CaseFanStep = () => {
+async function CaseFanStep() {
   return (
-    <Stepper>CaseFanStep</Stepper>
+    <div>CaseFanStep</div>
   )
 }
 

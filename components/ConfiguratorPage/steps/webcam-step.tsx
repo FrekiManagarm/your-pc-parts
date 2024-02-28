@@ -1,9 +1,8 @@
-import React from 'react'
-import { Stepper } from 'react-form-stepper'
 
-const WebcamStep = () => {
+
+async function WebcamStep() {
   return (
-    <Stepper>WebcamStep</Stepper>
+    <div>WebcamStep</div>
   )
 }
 

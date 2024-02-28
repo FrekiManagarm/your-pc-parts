@@ -1,9 +1,12 @@
 import React from 'react'
 import { Stepper } from 'react-form-stepper'
+import { steps } from '../constants'
 
-const CoolingStep = () => {
+async function CoolingStep() {
   return (
-    <Stepper>CoolingStep</Stepper>
+    <div>
+      CoolingStep
+    </div>
   )
 }
 

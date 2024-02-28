@@ -1,11 +1,22 @@
-import React from 'react'
-import { Stepper } from 'react-form-stepper'
+"use client"
+import { Button } from '@/components/ui/button'
+import useConfiguration from '@/lib/providers/configuratorProvider'
 
-const CPUStep = () => {
+function CPUStep() {
+
+  const { nextStep } = useConfiguration();
+
   return (
-    <Stepper>
+    <div>
       Bonjour CPU Step
-    </Stepper>
+      <Button
+        onClick={() => {
+          nextStep()
+        }}
+      >
+        Suivant
+      </Button>
+    </div>
   )
 }
 

@@ -1,9 +1,9 @@
 import React from 'react'
 import { Stepper } from 'react-form-stepper'
 
-const SpeakerStep = () => {
+async function SpeakerStep() {
   return (
-    <Stepper>SpeakerStep</Stepper>
+    <div>SpeakerStep</div>
   )
 }
 
