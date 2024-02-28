@@ -1,10 +1,10 @@
 import React from 'react'
 import { Stepper } from 'react-form-stepper'
 
-const RAMStep = () => {
+const WebcamStep = () => {
   return (
-    <Stepper>RAMStep</Stepper>
+    <Stepper>WebcamStep</Stepper>
   )
 }
 
-export default RAMStep
+export default WebcamStep
