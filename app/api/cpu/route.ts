@@ -16,13 +16,21 @@ export async function POST(request: NextRequest) {
 
   const validSchema = CPUCreateSchema.parse(body);
 
+  if (!validSchema) {
+    toast.error("Something wen't wrong in the request");
+    return NextResponse.json(validSchema, {
+      status: 422,
+      statusText: "Error in validation schema",
+    });
+  }
+
   const data = await prisma.cPU.create({
     data: validSchema,
   });
 
   if (!data) {
     toast.error("Error when creating CPU");
-    return NextResponse.json(null, {
+    return NextResponse.json(data, {
       status: 422,
       statusText: "Error when creating CPU",
     });

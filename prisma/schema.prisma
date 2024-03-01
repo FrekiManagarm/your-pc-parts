@@ -5,10 +5,6 @@ generator client {
   provider = "prisma-client-js"
 }
 
-generator zod {
-  provider = "zod-prisma-types"
-}
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -70,6 +66,13 @@ model VerificationToken {
 model CPUCooler {
   id  String @default(cuid()) @id
   rpm Int? @default(0)
+  proc_support String[] @default([])
+  led Boolean? @default(false)
+  tdp_max Int? @default(0)
+  type String? @default("")
+  pressure String? @default("")
+  rpm_min Int? @default(0)
+  rpm_max Int? @default(0)
   name String
   imageUrl String? @default("")
   amazonLink String? @default("")
@@ -83,13 +86,24 @@ model Motherboard {
   id  String @default(cuid()) @id
   socket String[] @default([])
   form_factor String
+  chipset String? @default("")
+  support MemorySupport? @default(DDR4)
   max_memory Int @default(0)
   memory_slots Int @default(0)
+  audio Boolean? @default(true)
+  bluetooth Boolean? @default(false)
+  wifi Boolean? @default(false)
   name String
   imageUrl String? @default("")
   amazonLink String? @default("")
   color String?
   setups Setup[]
+}
+
+enum MemorySupport {
+  DDR5
+  DDR4
+  DDR3
 }
 
 model RAM {
@@ -115,10 +129,18 @@ model CPU {
   core_clock Float @default(0.0)
   boost_clock Float @default(0.0)
   amazonLink String? @default("")
+  socket String? @default("")
+  cpu_type CPUType?
+  cache Int? @default(0)
   tdp Int? @default(0)
   graphics Boolean? @default(false)
   smt Boolean? @default(false)
   setups Setup[]
+}
+
+enum CPUType {
+  AMD
+  Intel
 }
 
 model HDD {
@@ -130,6 +152,7 @@ model HDD {
   imageUrl String? @default("")
   type String? @default("")
   cache Int? @default(0)
+  rpm Int? @default(0)
   form_factor String?
   interface String?
   setups Setup[]
@@ -138,6 +161,8 @@ model HDD {
 model SSD {
   id String @id @default(cuid())
   capacity Int @default(0)
+  write_speed Int? @default(0)
+  read_speed Int? @default(0)
   price_per_gb Int @default(0)
   name String
   imageUrl String? @default("")
@@ -157,6 +182,10 @@ model GPU {
   imageUrl String? @default("")
   amazonLink String? @default("")
   core_clock Int? @default(0)
+  power Int? @default(0)
+  proc_unit Int? @default(0)
+  brand String? @default("")
+  led Boolean? @default(false)
   boost_clock Int? @default(0)
   color String? @default("")
   length Int? @default(0)
