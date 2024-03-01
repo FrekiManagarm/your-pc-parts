@@ -3,6 +3,7 @@ import prisma from "@/lib/prisma";
 import { Case, UserRole } from "@prisma/client";
 import { getRequiredAuthSession } from "@/lib/auth";
 import { toast } from "sonner";
+import { CaseModel } from "@/prisma/zod";
 
 export async function GET(
   request: NextRequest,
@@ -35,7 +36,9 @@ export async function PUT(
   const session = await getRequiredAuthSession(
     UserRole.ADMINISTRATOR || UserRole.MODERATOR,
   );
-  const body: Case = await request.json();
+  const body = await request.json();
+
+  const validSchema = CaseModel.parse(body);
 
   if (!session) {
     toast.error("You do this action !");
@@ -49,7 +52,7 @@ export async function PUT(
     where: {
       id: params.id,
     },
-    data: body,
+    data: validSchema,
   });
 
   return NextResponse.json(data, {

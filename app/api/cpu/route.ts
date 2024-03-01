@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import { CPUCreateSchema } from "@/lib/schemas/cpu-schema";
+import { CPUModel } from "@/prisma/zod";
 import { NextRequest, NextResponse } from "next/server";
 import { toast } from "sonner";
 export async function GET() {
@@ -14,7 +14,7 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   const body = await request.json();
 
-  const validSchema = CPUCreateSchema.parse(body);
+  const validSchema = CPUModel.parse(body);
 
   if (!validSchema) {
     toast.error("Something wen't wrong in the request");

@@ -1,6 +1,7 @@
 import { getRequiredAuthSession } from "@/lib/auth";
 import prisma from "@/lib/prisma";
-import { Case, Prisma, UserRole } from "@prisma/client";
+import { CaseModel } from "@/prisma/zod";
+import { UserRole } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { toast } from "sonner";
 
@@ -16,7 +17,7 @@ export async function GET() {
 
   return NextResponse.json(data, {
     status: 200,
-    statusText: "",
+    statusText: "Cases found",
   });
 }
 
@@ -25,7 +26,9 @@ export async function POST(request: NextRequest) {
     UserRole.ADMINISTRATOR || UserRole.MODERATOR,
   );
 
-  const body: Case = await request.json();
+  const body = await request.json();
+
+  const validSchema = CaseModel.parse(body);
 
   if (!session) {
     toast.error("You can't do this action !");
@@ -36,7 +39,7 @@ export async function POST(request: NextRequest) {
   }
 
   const data = await prisma.case.create({
-    data: body,
+    data: validSchema,
   });
 
   if (!data) {

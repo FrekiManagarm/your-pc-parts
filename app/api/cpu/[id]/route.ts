@@ -1,7 +1,7 @@
 import { getRequiredAuthSession } from "@/lib/auth";
 import prisma from "@/lib/prisma";
-import { CPUUpdateSchema } from "@/lib/schemas/cpu-schema";
-import { CPU, UserRole } from "@prisma/client";
+import { CPUModel } from "@/prisma/zod";
+import { UserRole } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { toast } from "sonner";
 
@@ -38,7 +38,7 @@ export async function PUT(
   );
   const body = await request.json();
 
-  const validSchema = CPUUpdateSchema.parse(body);
+  const validSchema = CPUModel.parse(body);
 
   if (!session) {
     toast.error("Unauthorized");
