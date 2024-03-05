@@ -44,6 +44,6 @@ export async function PUT(
 
   return NextResponse.json(data, {
     status: 203,
-    statusText: "",
+    statusText: "Headphones updated",
   });
 }

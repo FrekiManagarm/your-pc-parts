@@ -16,3 +16,8 @@ export async function GET(
     statusText: "Setup found",
   });
 }
+
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: { id: string } },
+) {}
