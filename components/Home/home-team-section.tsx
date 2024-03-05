@@ -1,3 +1,4 @@
+import Image from "next/image";
 
 export default function HomeTeamSection() {
   return (
@@ -24,16 +25,16 @@ export default function HomeTeamSection() {
             </p>
           </div>
           <div className="flex items-center justify-center space-y-3">
-            <img
+            <Image
               alt="Alice Smith"
               className="rounded-full overflow-hidden ring-2 ring-gray-900/10 object-cover"
-              height="160"
+              height={160}
               src="https://i.imgur.com/mu73rN0.jpg"
               style={{
                 aspectRatio: "160/160",
                 objectFit: "cover",
               }}
-              width="160"
+              width={160}
             />
           </div>
         </div>
