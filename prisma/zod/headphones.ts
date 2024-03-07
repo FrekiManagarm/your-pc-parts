@@ -1,9 +1,8 @@
-import * as z from "zod"
-import { HeadphoneTypes, EnclosureType } from "@prisma/client"
-import { CompleteSetup, RelatedSetupModel } from "./index"
+import * as z from "zod";
+import { HeadphoneTypes, EnclosureType } from "@prisma/client";
+import { CompleteSetup, RelatedSetupModel } from "./index";
 
 export const HeadphonesModel = z.object({
-  id: z.string(),
   type: z.nativeEnum(HeadphoneTypes),
   frequency_response: z.number().int().array(),
   microphone: z.boolean().nullish(),
@@ -14,10 +13,10 @@ export const HeadphonesModel = z.object({
   noise_cancellation: z.boolean().nullish(),
   enclosure_type: z.nativeEnum(EnclosureType),
   color: z.string().nullish(),
-})
+});
 
 export interface CompleteHeadphones extends z.infer<typeof HeadphonesModel> {
-  setups: CompleteSetup[]
+  setups: CompleteSetup[];
 }
 
 /**
@@ -25,6 +24,9 @@ export interface CompleteHeadphones extends z.infer<typeof HeadphonesModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedHeadphonesModel: z.ZodSchema<CompleteHeadphones> = z.lazy(() => HeadphonesModel.extend({
-  setups: RelatedSetupModel.array(),
-}))
+export const RelatedHeadphonesModel: z.ZodSchema<CompleteHeadphones> = z.lazy(
+  () =>
+    HeadphonesModel.extend({
+      setups: RelatedSetupModel.array(),
+    }),
+);

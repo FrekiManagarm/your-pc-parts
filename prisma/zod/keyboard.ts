@@ -1,9 +1,8 @@
-import * as z from "zod"
-import { KeyboardStyle, ConnectionType } from "@prisma/client"
-import { CompleteSetup, RelatedSetupModel } from "./index"
+import * as z from "zod";
+import { KeyboardStyle, ConnectionType } from "@prisma/client";
+import { CompleteSetup, RelatedSetupModel } from "./index";
 
 export const KeyboardModel = z.object({
-  id: z.string(),
   style: z.nativeEnum(KeyboardStyle),
   switches: z.string().nullish(),
   backlit: z.string().nullish(),
@@ -13,10 +12,10 @@ export const KeyboardModel = z.object({
   tenkeyless: z.boolean().nullish(),
   connection_type: z.nativeEnum(ConnectionType),
   color: z.string().nullish(),
-})
+});
 
 export interface CompleteKeyboard extends z.infer<typeof KeyboardModel> {
-  setups: CompleteSetup[]
+  setups: CompleteSetup[];
 }
 
 /**
@@ -24,6 +23,8 @@ export interface CompleteKeyboard extends z.infer<typeof KeyboardModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedKeyboardModel: z.ZodSchema<CompleteKeyboard> = z.lazy(() => KeyboardModel.extend({
-  setups: RelatedSetupModel.array(),
-}))
+export const RelatedKeyboardModel: z.ZodSchema<CompleteKeyboard> = z.lazy(() =>
+  KeyboardModel.extend({
+    setups: RelatedSetupModel.array(),
+  }),
+);

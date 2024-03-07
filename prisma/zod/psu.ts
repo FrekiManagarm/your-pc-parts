@@ -1,9 +1,8 @@
-import * as z from "zod"
-import { PSUType, PSUEff, PSUModul } from "@prisma/client"
-import { CompleteSetup, RelatedSetupModel } from "./index"
+import * as z from "zod";
+import { PSUType, PSUEff, PSUModul } from "@prisma/client";
+import { CompleteSetup, RelatedSetupModel } from "./index";
 
 export const PSUModel = z.object({
-  id: z.string(),
   type: z.nativeEnum(PSUType),
   name: z.string(),
   imageUrl: z.string().nullish(),
@@ -12,10 +11,10 @@ export const PSUModel = z.object({
   wattage: z.number().int().nullish(),
   modular: z.nativeEnum(PSUModul),
   color: z.string().nullish(),
-})
+});
 
 export interface CompletePSU extends z.infer<typeof PSUModel> {
-  setups: CompleteSetup[]
+  setups: CompleteSetup[];
 }
 
 /**
@@ -23,6 +22,8 @@ export interface CompletePSU extends z.infer<typeof PSUModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedPSUModel: z.ZodSchema<CompletePSU> = z.lazy(() => PSUModel.extend({
-  setups: RelatedSetupModel.array(),
-}))
+export const RelatedPSUModel: z.ZodSchema<CompletePSU> = z.lazy(() =>
+  PSUModel.extend({
+    setups: RelatedSetupModel.array(),
+  }),
+);

@@ -1,9 +1,8 @@
-import * as z from "zod"
-import { CaseType } from "@prisma/client"
-import { CompleteSetup, RelatedSetupModel } from "./index"
+import * as z from "zod";
+import { CaseType } from "@prisma/client";
+import { CompleteSetup, RelatedSetupModel } from "./index";
 
 export const CaseModel = z.object({
-  id: z.string(),
   type: z.nativeEnum(CaseType),
   color: z.string().nullish(),
   name: z.string(),
@@ -13,10 +12,10 @@ export const CaseModel = z.object({
   side_panel: z.string().nullish(),
   external_volume: z.string().nullish(),
   internal_35_bays: z.number().int().nullish(),
-})
+});
 
 export interface CompleteCase extends z.infer<typeof CaseModel> {
-  setups: CompleteSetup[]
+  setups: CompleteSetup[];
 }
 
 /**
@@ -24,6 +23,8 @@ export interface CompleteCase extends z.infer<typeof CaseModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedCaseModel: z.ZodSchema<CompleteCase> = z.lazy(() => CaseModel.extend({
-  setups: RelatedSetupModel.array(),
-}))
+export const RelatedCaseModel: z.ZodSchema<CompleteCase> = z.lazy(() =>
+  CaseModel.extend({
+    setups: RelatedSetupModel.array(),
+  }),
+);

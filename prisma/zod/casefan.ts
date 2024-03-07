@@ -1,8 +1,7 @@
-import * as z from "zod"
-import { CompleteCaseFanOfSetup, RelatedCaseFanOfSetupModel } from "./index"
+import * as z from "zod";
+import { CompleteCaseFanOfSetup, RelatedCaseFanOfSetupModel } from "./index";
 
 export const CaseFanModel = z.object({
-  id: z.string(),
   size: z.number().int(),
   name: z.string(),
   imageUrl: z.string().nullish(),
@@ -10,10 +9,10 @@ export const CaseFanModel = z.object({
   amazonLink: z.string().nullish(),
   rpm: z.number().int().array(),
   airflow: z.number().int().array(),
-})
+});
 
 export interface CompleteCaseFan extends z.infer<typeof CaseFanModel> {
-  setups: CompleteCaseFanOfSetup[]
+  setups: CompleteCaseFanOfSetup[];
 }
 
 /**
@@ -21,6 +20,8 @@ export interface CompleteCaseFan extends z.infer<typeof CaseFanModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedCaseFanModel: z.ZodSchema<CompleteCaseFan> = z.lazy(() => CaseFanModel.extend({
-  setups: RelatedCaseFanOfSetupModel.array(),
-}))
+export const RelatedCaseFanModel: z.ZodSchema<CompleteCaseFan> = z.lazy(() =>
+  CaseFanModel.extend({
+    setups: RelatedCaseFanOfSetupModel.array(),
+  }),
+);

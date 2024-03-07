@@ -1,6 +1,6 @@
 "use client"
 
-import React, { createContext, useState, useEffect, useContext, Dispatch, SetStateAction } from "react";
+import React, { createContext, useState, useContext } from "react";
 
 type ConfiguratorContext = {
   configuration: {};

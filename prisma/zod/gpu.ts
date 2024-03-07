@@ -1,8 +1,7 @@
-import * as z from "zod"
-import { CompleteSetup, RelatedSetupModel } from "./index"
+import * as z from "zod";
+import { CompleteSetup, RelatedSetupModel } from "./index";
 
 export const GPUModel = z.object({
-  id: z.string(),
   chipset: z.string().nullish(),
   memory: z.number().int().nullish(),
   name: z.string(),
@@ -16,10 +15,10 @@ export const GPUModel = z.object({
   boost_clock: z.number().int().nullish(),
   color: z.string().nullish(),
   length: z.number().int().nullish(),
-})
+});
 
 export interface CompleteGPU extends z.infer<typeof GPUModel> {
-  setups: CompleteSetup[]
+  setups: CompleteSetup[];
 }
 
 /**
@@ -27,6 +26,8 @@ export interface CompleteGPU extends z.infer<typeof GPUModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedGPUModel: z.ZodSchema<CompleteGPU> = z.lazy(() => GPUModel.extend({
-  setups: RelatedSetupModel.array(),
-}))
+export const RelatedGPUModel: z.ZodSchema<CompleteGPU> = z.lazy(() =>
+  GPUModel.extend({
+    setups: RelatedSetupModel.array(),
+  }),
+);
