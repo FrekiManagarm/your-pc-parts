@@ -7,7 +7,7 @@ function CPUStep() {
   const { nextStep } = useConfiguration();
 
   return (
-    <div>
+    <div className='w-3/4 p-2 flex flex-col'>
       Bonjour CPU Step
       <Button
         onClick={() => {
