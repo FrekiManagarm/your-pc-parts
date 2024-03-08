@@ -2,24 +2,12 @@
 
 import { Motherboard } from "@prisma/client";
 import { toast } from "sonner";
+import prisma from "@/lib/prisma";
 
 const apiUrl = process.env.API_URL;
 
 export async function getMotherboards() {
-  const res = await fetch(apiUrl + "/motherboard", {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-    },
-    cache: "no-store",
-  });
-
-  const data: Motherboard[] = await res.json();
-
-  if (!data) {
-    toast.error("Motherboards not found");
-    return;
-  }
+  const data = await prisma.motherboard.findMany();
 
   return data;
 }

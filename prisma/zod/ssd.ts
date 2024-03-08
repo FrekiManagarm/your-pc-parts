@@ -5,7 +5,7 @@ export const SSDModel = z.object({
   capacity: z.number().int(),
   write_speed: z.number().int().nullish(),
   read_speed: z.number().int().nullish(),
-  price_per_gb: z.number().int(),
+  price_per_gb: z.number().nullish(),
   name: z.string(),
   imageUrl: z.string().nullish(),
   amazonLink: z.string().nullish(),

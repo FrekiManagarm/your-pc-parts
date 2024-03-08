@@ -2,23 +2,12 @@
 
 import { CPU } from "@prisma/client";
 import { toast } from "sonner";
+import prisma from "@/lib/prisma";
 
 const apiUrl = process.env.API_URL;
 
 export async function getCPUs() {
-  const res = await fetch(apiUrl + "/cpu", {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-    },
-    cache: "no-store",
-  });
-
-  const data: CPU[] = await res.json();
-
-  if (!data) {
-    toast.error("Can't get CPUs");
-  }
+  const data = await prisma.cPU.findMany();
 
   return data;
 }

@@ -114,7 +114,7 @@ model RAM {
   id String @default(cuid()) @id
   speed Int[] @default([0, 0])
   modules Int[] @default([])
-  price_per_gb Int @default(0)
+  price_per_gb Float? @default(0)
   color String?
   imageUrl String? @default("")
   amazonLink String? @default("")
@@ -167,7 +167,7 @@ model SSD {
   capacity Int @default(0)
   write_speed Int? @default(0)
   read_speed Int? @default(0)
-  price_per_gb Int @default(0)
+  price_per_gb Float? @default(0)
   name String
   imageUrl String? @default("")
   amazonLink String? @default("")

@@ -28,4 +28,9 @@ export async function POST(request: NextRequest) {
       statusText: "Motherboard not created",
     });
   }
+
+  return NextResponse.json(data, {
+    status: 201,
+    statusText: "Motherboard created",
+  });
 }

@@ -1,6 +1,4 @@
 
-import Link from "next/link"
-// import { Button } from "../animations/moving-border"
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils"
 import styles from './pricing.module.css';
@@ -189,7 +187,7 @@ export default function HomePricingSection() {
                 href={tier.href}
                 aria-describedby={tier.id}
                 className={cn(
-                  'flex mt-6 shadow-sm',
+                  'flex mt-6',
                   tier.soldOut ? 'pointer-events-none' : '',
                 )}
               >
@@ -201,7 +199,7 @@ export default function HomePricingSection() {
                     !tier.highlighted && !tier.featured
                       ? 'bg-gray-100 dark:bg-gray-600'
                       : 'bg-purple-300 hover:bg-purple-400 dark:bg-purple-600 dark:hover:bg-purple-700',
-                    tier.featured || tier.soldOut ? 'bg-white dark:bg-neutral-900 hover:bg-gray-200 dark:hover:bg-black' : 'hover:opacity-80 transition-opacity',
+                    tier.featured || tier.soldOut ? 'bg-white dark:bg-neutral-900 hover:bg-gray-200 dark:hover:bg-black hover:shadow-lg dark:hover:shadow-lg hover:shadow-slate-500 dark:hover:shadow-white/80' : 'hover:opacity-80 transition-opacity',
                   )}
                   variant={tier.highlighted ? 'default' : 'outline'}
                 >

@@ -2,43 +2,22 @@
 
 import { CPUCooler } from "@prisma/client";
 import { toast } from "sonner";
+import prisma from "@/lib/prisma";
 
 const apiUrl = process.env.API_URL;
 
 export async function getCoolings() {
-  const res = await fetch(apiUrl + "/cpu-cooler", {
-    method: "GET",
-    cache: "no-store",
-    headers: {
-      Accept: "application/json",
-    },
-  });
-
-  const data: CPUCooler[] = await res.json();
-
-  if (!data) {
-    toast.error("Can't get Coolings");
-    return;
-  }
+  const data: CPUCooler[] = await prisma.cPUCooler.findMany();
 
   return data;
 }
 
 export async function getCoolingById(coolingId: string) {
-  const res = await fetch(apiUrl + `/cpu-cooler/${coolingId}`, {
-    method: "GET",
-    cache: "no-store",
-    headers: {
-      Accept: "application/json",
+  const data = await prisma.cPUCooler.findUnique({
+    where: {
+      id: coolingId,
     },
   });
-
-  const data: CPUCooler = await res.json();
-
-  if (!data) {
-    toast.error("Can't get this Cooling");
-    return;
-  }
 
   return data;
 }

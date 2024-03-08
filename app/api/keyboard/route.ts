@@ -28,4 +28,9 @@ export async function POST(request: NextRequest) {
       statusText: "Keyboard created",
     });
   }
+
+  return NextResponse.json(data, {
+    status: 201,
+    statusText: "Keyboard created",
+  });
 }

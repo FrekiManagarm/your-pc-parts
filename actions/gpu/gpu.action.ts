@@ -2,24 +2,12 @@
 
 import { GPU } from "@prisma/client";
 import { toast } from "sonner";
+import prisma from "@/lib/prisma";
 
 const apiUrl = process.env.API_URL;
 
 export async function getGPUs() {
-  const res = await fetch(apiUrl + "/gpu", {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-    },
-    cache: "no-store",
-  });
-
-  const data: GPU[] = await res.json();
-
-  if (!data) {
-    toast.error("GPUs not found");
-    return;
-  }
+  const data: GPU[] = await prisma.gPU.findMany();
 
   return data;
 }

@@ -4,7 +4,7 @@ import { CompleteSetup, RelatedSetupModel } from "./index";
 export const RAMModel = z.object({
   speed: z.number().int().array(),
   modules: z.number().int().array(),
-  price_per_gb: z.number().int(),
+  price_per_gb: z.number().nullish(),
   color: z.string().nullish(),
   imageUrl: z.string().nullish(),
   amazonLink: z.string().nullish(),

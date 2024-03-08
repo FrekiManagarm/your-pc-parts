@@ -8,7 +8,7 @@ type CardProps = {
 
 const CardComponent = ({ title, category, image }: CardProps) => {
     return (
-        <div className="relative overflow-hidden h-[32rem] w-[20rem] rounded-2xl transition duration-200 group bg-white hover:shadow-xl border border-zinc-100">
+        <div className="overflow-hidden w-[20rem] rounded-2xl transition duration-200 group bg-white hover:shadow-xl border border-zinc-100">
             <div className="w-[20rem] aspect-w-16 aspect-h-10 bg-gray-100 rounded-tr-lg rounded-tl-lg overflow-hidden xl:aspect-w-16 xl:aspect-h-10 relative">
                 <Image
                     src={image}
