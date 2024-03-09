@@ -2,24 +2,12 @@
 
 import { HDD } from "@prisma/client";
 import { toast } from "sonner";
+import prisma from "@/lib/prisma";
 
 const apiUrl = process.env.API_URL;
 
 export async function getHDDs() {
-  const res = await fetch(apiUrl + "/hdd", {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-    },
-    cache: "no-store",
-  });
-
-  const data: HDD[] = await res.json();
-
-  if (!data) {
-    toast.error("HDDs not found");
-    return;
-  }
+  const data = await prisma.hDD.findMany();
 
   return data;
 }

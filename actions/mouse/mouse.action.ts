@@ -2,24 +2,12 @@
 
 import { Mouse } from "@prisma/client";
 import { toast } from "sonner";
+import prisma from "@/lib/prisma";
 
 const apiUrl = process.env.API_URL;
 
 export async function getMouses() {
-  const res = await fetch(apiUrl + "/mouse", {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-    },
-    cache: "no-store",
-  });
-
-  const data: Mouse[] = await res.json();
-
-  if (!data) {
-    toast.error("Mouses not found");
-    return;
-  }
+  const data = await prisma.mouse.findMany();
 
   return data;
 }

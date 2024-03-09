@@ -16,7 +16,7 @@ export default async function CoolingListPage() {
           <p className="font-semibold break-words text-xl text-gray-300">{components[6].description}</p>
         </div>
       </div>
-      <div className="w-full grid place-items-center lg:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-5 py-5">
+      <div className="w-full grid place-items-center lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5 py-5">
         {coolings && coolings.length != 0 ? coolings.map((cooling) => (
           <>
             <CardComponent title={cooling.name} category="Cooling" image={cooling.imageUrl ?? ""} />

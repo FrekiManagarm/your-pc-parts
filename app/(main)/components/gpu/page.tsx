@@ -16,13 +16,13 @@ export default async function GPUListPage() {
           <p className="font-semibold break-words text-xl text-gray-300">{components[1].description}</p>
         </div>
       </div>
-      <div className="w-full grid place-items-center lg:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-5 py-5">
+      <section className="w-full grid place-items-center lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5 py-5">
         {gpus && gpus.length != 0 ? gpus.map((gpu) => (
           <>
             <CardComponent title={gpu.name} category="GPU" image={gpu.imageUrl as string} />
           </>
         )) : <Loader />}
-      </div>
+      </section>
     </div>
   )
 }

@@ -2,24 +2,12 @@
 
 import { Headphones } from "@prisma/client";
 import { toast } from "sonner";
+import prisma from "@/lib/prisma";
 
 const apiUrl = process.env.API_URL;
 
 export async function getHeadphones() {
-  const res = await fetch(apiUrl + "/headphones", {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-    },
-    cache: "no-store",
-  });
-
-  const data: Headphones[] = await res.json();
-
-  if (!data) {
-    toast.error("Headphones not found");
-    return;
-  }
+  const data = await prisma.headphones.findMany();
 
   return data;
 }

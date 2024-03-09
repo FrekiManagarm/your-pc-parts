@@ -1,7 +1,8 @@
-import * as z from "zod";
-import { CompleteSetup, RelatedSetupModel } from "./index";
+import * as z from "zod"
+import { CompleteSetup, RelatedSetupModel } from "./index"
 
 export const HDDModel = z.object({
+  id: z.string(),
   capacity: z.number().int(),
   price_per_gb: z.number().int(),
   amazonLink: z.string().nullish(),
@@ -12,10 +13,10 @@ export const HDDModel = z.object({
   rpm: z.number().int().nullish(),
   form_factor: z.string().nullish(),
   interface: z.string().nullish(),
-});
+})
 
 export interface CompleteHDD extends z.infer<typeof HDDModel> {
-  setups: CompleteSetup[];
+  setups: CompleteSetup[]
 }
 
 /**
@@ -23,8 +24,6 @@ export interface CompleteHDD extends z.infer<typeof HDDModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedHDDModel: z.ZodSchema<CompleteHDD> = z.lazy(() =>
-  HDDModel.extend({
-    setups: RelatedSetupModel.array(),
-  }),
-);
+export const RelatedHDDModel: z.ZodSchema<CompleteHDD> = z.lazy(() => HDDModel.extend({
+  setups: RelatedSetupModel.array(),
+}))

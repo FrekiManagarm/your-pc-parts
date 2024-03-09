@@ -2,24 +2,12 @@
 
 import { Monitor } from "@prisma/client";
 import { toast } from "sonner";
+import prisma from "@/lib/prisma";
 
 const apiUrl = process.env.API_URL;
 
 export async function getMonitors() {
-  const res = await fetch(apiUrl + "/monitor", {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-    },
-    cache: "no-store",
-  });
-
-  const data: Monitor[] = await res.json();
-
-  if (!data) {
-    toast.error("Monitors not found");
-    return;
-  }
+  const data = await prisma.monitor.findMany();
 
   return data;
 }

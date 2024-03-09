@@ -1,7 +1,8 @@
-import * as z from "zod";
-import { CompleteSetup, RelatedSetupModel } from "./index";
+import * as z from "zod"
+import { CompleteSetup, RelatedSetupModel } from "./index"
 
 export const CPUCoolerModel = z.object({
+  id: z.string(),
   rpm: z.number().int().nullish(),
   proc_support: z.string().array(),
   led: z.boolean().nullish(),
@@ -16,10 +17,10 @@ export const CPUCoolerModel = z.object({
   noise_level: z.number().int().nullish(),
   color: z.string().nullish(),
   size: z.number().int().nullish(),
-});
+})
 
 export interface CompleteCPUCooler extends z.infer<typeof CPUCoolerModel> {
-  setups: CompleteSetup[];
+  setups: CompleteSetup[]
 }
 
 /**
@@ -27,9 +28,6 @@ export interface CompleteCPUCooler extends z.infer<typeof CPUCoolerModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedCPUCoolerModel: z.ZodSchema<CompleteCPUCooler> = z.lazy(
-  () =>
-    CPUCoolerModel.extend({
-      setups: RelatedSetupModel.array(),
-    }),
-);
+export const RelatedCPUCoolerModel: z.ZodSchema<CompleteCPUCooler> = z.lazy(() => CPUCoolerModel.extend({
+  setups: RelatedSetupModel.array(),
+}))

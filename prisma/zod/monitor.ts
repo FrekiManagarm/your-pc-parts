@@ -1,8 +1,9 @@
-import * as z from "zod";
-import { MonitorPanelType } from "@prisma/client";
-import { CompleteMonitorsOfSetup, RelatedMonitorsOfSetupModel } from "./index";
+import * as z from "zod"
+import { MonitorPanelType } from "@prisma/client"
+import { CompleteMonitorsOfSetup, RelatedMonitorsOfSetupModel } from "./index"
 
 export const MonitorModel = z.object({
+  id: z.string(),
   screen_size: z.number().int().nullish(),
   resolution: z.number().int().array(),
   amazonLink: z.string().nullish(),
@@ -12,10 +13,10 @@ export const MonitorModel = z.object({
   response_time: z.number().int().nullish(),
   panel_type: z.nativeEnum(MonitorPanelType),
   aspect_ratio: z.string().nullish(),
-});
+})
 
 export interface CompleteMonitor extends z.infer<typeof MonitorModel> {
-  setups: CompleteMonitorsOfSetup[];
+  setups: CompleteMonitorsOfSetup[]
 }
 
 /**
@@ -23,8 +24,6 @@ export interface CompleteMonitor extends z.infer<typeof MonitorModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedMonitorModel: z.ZodSchema<CompleteMonitor> = z.lazy(() =>
-  MonitorModel.extend({
-    setups: RelatedMonitorsOfSetupModel.array(),
-  }),
-);
+export const RelatedMonitorModel: z.ZodSchema<CompleteMonitor> = z.lazy(() => MonitorModel.extend({
+  setups: RelatedMonitorsOfSetupModel.array(),
+}))

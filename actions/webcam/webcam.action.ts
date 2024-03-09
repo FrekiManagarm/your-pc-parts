@@ -2,24 +2,12 @@
 
 import { Webcam } from "@prisma/client";
 import { toast } from "sonner";
+import prisma from "@/lib/prisma";
 
 const apiUrl = process.env.API_URL;
 
 export async function getWebcams() {
-  const res = await fetch(apiUrl + "/webcam", {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-    },
-    cache: "no-store",
-  });
-
-  const data: Webcam[] = await res.json();
-
-  if (!data) {
-    toast.error("Webcams not found");
-    return;
-  }
+  const data = await prisma.webcam.findMany();
 
   return data;
 }

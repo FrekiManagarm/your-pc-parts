@@ -2,24 +2,12 @@
 
 import { Case } from "@prisma/client";
 import { toast } from "sonner";
+import prisma from "@/lib/prisma";
 
 const apiUrl = process.env.API_URL;
 
 export async function getCases() {
-  const res = await fetch(apiUrl + "/case", {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-    },
-    cache: "no-store",
-  });
-
-  const data: Case[] = await res.json();
-
-  if (!data) {
-    toast.error("Cases not found");
-    return;
-  }
+  const data = await prisma.case.findMany();
 
   return data;
 }

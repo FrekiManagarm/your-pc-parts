@@ -2,24 +2,12 @@
 
 import { Keyboard } from "@prisma/client";
 import { toast } from "sonner";
+import prisma from "@/lib/prisma";
 
 const apiUrl = process.env.API_URL;
 
 export async function getKeyboards() {
-  const res = await fetch(apiUrl + "/keyboard", {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-    },
-    cache: "no-store",
-  });
-
-  const data: Keyboard[] = await res.json();
-
-  if (!data) {
-    toast.error("Keyboards not found");
-    return;
-  }
+  const data = await prisma.keyboard.findMany();
 
   return data;
 }

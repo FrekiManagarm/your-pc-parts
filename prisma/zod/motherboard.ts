@@ -1,8 +1,9 @@
-import * as z from "zod";
-import { MemorySupport } from "@prisma/client";
-import { CompleteSetup, RelatedSetupModel } from "./index";
+import * as z from "zod"
+import { MemorySupport } from "@prisma/client"
+import { CompleteSetup, RelatedSetupModel } from "./index"
 
 export const MotherboardModel = z.object({
+  id: z.string(),
   socket: z.string().array(),
   form_factor: z.string(),
   chipset: z.string().nullish(),
@@ -16,10 +17,10 @@ export const MotherboardModel = z.object({
   imageUrl: z.string().nullish(),
   amazonLink: z.string().nullish(),
   color: z.string().nullish(),
-});
+})
 
 export interface CompleteMotherboard extends z.infer<typeof MotherboardModel> {
-  setups: CompleteSetup[];
+  setups: CompleteSetup[]
 }
 
 /**
@@ -27,9 +28,6 @@ export interface CompleteMotherboard extends z.infer<typeof MotherboardModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedMotherboardModel: z.ZodSchema<CompleteMotherboard> = z.lazy(
-  () =>
-    MotherboardModel.extend({
-      setups: RelatedSetupModel.array(),
-    }),
-);
+export const RelatedMotherboardModel: z.ZodSchema<CompleteMotherboard> = z.lazy(() => MotherboardModel.extend({
+  setups: RelatedSetupModel.array(),
+}))

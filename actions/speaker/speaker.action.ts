@@ -2,24 +2,12 @@
 
 import { Speakers } from "@prisma/client";
 import { toast } from "sonner";
+import prisma from "@/lib/prisma";
 
 const apiUrl = process.env.API_URL;
 
 export async function getSpeakers() {
-  const res = await fetch(apiUrl + "/speaker", {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-    },
-    cache: "no-store",
-  });
-
-  const data: Speakers[] = await res.json();
-
-  if (!data) {
-    toast.error("Speakers not found");
-    return;
-  }
+  const data = await prisma.speakers.findMany();
 
   return data;
 }

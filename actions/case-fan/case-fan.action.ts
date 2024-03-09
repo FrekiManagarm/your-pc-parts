@@ -2,24 +2,12 @@
 
 import { CaseFan } from "@prisma/client";
 import { toast } from "sonner";
+import prisma from "@/lib/prisma";
 
 const apiUrl = process.env.API_URL;
 
 export async function getCaseFans() {
-  const res = await fetch(apiUrl + "/case-fan", {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-    },
-    cache: "no-store",
-  });
-
-  const data: CaseFan[] = await res.json();
-
-  if (!data) {
-    toast.error("Can't get Case Fans");
-    return;
-  }
+  const data = await prisma.caseFan.findMany();
 
   return data;
 }

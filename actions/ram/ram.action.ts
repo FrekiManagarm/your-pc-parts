@@ -2,24 +2,12 @@
 
 import { RAM } from "@prisma/client";
 import { toast } from "sonner";
+import prisma from "@/lib/prisma";
 
 const apiUrl = process.env.API_URL;
 
 export async function getRAMs() {
-  const res = await fetch(apiUrl + "/ram", {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-    },
-    cache: "no-store",
-  });
-
-  const data: RAM[] = await res.json();
-
-  if (!data) {
-    toast.error("RAM not found");
-    return;
-  }
+  const data = await prisma.rAM.findMany();
 
   return data;
 }

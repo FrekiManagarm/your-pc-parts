@@ -2,24 +2,12 @@
 
 import { SoundCard } from "@prisma/client";
 import { toast } from "sonner";
+import prisma from "@/lib/prisma";
 
 const apiUrl = process.env.API_URL;
 
 export async function getSoundCard() {
-  const res = await fetch(apiUrl + "/sound-card", {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-    },
-    cache: "no-store",
-  });
-
-  const data: SoundCard[] = await res.json();
-
-  if (!data) {
-    toast.error("Sound Cards not found");
-    return;
-  }
+  const data = await prisma.soundCard.findMany();
 
   return data;
 }

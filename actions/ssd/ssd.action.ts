@@ -2,24 +2,12 @@
 
 import { SSD } from "@prisma/client";
 import { toast } from "sonner";
+import prisma from "@/lib/prisma";
 
 const apiUrl = process.env.API_URL;
 
 export async function getSSDs() {
-  const res = await fetch(apiUrl + "/ssd", {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-    },
-    cache: "no-store",
-  });
-
-  const data: SSD[] = await res.json();
-
-  if (!data) {
-    toast.error("SSDs not found");
-    return;
-  }
+  const data = await prisma.sSD.findMany();
 
   return data;
 }

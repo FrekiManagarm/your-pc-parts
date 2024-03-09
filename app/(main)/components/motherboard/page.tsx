@@ -15,7 +15,7 @@ export default async function MotherboardListPage() {
           <p className="font-semibold break-words text-xl text-gray-300">{components[8].description}</p>
         </div>
       </div>
-      <div className="w-full grid place-items-center lg:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-5 py-5">
+      <div className="w-full grid place-items-center lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5 py-5">
         {motherboards && motherboards.length != 0 ? motherboards.map((motherboard) => (
           <>
             <CardComponent title={motherboard.name} category="Motherboard" image={motherboard.imageUrl as string} />
