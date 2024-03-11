@@ -18,7 +18,7 @@ export default async function HeadPhonesListPage() {
       <section className="w-full grid place-items-center lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5 py-5">
         {headphones.length != 0 ? headphones.map((headphone) => (
           <>
-            <CardComponent title={headphone.name} category="Heaphone" image={headphone.imageUrl ?? ""} />
+            <CardComponent title={headphone.name} amazonLink={headphone.amazonLink as string} category="Heaphone" image={headphone.imageUrl ?? ""} />
           </>
         )) : <Loader />}
       </section>

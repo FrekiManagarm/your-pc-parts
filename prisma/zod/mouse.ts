@@ -1,9 +1,12 @@
-import * as z from "zod"
-import { MouseTrackMethod, ConnectionType, MouseOrientation } from "@prisma/client"
-import { CompleteSetup, RelatedSetupModel } from "./index"
+import * as z from "zod";
+import {
+  MouseTrackMethod,
+  ConnectionType,
+  MouseOrientation,
+} from "@prisma/client";
+import { CompleteSetup, RelatedSetupModel } from "./index";
 
 export const MouseModel = z.object({
-  id: z.string(),
   tracking_method: z.nativeEnum(MouseTrackMethod),
   connection_type: z.nativeEnum(ConnectionType),
   max_dpi: z.number().int().nullish(),
@@ -12,10 +15,10 @@ export const MouseModel = z.object({
   imageUrl: z.string().nullish(),
   hand_orientation: z.nativeEnum(MouseOrientation),
   color: z.string().nullish(),
-})
+});
 
 export interface CompleteMouse extends z.infer<typeof MouseModel> {
-  setups: CompleteSetup[]
+  setups: CompleteSetup[];
 }
 
 /**
@@ -23,6 +26,8 @@ export interface CompleteMouse extends z.infer<typeof MouseModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedMouseModel: z.ZodSchema<CompleteMouse> = z.lazy(() => MouseModel.extend({
-  setups: RelatedSetupModel.array(),
-}))
+export const RelatedMouseModel: z.ZodSchema<CompleteMouse> = z.lazy(() =>
+  MouseModel.extend({
+    setups: RelatedSetupModel.array(),
+  }),
+);

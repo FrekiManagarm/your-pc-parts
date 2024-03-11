@@ -18,7 +18,7 @@ export default async function RAMListPage() {
       <section className="w-full grid place-items-center lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5 py-5">
         {rams.length != 0 ? rams.map((ram) => (
           <>
-            <CardComponent title={ram.name} category="RAM" image={ram.imageUrl ?? ""} />
+            <CardComponent title={ram.name} amazonLink={ram.amazonLink as string} category="RAM" image={ram.imageUrl ?? ""} />
           </>
         )) : <Loader />}
       </section>

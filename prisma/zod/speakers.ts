@@ -1,8 +1,7 @@
-import * as z from "zod"
-import { CompleteSpeakersOfSetup, RelatedSpeakersOfSetupModel } from "./index"
+import * as z from "zod";
+import { CompleteSpeakersOfSetup, RelatedSpeakersOfSetupModel } from "./index";
 
 export const SpeakersModel = z.object({
-  id: z.string(),
   configuration: z.string().nullish(),
   name: z.string(),
   imageUrl: z.string().nullish(),
@@ -10,10 +9,10 @@ export const SpeakersModel = z.object({
   frequency_response: z.number().int().nullish(),
   amazonLink: z.string().nullish(),
   color: z.string().nullish(),
-})
+});
 
 export interface CompleteSpeakers extends z.infer<typeof SpeakersModel> {
-  setups: CompleteSpeakersOfSetup[]
+  setups: CompleteSpeakersOfSetup[];
 }
 
 /**
@@ -21,6 +20,8 @@ export interface CompleteSpeakers extends z.infer<typeof SpeakersModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedSpeakersModel: z.ZodSchema<CompleteSpeakers> = z.lazy(() => SpeakersModel.extend({
-  setups: RelatedSpeakersOfSetupModel.array(),
-}))
+export const RelatedSpeakersModel: z.ZodSchema<CompleteSpeakers> = z.lazy(() =>
+  SpeakersModel.extend({
+    setups: RelatedSpeakersOfSetupModel.array(),
+  }),
+);

@@ -18,7 +18,7 @@ export default async function CaseListPage() {
       <section className="w-full grid place-items-center lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5 py-5">
         {cases.length != 0 ? cases.map((cases) => (
           <>
-            <CardComponent title={cases.name} category="Case" image={cases.imageUrl ?? ""} />
+            <CardComponent title={cases.name} amazonLink={cases.amazonLink as string} category="Case" image={cases.imageUrl ?? ""} />
           </>
         )) : <Loader />}
       </section>

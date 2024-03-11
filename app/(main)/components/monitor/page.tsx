@@ -18,7 +18,7 @@ export default async function MonitorsListPage() {
       <section className="w-full grid place-items-center lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5 py-5">
         {monitors.length != 0 ? monitors.map((monitor) => (
           <>
-            <CardComponent title={monitor.name} category="Monitor" image={monitor.imageUrl ?? ""} />
+            <CardComponent title={monitor.name} amazonLink={monitor.amazonLink as string} category="Monitor" image={monitor.imageUrl ?? ""} />
           </>
         )) : <Loader />}
       </section>

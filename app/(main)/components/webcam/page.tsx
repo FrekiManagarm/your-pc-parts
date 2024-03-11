@@ -18,7 +18,7 @@ export default async function WebcamsListPage() {
       <section className="w-full grid place-items-center lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5 py-5">
         {webcams.length != 0 ? webcams.map((webcam) => (
           <>
-            <CardComponent title={webcam.name} category="Webcams" image={webcam.imageUrl ?? ""} />
+            <CardComponent title={webcam.name} amazonLink={webcam.amazonLink as string} category="Webcams" image={webcam.imageUrl ?? ""} />
           </>
         )) : <Loader />}
       </section>

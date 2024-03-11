@@ -1,6 +1,12 @@
+import { getCaseFans } from "@/actions/case-fan/case-fan.action";
+import CardComponent from "@/components/card-component";
 import { components } from "@/components/main-nav-links";
+import { Loader } from "@/components/ui/loader";
 
-export default function CaseFanListPage() {
+export default async function CaseFanListPage() {
+
+  const caseFans = await getCaseFans();
+
   return (
     <div className="flex flex-col justify-center items-center">
       <div className='h-[40rem] w-[90%] flex justify-start items-center bg-gradient-to-br from-primary to-accent rounded-lg px-10 mt-10'>
@@ -9,8 +15,12 @@ export default function CaseFanListPage() {
           <p className="font-semibold break-words text-xl text-gray-300">{components[17].description}</p>
         </div>
       </div>
-      <div className="container w-full">
-
+      <div className="w-full grid place-items-center lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5 py-5">
+        {caseFans && caseFans.length != 0 ? caseFans.map((caseFan) => (
+          <>
+            <CardComponent title={caseFan.name} amazonLink={caseFan.amazonLink as string} category="Case Fan" image={caseFan.imageUrl ?? ""} />
+          </>
+        )) : <Loader />}
       </div>
     </div>
   )

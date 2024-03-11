@@ -1,9 +1,8 @@
-import * as z from "zod"
-import { ConnectionType, FocusType } from "@prisma/client"
-import { CompleteSetup, RelatedSetupModel } from "./index"
+import * as z from "zod";
+import { ConnectionType, FocusType } from "@prisma/client";
+import { CompleteSetup, RelatedSetupModel } from "./index";
 
 export const WebcamModel = z.object({
-  id: z.string(),
   resolutions: z.string().array(),
   name: z.string(),
   imageUrl: z.string().nullish(),
@@ -12,10 +11,10 @@ export const WebcamModel = z.object({
   os: z.string().array(),
   amazonLink: z.string().nullish(),
   fov: z.number().int().nullish(),
-})
+});
 
 export interface CompleteWebcam extends z.infer<typeof WebcamModel> {
-  setups: CompleteSetup[]
+  setups: CompleteSetup[];
 }
 
 /**
@@ -23,6 +22,8 @@ export interface CompleteWebcam extends z.infer<typeof WebcamModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedWebcamModel: z.ZodSchema<CompleteWebcam> = z.lazy(() => WebcamModel.extend({
-  setups: RelatedSetupModel.array(),
-}))
+export const RelatedWebcamModel: z.ZodSchema<CompleteWebcam> = z.lazy(() =>
+  WebcamModel.extend({
+    setups: RelatedSetupModel.array(),
+  }),
+);

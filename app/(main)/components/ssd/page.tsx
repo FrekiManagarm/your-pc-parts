@@ -18,7 +18,7 @@ export default async function SSDListPage() {
       <section className="w-full grid place-items-center lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5 py-5">
         {ssds.length != 0 ? ssds.map((ssd) => (
           <>
-            <CardComponent title={ssd.name} category="SSD" image={ssd.imageUrl ?? ""} />
+            <CardComponent title={ssd.name} amazonLink={ssd.amazonLink as string} category="SSD" image={ssd.imageUrl ?? ""} />
           </>
         )) : <Loader />}
       </section>
