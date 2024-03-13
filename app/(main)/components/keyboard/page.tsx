@@ -18,7 +18,7 @@ export default async function KeyboardsListPage() {
       <section className="w-full grid place-items-center lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5 py-5">
         {keyboards.length != 0 ? keyboards.map((keyboard) => (
           <>
-            <CardComponent title={keyboard.name} category="Keyboard" image={keyboard.imageUrl ?? ""} />
+            <CardComponent title={keyboard.name} amazonLink={keyboard.amazonLink as string} category="Keyboard" image={keyboard.imageUrl ?? ""} />
           </>
         )) : <Loader />}
       </section>

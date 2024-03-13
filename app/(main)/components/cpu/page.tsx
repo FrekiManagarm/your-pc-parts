@@ -19,7 +19,7 @@ export default async function CPUListPage() {
       <section className="w-full grid place-items-center lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5 py-5">
         {cpus.length != 0 ? cpus.map((cpu) => (
           <>
-            <CardComponent title={cpu.name} category="CPU" image={cpu.imageUrl ?? ""} />
+            <CardComponent title={cpu.name} amazonLink={cpu.amazonLink as string} category="CPU" image={cpu.imageUrl ?? ""} />
           </>
         )) : <Loader />}
         {/* <CardComponent title="i9 12900K" category="CPU" image="https://i.imgur.com/ykx3VxH.jpg" />

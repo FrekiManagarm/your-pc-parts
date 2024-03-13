@@ -18,7 +18,7 @@ export default async function PSUListPage() {
       <section className="w-full grid place-items-center lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5 py-5">
         {psus.length != 0 ? psus.map((psu) => (
           <>
-            <CardComponent title={psu.name} category="PSU" image={psu.imageUrl ?? ""} />
+            <CardComponent title={psu.name} amazonLink={psu.amazonLink as string} category="PSU" image={psu.imageUrl ?? ""} />
           </>
         )) : <Loader />}
       </section>

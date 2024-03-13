@@ -18,7 +18,7 @@ export default async function SpeakersListPage() {
       <section className="w-full grid place-items-center lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5 py-5">
         {speakers.length != 0 ? speakers.map((speaker) => (
           <>
-            <CardComponent title={speaker.name} category="Speakers" image={speaker.imageUrl ?? ""} />
+            <CardComponent title={speaker.name} amazonLink={speaker.amazonLink as string} category="Speakers" image={speaker.imageUrl ?? ""} />
           </>
         )) : <Loader />}
       </section>

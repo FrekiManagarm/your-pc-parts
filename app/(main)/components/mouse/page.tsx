@@ -18,7 +18,7 @@ export default async function MousesListPage() {
       <section className="w-full grid place-items-center lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5 py-5">
         {mouses.length != 0 ? mouses.map((mouse) => (
           <>
-            <CardComponent title={mouse.name} category="Mouse" image={mouse.imageUrl ?? ""} />
+            <CardComponent title={mouse.name} amazonLink={mouse.amazonLink as string} category="Mouse" image={mouse.imageUrl ?? ""} />
           </>
         )) : <Loader />}
       </section>

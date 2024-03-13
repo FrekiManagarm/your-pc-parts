@@ -18,7 +18,7 @@ export default async function SoundCardsListPage() {
       <section className="w-full grid place-items-center lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5 py-5">
         {soundCards.length != 0 ? soundCards.map((soundCard) => (
           <>
-            <CardComponent title={soundCard.name} category="Sound Card" image={soundCard.imageUrl ?? ""} />
+            <CardComponent title={soundCard.name} amazonLink={soundCard.amazonLink as string} category="Sound Card" image={soundCard.imageUrl ?? ""} />
           </>
         )) : <Loader />}
       </section>
