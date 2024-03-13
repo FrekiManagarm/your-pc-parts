@@ -1,7 +1,8 @@
-import * as z from "zod";
-import { CompleteSSDOfSetup, RelatedSSDOfSetupModel } from "./index";
+import * as z from "zod"
+import { CompleteSSDOfSetup, RelatedSSDOfSetupModel } from "./index"
 
 export const SSDModel = z.object({
+  id: z.string(),
   capacity: z.number().int(),
   write_speed: z.number().int().nullish(),
   read_speed: z.number().int().nullish(),
@@ -13,10 +14,10 @@ export const SSDModel = z.object({
   cache: z.number().int().nullish(),
   form_factor: z.string().nullish(),
   interface: z.string().nullish(),
-});
+})
 
 export interface CompleteSSD extends z.infer<typeof SSDModel> {
-  setups: CompleteSSDOfSetup[];
+  setups: CompleteSSDOfSetup[]
 }
 
 /**
@@ -24,8 +25,6 @@ export interface CompleteSSD extends z.infer<typeof SSDModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedSSDModel: z.ZodSchema<CompleteSSD> = z.lazy(() =>
-  SSDModel.extend({
-    setups: RelatedSSDOfSetupModel.array(),
-  }),
-);
+export const RelatedSSDModel: z.ZodSchema<CompleteSSD> = z.lazy(() => SSDModel.extend({
+  setups: RelatedSSDOfSetupModel.array(),
+}))

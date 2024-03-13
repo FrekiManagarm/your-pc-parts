@@ -6,6 +6,8 @@ import prisma from "@/lib/prisma";
 import { CPUCoolerModel } from "@/prisma/zod";
 import { NextResponse } from "next/server";
 import { getRequiredAuthSession } from "@/lib/auth";
+import { getServerSession } from "next-auth";
+import { authConfig } from "@/pages/api/auth/[...nextauth]";
 
 const apiUrl = process.env.API_URL;
 
@@ -26,68 +28,92 @@ export async function getCoolingById(coolingId: string) {
 }
 
 export async function createCooling(formData: FormData) {
-  const user = await getRequiredAuthSession(
-    UserRole.ADMINISTRATOR || UserRole.MODERATOR,
+  const session = await getServerSession(authConfig);
+
+  if (
+    session?.user.role === "ADMINISTRATOR" ||
+    session?.user.role === "MODERATOR"
+  ) {
+    const validSchema = CPUCoolerModel.parse(formData);
+
+    if (!validSchema) {
+      toast.error("Wrong data input");
+      return validSchema;
+    }
+
+    const data = await prisma.cPUCooler.create({
+      data: validSchema,
+    });
+
+    if (!data) {
+      toast.error("Cooling not created");
+      return false;
+    }
+
+    return true;
+  }
+
+  toast.error(
+    "You have the wrong role to perform this action. Upgrade your plan !",
   );
-
-  if (!user) {
-    toast.error("Unauthorized");
-    throw new Error("Unauthorized");
-  }
-
-  const body = CPUCoolerModel.parse(formData);
-
-  if (!body) {
-    toast.error("Invalid data format");
-    return body;
-  }
-
-  const data = await prisma.cPUCooler.create({
-    data: body,
-  });
-
-  if (!data) {
-    toast.error("Cooling not created");
-    throw new Error("Cooling not created");
-  }
-
-  return data;
+  throw new Error("Wrong role !");
 }
 
 export async function updateCooling(coolingId: string, formData: FormData) {
-  const res = await fetch(apiUrl + `/cpu-cooler/${coolingId}`, {
-    method: "PUT",
-    body: JSON.stringify({}),
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  });
+  const session = await getServerSession(authConfig);
 
-  const data: CPUCooler = await res.json();
+  if (
+    session?.user.role === "ADMINISTRATOR" ||
+    session?.user.role === "MODERATOR"
+  ) {
+    const validSchema = CPUCoolerModel.parse(formData);
 
-  if (!data) {
-    toast.error("Can't update this Cooling");
-    return;
+    if (!validSchema) {
+      toast.error("Wrong data input");
+      return validSchema;
+    }
+
+    const data = await prisma.cPUCooler.update({
+      where: {
+        id: coolingId,
+      },
+      data: validSchema,
+    });
+
+    if (!data) {
+      toast.error("Cooling not updated");
+      return false;
+    }
+
+    return true;
   }
 
-  return data;
+  toast.error(
+    "You have the wrong role to perform this action. Upgrade your plan !",
+  );
+  throw new Error("Wrong role !");
 }
 
 export async function deleteCooling(coolingId: string) {
-  const res = await fetch(apiUrl + `/cpu-cooler/${coolingId}`, {
-    method: "DELETE",
-    headers: {
-      Accept: "application/json",
-    },
-  });
+  const session = await getServerSession(authConfig);
 
-  const data: CPUCooler = await res.json();
+  if (session?.user.role === "ADMINISTRATOR") {
+    const data = await prisma.cPUCooler.delete({
+      where: {
+        id: coolingId,
+      },
+    });
 
-  if (!data) {
-    toast.error("Cooling not deleted");
-    return;
+    if (!data) {
+      toast.error("Cooling not deleted");
+      return false;
+    }
+
+    return true;
   }
 
-  return data;
+  toast.error(
+    "You have the wrong role to perform this action. Upgrade your plan !",
+  );
+  throw new Error("Wrong role !");
 }

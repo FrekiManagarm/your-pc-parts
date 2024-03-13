@@ -1,7 +1,8 @@
-import * as z from "zod";
-import { CompleteSetup, RelatedSetupModel } from "./index";
+import * as z from "zod"
+import { CompleteSetup, RelatedSetupModel } from "./index"
 
 export const RAMModel = z.object({
+  id: z.string(),
   speed: z.number().int().array(),
   modules: z.number().int().array(),
   price_per_gb: z.number().nullish(),
@@ -11,10 +12,10 @@ export const RAMModel = z.object({
   name: z.string(),
   first_word_latency: z.string().nullish(),
   cas_latency: z.string().nullish(),
-});
+})
 
 export interface CompleteRAM extends z.infer<typeof RAMModel> {
-  setups: CompleteSetup[];
+  setups: CompleteSetup[]
 }
 
 /**
@@ -22,8 +23,6 @@ export interface CompleteRAM extends z.infer<typeof RAMModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedRAMModel: z.ZodSchema<CompleteRAM> = z.lazy(() =>
-  RAMModel.extend({
-    setups: RelatedSetupModel.array(),
-  }),
-);
+export const RelatedRAMModel: z.ZodSchema<CompleteRAM> = z.lazy(() => RAMModel.extend({
+  setups: RelatedSetupModel.array(),
+}))

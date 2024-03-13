@@ -1,44 +1,8 @@
-import * as z from "zod";
-import {
-  CompleteCPU,
-  RelatedCPUModel,
-  CompleteGPU,
-  RelatedGPUModel,
-  CompleteHDD,
-  RelatedHDDModel,
-  CompleteCase,
-  RelatedCaseModel,
-  CompleteRAM,
-  RelatedRAMModel,
-  CompletePSU,
-  RelatedPSUModel,
-  CompleteMonitorsOfSetup,
-  RelatedMonitorsOfSetupModel,
-  CompleteSSDOfSetup,
-  RelatedSSDOfSetupModel,
-  CompleteSoundCard,
-  RelatedSoundCardModel,
-  CompleteCPUCooler,
-  RelatedCPUCoolerModel,
-  CompleteMotherboard,
-  RelatedMotherboardModel,
-  CompleteHeadphones,
-  RelatedHeadphonesModel,
-  CompleteKeyboard,
-  RelatedKeyboardModel,
-  CompleteMouse,
-  RelatedMouseModel,
-  CompleteSpeakersOfSetup,
-  RelatedSpeakersOfSetupModel,
-  CompleteWebcam,
-  RelatedWebcamModel,
-  CompleteCaseFanOfSetup,
-  RelatedCaseFanOfSetupModel,
-  CompleteUser,
-  RelatedUserModel,
-} from "./index";
+import * as z from "zod"
+import { CompleteCPU, RelatedCPUModel, CompleteGPU, RelatedGPUModel, CompleteHDD, RelatedHDDModel, CompleteCase, RelatedCaseModel, CompleteRAM, RelatedRAMModel, CompletePSU, RelatedPSUModel, CompleteMonitorsOfSetup, RelatedMonitorsOfSetupModel, CompleteSSDOfSetup, RelatedSSDOfSetupModel, CompleteSoundCard, RelatedSoundCardModel, CompleteCPUCooler, RelatedCPUCoolerModel, CompleteMotherboard, RelatedMotherboardModel, CompleteHeadphones, RelatedHeadphonesModel, CompleteKeyboard, RelatedKeyboardModel, CompleteMouse, RelatedMouseModel, CompleteSpeakersOfSetup, RelatedSpeakersOfSetupModel, CompleteWebcam, RelatedWebcamModel, CompleteCaseFanOfSetup, RelatedCaseFanOfSetupModel, CompleteUser, RelatedUserModel } from "./index"
 
 export const SetupModel = z.object({
+  id: z.string(),
   cpu_id: z.string(),
   gpu_id: z.string(),
   hdd_id: z.string(),
@@ -54,27 +18,27 @@ export const SetupModel = z.object({
   mouse_id: z.string(),
   webcam_id: z.string(),
   user_id: z.string(),
-});
+})
 
 export interface CompleteSetup extends z.infer<typeof SetupModel> {
-  cpu: CompleteCPU;
-  gpu: CompleteGPU;
-  hdd: CompleteHDD;
-  case: CompleteCase;
-  ram: CompleteRAM;
-  psu: CompletePSU;
-  monitors: CompleteMonitorsOfSetup[];
-  sdds: CompleteSSDOfSetup[];
-  sound_card: CompleteSoundCard;
-  cpu_cooler: CompleteCPUCooler;
-  motherboard: CompleteMotherboard;
-  headphones: CompleteHeadphones;
-  keyboard: CompleteKeyboard;
-  mouse: CompleteMouse;
-  speakers: CompleteSpeakersOfSetup[];
-  webcam: CompleteWebcam;
-  case_fans: CompleteCaseFanOfSetup[];
-  user: CompleteUser;
+  cpu: CompleteCPU
+  gpu: CompleteGPU
+  hdd: CompleteHDD
+  case: CompleteCase
+  ram: CompleteRAM
+  psu: CompletePSU
+  monitors: CompleteMonitorsOfSetup[]
+  sdds: CompleteSSDOfSetup[]
+  sound_card: CompleteSoundCard
+  cpu_cooler: CompleteCPUCooler
+  motherboard: CompleteMotherboard
+  headphones: CompleteHeadphones
+  keyboard: CompleteKeyboard
+  mouse: CompleteMouse
+  speakers: CompleteSpeakersOfSetup[]
+  webcam: CompleteWebcam
+  case_fans: CompleteCaseFanOfSetup[]
+  user: CompleteUser
 }
 
 /**
@@ -82,25 +46,23 @@ export interface CompleteSetup extends z.infer<typeof SetupModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedSetupModel: z.ZodSchema<CompleteSetup> = z.lazy(() =>
-  SetupModel.extend({
-    cpu: RelatedCPUModel,
-    gpu: RelatedGPUModel,
-    hdd: RelatedHDDModel,
-    case: RelatedCaseModel,
-    ram: RelatedRAMModel,
-    psu: RelatedPSUModel,
-    monitors: RelatedMonitorsOfSetupModel.array(),
-    sdds: RelatedSSDOfSetupModel.array(),
-    sound_card: RelatedSoundCardModel,
-    cpu_cooler: RelatedCPUCoolerModel,
-    motherboard: RelatedMotherboardModel,
-    headphones: RelatedHeadphonesModel,
-    keyboard: RelatedKeyboardModel,
-    mouse: RelatedMouseModel,
-    speakers: RelatedSpeakersOfSetupModel.array(),
-    webcam: RelatedWebcamModel,
-    case_fans: RelatedCaseFanOfSetupModel.array(),
-    user: RelatedUserModel,
-  }),
-);
+export const RelatedSetupModel: z.ZodSchema<CompleteSetup> = z.lazy(() => SetupModel.extend({
+  cpu: RelatedCPUModel,
+  gpu: RelatedGPUModel,
+  hdd: RelatedHDDModel,
+  case: RelatedCaseModel,
+  ram: RelatedRAMModel,
+  psu: RelatedPSUModel,
+  monitors: RelatedMonitorsOfSetupModel.array(),
+  sdds: RelatedSSDOfSetupModel.array(),
+  sound_card: RelatedSoundCardModel,
+  cpu_cooler: RelatedCPUCoolerModel,
+  motherboard: RelatedMotherboardModel,
+  headphones: RelatedHeadphonesModel,
+  keyboard: RelatedKeyboardModel,
+  mouse: RelatedMouseModel,
+  speakers: RelatedSpeakersOfSetupModel.array(),
+  webcam: RelatedWebcamModel,
+  case_fans: RelatedCaseFanOfSetupModel.array(),
+  user: RelatedUserModel,
+}))

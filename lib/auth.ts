@@ -1,3 +1,4 @@
+"use server";
 import {
   GetServerSidePropsContext,
   NextApiRequest,
@@ -16,6 +17,9 @@ export const getAuthSession = async (
   ...parameters: ParametersGetServerSession
 ) => {
   const session = await getServerSession(...parameters, authConfig);
+
+  console.log(session, "session");
+
   return session;
 };
 
