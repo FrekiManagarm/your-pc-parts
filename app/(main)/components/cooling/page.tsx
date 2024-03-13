@@ -6,7 +6,7 @@ import { CPUCooler } from "@prisma/client";
 
 export default async function CoolingListPage() {
 
-  const coolings: CPUCooler[] = await getCoolings()
+  const coolings = await getCoolings()
 
   return (
     <div className="flex flex-col justify-center items-center">

@@ -3,6 +3,9 @@
 import { Case } from "@prisma/client";
 import { toast } from "sonner";
 import prisma from "@/lib/prisma";
+import { getServerSession } from "next-auth";
+import { authConfig } from "@/pages/api/auth/[...nextauth]";
+import { CaseModel } from "@/prisma/zod";
 
 const apiUrl = process.env.API_URL;
 
@@ -13,77 +16,104 @@ export async function getCases() {
 }
 
 export async function getCaseById(caseId: string) {
-  const res = await fetch(apiUrl + `/case/${caseId}`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
+  const data = await prisma.case.findUnique({
+    where: {
+      id: caseId,
     },
-    cache: "no-store",
   });
-
-  const data: Case = await res.json();
 
   if (!data) {
     toast.error("Case not found");
-    return;
   }
 
   return data;
 }
 
 export async function createCase(formData: FormData) {
-  const res = await fetch(apiUrl + "/case", {
-    method: "POST",
-    body: JSON.stringify({}),
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-  });
+  const session = await getServerSession(authConfig);
 
-  const data: Case = await res.json();
+  if (
+    session?.user.role === "ADMINISTRATOR" ||
+    session?.user.role === "MODERATOR"
+  ) {
+    const validSchema = CaseModel.parse(formData);
 
-  if (!data) {
-    toast.error("Case not created");
-    return;
+    if (!validSchema) {
+      toast.error("Wrong data");
+      return validSchema;
+    }
+
+    const data = await prisma.case.create({
+      data: validSchema,
+    });
+
+    if (!data) {
+      toast.error("Case not created");
+      return data;
+    }
+
+    return data;
   }
 
-  return data;
+  toast.error(
+    "You have not the good role to perform this action. Upgrade your plan !",
+  );
+  throw new Error("Wrong role !");
 }
 
 export async function updateCase(caseId: string, formData: FormData) {
-  const res = await fetch(apiUrl + `/case/${caseId}`, {
-    method: "PUT",
-    body: JSON.stringify({}),
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-  });
+  const session = await getServerSession(authConfig);
 
-  const data: Case = await res.json();
+  if (
+    session?.user.role === "ADMINISTRATOR" ||
+    session?.user.role === "MODERATOR"
+  ) {
+    const validSchema = CaseModel.parse(formData);
 
-  if (!data) {
-    toast.error("Case not updated !");
-    return;
+    if (!validSchema) {
+      toast.error("Wrong data");
+      return validSchema;
+    }
+
+    const data = await prisma.case.update({
+      where: {
+        id: caseId,
+      },
+      data: validSchema,
+    });
+
+    if (!data) {
+      toast.error("Case not created");
+      return data;
+    }
+
+    return data;
   }
 
-  return data;
+  toast.error(
+    "You have not the good role to perform this action. Upgrade your plan !",
+  );
+  throw new Error("Wrong role !");
 }
 
 export async function deleteCase(caseId: string) {
-  const res = await fetch(apiUrl + `/case/${caseId}`, {
-    method: "DELETE",
-    headers: {
-      Accept: "application/json",
+  const session = await getServerSession(authConfig);
+
+  if (session?.user.role !== "ADMINISTRATOR") {
+    toast.error(
+      "You have not the good role to perform this action. Upgrade your plan !",
+    );
+  }
+
+  const data = await prisma.case.delete({
+    where: {
+      id: caseId,
     },
   });
 
-  const data: Case = await res.json();
-
   if (!data) {
     toast.error("Case not deleted");
-    return;
+    return data;
   }
 
   return data;

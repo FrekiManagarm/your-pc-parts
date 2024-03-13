@@ -40,8 +40,6 @@ export const authConfig = {
       session.user = user;
       toast.success("You are successfully logged in !");
 
-      console.log(user, "user in session");
-
       return session;
     },
   },

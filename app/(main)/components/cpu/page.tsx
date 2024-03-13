@@ -5,8 +5,7 @@ import { Loader } from "@/components/ui/loader";
 import { CPU } from "@prisma/client";
 
 export default async function CPUListPage() {
-  const cpus: CPU[] = await getCPUs();
-  console.log(cpus, 'cpus')
+  const cpus = await getCPUs();
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -22,8 +21,6 @@ export default async function CPUListPage() {
             <CardComponent title={cpu.name} amazonLink={cpu.amazonLink as string} category="CPU" image={cpu.imageUrl ?? ""} />
           </>
         )) : <Loader />}
-        {/* <CardComponent title="i9 12900K" category="CPU" image="https://i.imgur.com/ykx3VxH.jpg" />
-        <CardComponent title="i9 12900K" category="CPU" image="https://i.imgur.com/ykx3VxH.jpg" /> */}
       </section>
     </div>
   )

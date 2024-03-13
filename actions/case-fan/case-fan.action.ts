@@ -3,6 +3,9 @@
 import { CaseFan } from "@prisma/client";
 import { toast } from "sonner";
 import prisma from "@/lib/prisma";
+import { getServerSession } from "next-auth";
+import { authConfig } from "@/pages/api/auth/[...nextauth]";
+import { CaseFanModel } from "@/prisma/zod";
 
 const apiUrl = process.env.API_URL;
 
@@ -13,78 +16,107 @@ export async function getCaseFans() {
 }
 
 export async function getCaseFansById(caseFanId: string) {
-  const res = await fetch(apiUrl + `/case-fan/${caseFanId}`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
+  const data = await prisma.caseFan.findUnique({
+    where: {
+      id: caseFanId,
     },
-    cache: "no-store",
   });
-
-  const data: CaseFan = await res.json();
 
   if (!data) {
     toast.error("Case Fan not found");
-    return;
+    return data;
   }
 
   return data;
 }
 
 export async function createCaseFan(formData: FormData) {
-  const response = await fetch(apiUrl + "/case-fan", {
-    method: "POST",
-    body: JSON.stringify({}),
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-  });
+  const session = await getServerSession(authConfig);
 
-  const data: CaseFan = await response.json();
+  if (
+    session?.user.role === "ADMINISTRATOR" ||
+    session?.user.role === "MODERATOR"
+  ) {
+    const validSchema = CaseFanModel.parse(formData);
 
-  if (!data) {
-    toast.error("Case Fan not created");
-    return;
+    if (!validSchema) {
+      toast.error("Wrong data");
+      return validSchema;
+    }
+
+    const data = await prisma.caseFan.create({
+      data: validSchema,
+    });
+
+    if (!data) {
+      toast.error("Case Fan not created");
+      return data;
+    }
+
+    return data;
   }
 
-  return data;
+  toast.error(
+    "You have the wrong role to perform this action. Upgrade your plan !",
+  );
+  throw new Error("Wrong role !");
 }
 
 export async function updateCaseFan(caseFanId: string, formData: FormData) {
-  const response = await fetch(apiUrl + `/case-fan/${caseFanId}`, {
-    method: "PUT",
-    body: JSON.stringify({}),
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  });
+  const session = await getServerSession(authConfig);
 
-  const data: CaseFan = await response.json();
+  if (
+    session?.user.role === "ADMINISTRATOR" ||
+    session?.user.role === "MODERATOR"
+  ) {
+    const validSchema = CaseFanModel.parse(formData);
 
-  if (!data) {
-    toast.error("Can't update this Case Fan");
-    return;
+    if (!validSchema) {
+      toast.error("Wrong data");
+      return validSchema;
+    }
+
+    const data = await prisma.caseFan.update({
+      where: {
+        id: caseFanId,
+      },
+      data: validSchema,
+    });
+
+    if (!data) {
+      toast.error("Case Fan not updated");
+      return data;
+    }
+
+    return data;
   }
 
-  return data;
+  toast.error(
+    "You have the wrong role to perform this action. Upgrade your plan !",
+  );
+  throw new Error("Wrong role !");
 }
 
 export async function deleteCaseFan(caseFanId: string) {
-  const res = await fetch(apiUrl + `/case-fan/${caseFanId}`, {
-    method: "DELETE",
-    headers: {
-      Accept: "application/json",
-    },
-  });
+  const session = await getServerSession(authConfig);
 
-  const data: CaseFan = await res.json();
+  if (session?.user.role === "ADMINISTRATOR") {
+    const data = await prisma.caseFan.delete({
+      where: {
+        id: caseFanId,
+      },
+    });
 
-  if (!data) {
-    toast.error("Can't delete this Case Fan");
-    return;
+    if (!data) {
+      toast.error("Case Fan not deleted");
+      return data;
+    }
+
+    return data;
   }
 
-  return data;
+  toast.error(
+    "You have the wrong role to perform this action. Upgrade your plan !",
+  );
+  throw new Error("Wrong role !");
 }

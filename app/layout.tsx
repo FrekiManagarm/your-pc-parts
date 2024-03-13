@@ -8,11 +8,10 @@ import { GeistSans } from 'geist/font/sans';
 import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 
-// const inter = Inter({ subsets: ['latin'], variable: "--font-sans" })
 const geist = GeistSans
 
 export const metadata: Metadata = {
-  title: 'YourPCParts',
+  title: 'Your PC Parts',
   description: "Just PC Parts. That's all you need.",
   creator: "Freki Managarm",
 }
@@ -34,7 +33,7 @@ export default function RootLayout({
         </Providers>
         <SpeedInsights />
         <Analytics />
-        <Toaster />
+        <Toaster closeButton />
       </body>
     </html>
   )
