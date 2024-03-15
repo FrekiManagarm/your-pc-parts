@@ -12,7 +12,7 @@ const DashboardNavbar = () => {
   const { data: session } = useSession();
 
   return (
-    <div className="h-[95%] w-1/6 bg-secondary/20 border border-secondary/40 shadow-md rounded-xl m-5 p-3">
+    <div className="h-[95%] w-1/6 bg-secondary/20 border border-secondary/40 shadow-md rounded-xl m-5 p-3 flex flex-col justify-between">
       <div className="flex flex-row justify-start items-center">
         <Image
           src='/logo-ypcp.png'
@@ -31,14 +31,16 @@ const DashboardNavbar = () => {
         >
           <p>Configurations</p>
         </Link>
+        <span className="py-2" />
         <Link href="/manage" className="w-3/4 bg-primary/50 rounded-lg p-2 text-white font-semibold">
           <p>Management</p>
         </Link>
+        <span className="py-2" />
         <Link href="/dashboard/profile" className="w-3/4 bg-primary/50 rounded-lg p-2 text-white font-semibold">
           <p>Profile</p>
         </Link>
       </div>
-      <div className="flex flex-row p-2">
+      <div className="flex flex-row justify-center items-center p-2">
         <Image
           src={session?.user.image as string}
           alt={`${session?.user.name} image`}
@@ -46,6 +48,7 @@ const DashboardNavbar = () => {
           height={30}
           className="rounded-xl"
         />
+        <span className="" />
         <h2>{session?.user.name}</h2>
       </div>
     </div>
