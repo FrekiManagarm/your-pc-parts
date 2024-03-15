@@ -5,7 +5,6 @@ import { toast } from "sonner";
 import prisma from "@/lib/prisma";
 import { CPUCoolerModel } from "@/prisma/zod";
 import { NextResponse } from "next/server";
-import { getRequiredAuthSession } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/pages/api/auth/[...nextauth]";
 

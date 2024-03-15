@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { Case, UserRole } from "@prisma/client";
-import { getRequiredAuthSession } from "@/lib/auth";
 import { toast } from "sonner";
 import { CaseModel } from "@/prisma/zod";
+import { getServerSession } from "next-auth";
+import { authConfig } from "@/pages/api/auth/[...nextauth]";
 
 export async function GET(
   request: NextRequest,
@@ -33,9 +34,7 @@ export async function PUT(
   request: NextRequest,
   { params }: { params: { id: string } },
 ) {
-  const session = await getRequiredAuthSession(
-    UserRole.ADMINISTRATOR || UserRole.MODERATOR,
-  );
+  const session = await getServerSession(authConfig);
   const body = await request.json();
 
   const validSchema = CaseModel.parse(body);
@@ -65,7 +64,7 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: string } },
 ) {
-  const session = await getRequiredAuthSession(UserRole.ADMINISTRATOR);
+  const session = await getServerSession(authConfig);
 
   if (!session) {
     toast.error("You can't do this action");
