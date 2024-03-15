@@ -1,6 +1,7 @@
 import { UserRole } from "@prisma/client";
-import { getAuthSession } from "./auth";
 import { createSafeActionClient } from "next-safe-action";
+import { getServerSession } from "next-auth";
+import { authConfig } from "@/pages/api/auth/[...nextauth]";
 
 class ServerError extends Error {}
 
@@ -13,7 +14,7 @@ export const adminstratorAction = createSafeActionClient({
     return error.message;
   },
   middleware: async () => {
-    const session = await getAuthSession();
+    const session = await getServerSession(authConfig);
 
     const user = session?.user;
     const userId = user?.id;
@@ -45,7 +46,7 @@ export const moderatorAction = createSafeActionClient({
     return error.message;
   },
   middleware: async () => {
-    const session = await getAuthSession();
+    const session = await getServerSession(authConfig);
 
     const user = session?.user;
     const userId = user?.id;

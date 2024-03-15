@@ -1,5 +1,4 @@
 import DashboardNavbar from '@/components/DashboardPage/DashboardNavbar'
-import { getAuthSession, getRequiredAuthSession } from '@/lib/auth'
 import { authConfig } from '@/pages/api/auth/[...nextauth]'
 import { UserRole } from '@prisma/client'
 import { Session, getServerSession } from 'next-auth'
