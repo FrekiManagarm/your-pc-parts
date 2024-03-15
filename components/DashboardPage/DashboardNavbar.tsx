@@ -3,6 +3,7 @@
 import { useSession } from "next-auth/react";
 import Image from "next/image"
 import Link from "next/link";
+import { Boxes, UserRoundCog, Cog, Share2 } from "lucide-react";
 import { redirect, usePathname } from "next/navigation"
 import { toast } from "sonner";
 
@@ -12,7 +13,7 @@ const DashboardNavbar = () => {
   const { data: session } = useSession();
 
   return (
-    <div className="h-[95%] w-1/6 bg-secondary/20 border border-secondary/40 shadow-md rounded-xl m-5 p-3 flex flex-col justify-between">
+    <div className="h-[95%] w-1/6 bg-background border border-border shadow-md rounded-xl m-5 p-3 flex flex-col justify-between">
       <div className="flex flex-row justify-start items-center">
         <Image
           src='/logo-ypcp.png'
@@ -22,22 +23,23 @@ const DashboardNavbar = () => {
           className="rounded-xl"
         />
         <span className="px-1" />
-        <h3 className="font-bold text-2xl">Your PC Parts</h3>
+        <h3 className="font-bold text-2xl">Welcome, {session?.user.name}</h3>
       </div>
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-2">
         <Link
           href="/dashboard/configs"
-          className="w-3/4 bg-primary/50 rounded-lg p-2 text-white font-semibold"
+          className="w-3/4 bg-primary/50 rounded-lg p-2 text-white font-medium flex flex-row justify-start items-center gap-2"
         >
+          <Boxes fontSize={12} />
           <p>Configurations</p>
         </Link>
-        <span className="py-2" />
-        <Link href="/manage" className="w-3/4 bg-primary/50 rounded-lg p-2 text-white font-semibold">
+        <Link href="/manage" className="w-3/4 bg-primary/50 rounded-lg p-2 text-white font-semibold flex flex-row justify-start items-center gap-2">
+          <Cog />
           <p>Management</p>
         </Link>
-        <span className="py-2" />
-        <Link href="/dashboard/profile" className="w-3/4 bg-primary/50 rounded-lg p-2 text-white font-semibold">
-          <p>Profile</p>
+        <Link href="/api" className="w-3/4 bg-secondary/30 border border-secondary/40 rounded-lg p-2 text-white font-semibold flex flex-row justify-start items-center gap-2">
+          <Share2 />
+          <p>API</p>
         </Link>
       </div>
       <div className="flex flex-row justify-center items-center p-2">
