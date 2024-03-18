@@ -5,7 +5,7 @@
 @layer base {
   :root {
     /* CSS: .bg-gradient { background: var(--gradient) } */
-    --gradient: linear-gradient(to top right, #7a15fd, #f079a9);
+    --gradient: linear-gradient("to top right", #7a15fd, #f079a9);
 
     --background: 283 63.699999999999996% 4.32%;
     --foreground: 283 9.8% 97.7%;
@@ -38,6 +38,10 @@
 
     --radius: 1rem;
   }
+}
+
+.bg-gradient {
+  background: var(--gradient);
 }
 
 @layer base {
