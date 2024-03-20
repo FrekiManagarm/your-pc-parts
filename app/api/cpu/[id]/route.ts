@@ -1,4 +1,3 @@
-import { getRequiredAuthSession } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { CPUModel } from "@/prisma/zod";
 import { UserRole } from "@prisma/client";
