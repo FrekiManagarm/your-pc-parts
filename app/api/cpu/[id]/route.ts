@@ -1,6 +1,8 @@
 import prisma from "@/lib/prisma";
+import { authConfig } from "@/pages/api/auth/[...nextauth]";
 import { CPUModel } from "@/prisma/zod";
 import { UserRole } from "@prisma/client";
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 import { toast } from "sonner";
 
@@ -32,9 +34,7 @@ export async function PUT(
   request: NextRequest,
   { params }: { params: { id: string } },
 ) {
-  const session = await getRequiredAuthSession(
-    UserRole.ADMINISTRATOR || UserRole.MODERATOR,
-  );
+  const session = await getServerSession(authConfig);
   const body = await request.json();
 
   const validSchema = CPUModel.parse(body);
@@ -72,7 +72,7 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: string } },
 ) {
-  const session = await getRequiredAuthSession(UserRole.ADMINISTRATOR);
+  const session = await getServerSession(authConfig);
 
   if (!session) {
     toast.error("You can't do this action");

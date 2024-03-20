@@ -10,7 +10,6 @@ type CaseDetailsPageProps = {
 export default async function CaseDetailsPage({
   params,
 }: CaseDetailsPageProps) {
-  const data: Case | undefined = await getCaseById(params.id);
 
   return <div>CaseDetailsPage</div>;
 }
