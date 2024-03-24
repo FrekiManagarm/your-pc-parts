@@ -40,6 +40,40 @@ type DetailPageProps = {
   efficiency?: string;
   speed?: number[];
   modules?: number[];
+  modular?: string;
+  refresh_rate?: number;
+  response_time?: number;
+  aspect_ratio?: string;
+  resolution?: number[];
+  screen_size?: number;
+  channels?: string;
+  digital_audio?: string;
+  snr?: number;
+  sample_rate?: number;
+  interface?: string;
+  frequency_response?: number[];
+  microphone?: boolean;
+  wireless?: boolean;
+  enclosure_type?: string;
+  noise_cancel?: boolean;
+  style?: string;
+  switches?: string;
+  backlit?: string;
+  tenkeyless?: boolean;
+  connection_type?: string;
+  tracking_method?: string;
+  max_dpi?: number;
+  hand_orientation?: string;
+  configuration?: string;
+  freq_resp?: number;
+  resolutions?: number[];
+  connection?: string;
+  focus_type?: string;
+  os?: string[];
+  fov?: number;
+  size?: number;
+  rpm?: number[];
+  airflow?: number[];
 }
 
 const DetailPage = ({ title, amazonLink, category, imageUrl, cores, frequency, frequency_boost }: DetailPageProps) => {
