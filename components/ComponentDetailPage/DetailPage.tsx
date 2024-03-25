@@ -3,8 +3,9 @@ import React from 'react'
 import { Button } from '../ui/button';
 import { IconBrandAmazon } from '@tabler/icons-react';
 import { DialogContent } from '../ui/dialog';
-import { PackagePlus } from 'lucide-react';
+import { Cpu, PackagePlus } from 'lucide-react';
 import Link from 'next/link';
+import { FaGauge, FaGaugeHigh } from 'react-icons/fa6';
 
 type DetailPageProps = {
   title: string;
@@ -12,6 +13,11 @@ type DetailPageProps = {
   amazonLink: string;
   category: string;
   cores?: number;
+  threads?: number;
+  cache?: number;
+  tdp?: number;
+  graphics?: boolean;
+  smt?: boolean
   frequency?: number;
   frequency_boost?: number;
   pressure?: string;
@@ -40,46 +46,193 @@ type DetailPageProps = {
   efficiency?: string;
   speed?: number[];
   modules?: number[];
+  modular?: string;
+  refresh_rate?: number;
+  response_time?: number;
+  aspect_ratio?: string;
+  resolution?: number[];
+  screen_size?: number;
+  channels?: string;
+  digital_audio?: string;
+  snr?: number;
+  sample_rate?: number;
+  interf_ace?: string;
+  frequency_response?: number[];
+  microphone?: boolean;
+  wireless?: boolean;
+  enclosure_type?: string;
+  noise_cancel?: boolean;
+  style?: string;
+  switches?: string;
+  backlit?: string;
+  tenkeyless?: boolean;
+  connection_type?: string;
+  tracking_method?: string;
+  max_dpi?: number;
+  hand_orientation?: string;
+  configuration?: string;
+  freq_resp?: number;
+  resolutions?: number[];
+  connection?: string;
+  focus_type?: string;
+  os?: string[];
+  fov?: number;
+  size?: number;
+  rpm?: number[];
+  airflow?: number[];
 }
 
-const DetailPage = ({ title, amazonLink, category, imageUrl, cores, frequency, frequency_boost }: DetailPageProps) => {
+const DetailPage = ({ title,
+  category,
+  imageUrl,
+  amazonLink,
+  cores,
+  frequency,
+  threads,
+  frequency_boost,
+  airflow,
+  aspect_ratio,
+  audio, backlit,
+  bluetooth,
+  cache,
+  capacity,
+  cas,
+  channels,
+  chipset,
+  color,
+  configuration,
+  connection,
+  connection_type,
+  digital_audio,
+  efficiency,
+  enclosure_type,
+  focus_type,
+  form_factor,
+  fov,
+  freq_resp,
+  frequency_response,
+  graphics,
+  hand_orientation,
+  interf_ace,
+  length,
+  max_dpi,
+  max_memory,
+  memory_slots,
+  microphone,
+  modular,
+  modules,
+  noise_cancel,
+  noise_level,
+  os,
+  power,
+  pressure,
+  read,
+  refresh_rate,
+  resolution,
+  resolutions,
+  response_time,
+  rpm,
+  rpm_max,
+  rpm_min,
+  sample_rate,
+  screen_size,
+  size,
+  smt,
+  snr,
+  socket,
+  speed,
+  style,
+  support,
+  switches,
+  tdp,
+  tdp_max,
+  tenkeyless,
+  tracking_method,
+  type,
+  wattage,
+  wifi,
+  wireless,
+  write }: DetailPageProps) => {
 
   const uiConstructor = (type: string) => {
     switch (type) {
       case 'CPU':
-        return <></>
+        return <div>
+          <div>
+            <h2 className="font-medium text-sm flex flex-row items-center">
+              <Cpu size={15} />
+              {cores} cores
+            </h2>
+            <h2 className="font-medium text-sm flex flex-row items-center">
+              <Cpu size={15} />
+              {threads}
+            </h2>
+          </div>
+          <div>
+            <h2 className="font-medium text-sm flex flex-row items-center">
+              <FaGauge size={15} className="text-primary-foreground" />
+              {frequency}
+            </h2>
+            <h2 className="font-medium text-sm flex flex-row items-center">
+              <FaGaugeHigh size={15} className="text-primary-foreground" />
+              {frequency_boost}
+            </h2>
+          </div>
+          <div>
+            <h2>
+              {socket}
+            </h2>
+            <h2>
+              {type}
+            </h2>
+            <h2>
+              {cache}
+            </h2>
+          </div>
+          <div>
+            <h2>
+              {tdp}
+            </h2>
+            <h2>
+              {graphics ? "oui" : "non"}
+            </h2>
+            <h2>
+              {smt ? "oui" : "non"}
+            </h2>
+          </div>
+        </div>
       case 'GPU':
-        return <></>
+        return <div></div>
       case "HDD":
-        return <></>
+        return <div></div>
       case "SSD":
-        return <></>
+        return <div></div>
       case "Case":
-        return <></>
+        return <div></div>
       case "Motherboard":
-        return <></>
+        return <div></div>
       case "RAM":
-        return <></>
+        return <div></div>
       case "Cooling":
-        return <></>
+        return <div></div>
       case "PSU":
-        return <></>
+        return <div></div>
       case "Monitor":
-        return <></>
+        return <div></div>
       case "SoundCard":
-        return <></>
+        return <div></div>
       case "Headphones":
-        return <></>
+        return <div></div>
       case "Keyboard":
-        return <></>
+        return <div></div>
       case "Mouse":
-        return <></>
+        return <div></div>
       case "Speakers":
-        return <></>
+        return <div></div>
       case "Webcam":
-        return <></>
+        return <div></div>
       case "CaseFan":
-        return <></>
+        return <div></div>
       default:
         return <>
           <h2 className='font-medium text-sm'>No description for this component</h2>

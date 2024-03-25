@@ -3,17 +3,243 @@ import { AlertDialog, AlertDialogContent, AlertDialogTrigger } from "./ui/alert-
 import DetailPage from "./ComponentDetailPage/DetailPage";
 import { Dialog, DialogTrigger } from "./ui/dialog";
 import { Cpu, GaugeCircle } from "lucide-react";
+import { FaGauge, FaGaugeHigh } from "react-icons/fa6";
 
 type CardProps = {
     title: string;
-    category: string;
     image: string;
     amazonLink: string;
+    category: string;
     cores?: number;
+    threads?: number;
+    cache?: number;
+    tdp?: number;
+    graphics?: boolean;
+    smt?: boolean
     frequency?: number;
+    frequency_boost?: number;
+    pressure?: string;
+    rpm_min?: number;
+    rpm_max?: number;
+    noise_level?: number;
+    form_factor?: string;
+    max_memory?: number;
+    memory_slots?: number;
+    audio?: boolean;
+    bluetooth?: boolean;
+    wifi?: boolean;
+    tdp_max?: number;
+    color?: string;
+    socket?: string;
+    chipset?: string;
+    support?: string;
+    cas?: string;
+    type?: string;
+    capacity?: number;
+    read?: number;
+    write?: number;
+    power?: number;
+    length?: number;
+    wattage?: number;
+    efficiency?: string;
+    speed?: number[];
+    modules?: number[];
+    modular?: string;
+    refresh_rate?: number;
+    response_time?: number;
+    aspect_ratio?: string;
+    resolution?: number[];
+    screen_size?: number;
+    channels?: string;
+    digital_audio?: string;
+    snr?: number;
+    sample_rate?: number;
+    interf_ace?: string;
+    frequency_response?: number[];
+    microphone?: boolean;
+    wireless?: boolean;
+    enclosure_type?: string;
+    noise_cancel?: boolean;
+    style?: string;
+    switches?: string;
+    backlit?: string;
+    tenkeyless?: boolean;
+    connection_type?: string;
+    tracking_method?: string;
+    max_dpi?: number;
+    hand_orientation?: string;
+    configuration?: string;
+    freq_resp?: number;
+    resolutions?: number[];
+    connection?: string;
+    focus_type?: string;
+    os?: string[];
+    fov?: number;
+    size?: number;
+    rpm?: number[];
+    airflow?: number[];
 }
 
-const CardComponent = ({ title, category, image, amazonLink, cores, frequency }: CardProps) => {
+const CardComponent = ({
+    title,
+    category,
+    image,
+    amazonLink,
+    cores,
+    frequency,
+    threads,
+    frequency_boost,
+    airflow,
+    aspect_ratio,
+    audio, backlit,
+    bluetooth,
+    cache,
+    capacity,
+    cas,
+    channels,
+    chipset,
+    color,
+    configuration,
+    connection,
+    connection_type,
+    digital_audio,
+    efficiency,
+    enclosure_type,
+    focus_type,
+    form_factor,
+    fov,
+    freq_resp,
+    frequency_response,
+    graphics,
+    hand_orientation,
+    interf_ace,
+    length,
+    max_dpi,
+    max_memory,
+    memory_slots,
+    microphone,
+    modular,
+    modules,
+    noise_cancel,
+    noise_level,
+    os,
+    power,
+    pressure,
+    read,
+    refresh_rate,
+    resolution,
+    resolutions,
+    response_time,
+    rpm,
+    rpm_max,
+    rpm_min,
+    sample_rate,
+    screen_size,
+    size,
+    smt,
+    snr,
+    socket,
+    speed,
+    style,
+    support,
+    switches,
+    tdp,
+    tdp_max,
+    tenkeyless,
+    tracking_method,
+    type,
+    wattage,
+    wifi,
+    wireless,
+    write
+}: CardProps) => {
+
+    const uiConstructor = (type: string) => {
+        switch (type) {
+            case 'CPU':
+                return <div>
+                    <h2>
+                        <Cpu />
+                        {cores}
+                    </h2>
+                </div>
+            case 'GPU':
+                return <div>
+                    <h2>
+
+                    </h2>
+                </div>
+            case "HDD":
+                return <div>
+                    <h2></h2>
+                </div>
+            case "SSD":
+                return <div>
+                    <h2>
+
+                    </h2>
+                </div>
+            case "Case":
+                return <div>
+                    <h2></h2>
+                </div>
+            case "Motherboard":
+                return <div>
+                    <h2></h2>
+                </div>
+            case "RAM":
+                return <div>
+                    <h2></h2>
+                </div>
+            case "Cooling":
+                return <div>
+                    <h2></h2>
+                </div>
+            case "PSU":
+                return <div>
+                    <h2>
+
+                    </h2>
+                </div>
+            case "Monitor":
+                return <div>
+                    <h2></h2>
+                </div>
+            case "SoundCard":
+                return <div>
+                    <h2></h2>
+                </div>
+            case "Headphones":
+                return <div>
+                    <h2></h2>
+                </div>
+            case "Keyboard":
+                return <div>
+                    <h2></h2>
+                </div>
+            case "Mouse":
+                return <div>
+                    <h2></h2>
+                </div>
+            case "Speakers":
+                return <div>
+                    <h2></h2>
+                </div>
+            case "Webcam":
+                return <div>
+                    <h2></h2>
+                </div>
+            case "CaseFan":
+                return <div>
+                    <h2></h2>
+                </div>
+            default:
+                return <>
+                    <h2 className='font-medium text-sm'>No description for this component</h2>
+                </>
+        }
+    }
+
     return (
         <div key={title} className="overflow-hidden w-[20rem] rounded-2xl transition duration-200 group bg-white hover:shadow-xl border border-zinc-100">
             <div className="w-[20rem] aspect-w-16 aspect-h-10 bg-gray-100 rounded-tr-lg rounded-tl-lg overflow-hidden xl:aspect-w-16 xl:aspect-h-10 relative">
@@ -34,19 +260,7 @@ const CardComponent = ({ title, category, image, amazonLink, cores, frequency }:
                     <h2 className="font-semibold px-2 py-1 rounded-xl text-sm text-white bg-gradient-to-tr from-primary via-secondary to-pink-400 shadow-md">
                         {category}
                     </h2>
-                    {cores && (
-                        <h2 className="font-medium text-sm text-primary-foreground flex items-center gap-1">
-                            <Cpu size={15} />
-                            {cores} cores
-
-                        </h2>
-                    )}
-                    {frequency && (
-                        <h2 className="font-medium text-sm text-primary-foreground flex items-center gap-1">
-                            <GaugeCircle size={15} />
-                            {frequency} GHz
-                        </h2>
-                    )}
+                    {uiConstructor(category)}
                 </div>
                 <div className="flex flex-row justify-between items-center mt-10">
                     <Dialog>
@@ -55,7 +269,7 @@ const CardComponent = ({ title, category, image, amazonLink, cores, frequency }:
                                 Read More
                             </div>
                         </DialogTrigger>
-                        <DetailPage amazonLink={amazonLink} cores={cores} frequency={frequency} category={category} imageUrl={image} title={title} />
+                        <DetailPage amazonLink={amazonLink} cores={cores} frequency={frequency} category={category} imageUrl={image} title={title} airflow={airflow} aspect_ratio={aspect_ratio} audio={audio} backlit={backlit} bluetooth={bluetooth} cache={cache} capacity={capacity} cas={cas} channels={channels} chipset={chipset} color={color} configuration={configuration} connection={connection} connection_type={connection_type} digital_audio={digital_audio} efficiency={efficiency} enclosure_type={enclosure_type} focus_type={focus_type} form_factor={form_factor} fov={fov} freq_resp={freq_resp} frequency_boost={frequency_boost} frequency_response={frequency_response} graphics={graphics} hand_orientation={hand_orientation} interf_ace={interf_ace} length={length} max_dpi={max_dpi} max_memory={max_memory} memory_slots={memory_slots} microphone={microphone} modular={modular} modules={modules} noise_cancel={noise_cancel} noise_level={noise_level} os={os} power={power} pressure={pressure} read={read} key={title} refresh_rate={refresh_rate} resolution={resolution} resolutions={resolutions} response_time={response_time} rpm={rpm} rpm_max={rpm_max} rpm_min={rpm_min} sample_rate={sample_rate} screen_size={screen_size} size={size} smt={smt} snr={snr} socket={socket} speed={speed} style={style} support={support} switches={switches} tdp={tdp} tdp_max={tdp_max} tenkeyless={tenkeyless} threads={threads} tracking_method={tracking_method} type={type} wattage={wattage} wifi={wifi} wireless={wireless} write={write} />
                     </Dialog>
                 </div>
             </div>
