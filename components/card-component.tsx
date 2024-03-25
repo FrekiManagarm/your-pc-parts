@@ -3,6 +3,7 @@ import { AlertDialog, AlertDialogContent, AlertDialogTrigger } from "./ui/alert-
 import DetailPage from "./ComponentDetailPage/DetailPage";
 import { Dialog, DialogTrigger } from "./ui/dialog";
 import { Cpu, GaugeCircle } from "lucide-react";
+import { FaGauge, FaGaugeHigh } from "react-icons/fa6";
 
 type CardProps = {
     title: string;
@@ -10,6 +11,11 @@ type CardProps = {
     amazonLink: string;
     category: string;
     cores?: number;
+    threads?: number;
+    cache?: number;
+    tdp?: number;
+    graphics?: boolean;
+    smt?: boolean
     frequency?: number;
     frequency_boost?: number;
     pressure?: string;
@@ -48,7 +54,7 @@ type CardProps = {
     digital_audio?: string;
     snr?: number;
     sample_rate?: number;
-    interface?: string;
+    interf_ace?: string;
     frequency_response?: number[];
     microphone?: boolean;
     wireless?: boolean;
@@ -74,44 +80,159 @@ type CardProps = {
     airflow?: number[];
 }
 
-const CardComponent = ({ title, category, image, amazonLink, cores, frequency }: CardProps) => {
+const CardComponent = ({
+    title,
+    category,
+    image,
+    amazonLink,
+    cores,
+    frequency,
+    threads,
+    frequency_boost,
+    airflow,
+    aspect_ratio,
+    audio, backlit,
+    bluetooth,
+    cache,
+    capacity,
+    cas,
+    channels,
+    chipset,
+    color,
+    configuration,
+    connection,
+    connection_type,
+    digital_audio,
+    efficiency,
+    enclosure_type,
+    focus_type,
+    form_factor,
+    fov,
+    freq_resp,
+    frequency_response,
+    graphics,
+    hand_orientation,
+    interf_ace,
+    length,
+    max_dpi,
+    max_memory,
+    memory_slots,
+    microphone,
+    modular,
+    modules,
+    noise_cancel,
+    noise_level,
+    os,
+    power,
+    pressure,
+    read,
+    refresh_rate,
+    resolution,
+    resolutions,
+    response_time,
+    rpm,
+    rpm_max,
+    rpm_min,
+    sample_rate,
+    screen_size,
+    size,
+    smt,
+    snr,
+    socket,
+    speed,
+    style,
+    support,
+    switches,
+    tdp,
+    tdp_max,
+    tenkeyless,
+    tracking_method,
+    type,
+    wattage,
+    wifi,
+    wireless,
+    write
+}: CardProps) => {
 
     const uiConstructor = (type: string) => {
         switch (type) {
             case 'CPU':
-                return <></>
+                return <div>
+                    <h2>
+                        <Cpu />
+                        {cores}
+                    </h2>
+                </div>
             case 'GPU':
-                return <></>
+                return <div>
+                    <h2>
+
+                    </h2>
+                </div>
             case "HDD":
-                return <></>
+                return <div>
+                    <h2></h2>
+                </div>
             case "SSD":
-                return <></>
+                return <div>
+                    <h2>
+
+                    </h2>
+                </div>
             case "Case":
-                return <></>
+                return <div>
+                    <h2></h2>
+                </div>
             case "Motherboard":
-                return <></>
+                return <div>
+                    <h2></h2>
+                </div>
             case "RAM":
-                return <></>
+                return <div>
+                    <h2></h2>
+                </div>
             case "Cooling":
-                return <></>
+                return <div>
+                    <h2></h2>
+                </div>
             case "PSU":
-                return <></>
+                return <div>
+                    <h2>
+
+                    </h2>
+                </div>
             case "Monitor":
-                return <></>
+                return <div>
+                    <h2></h2>
+                </div>
             case "SoundCard":
-                return <></>
+                return <div>
+                    <h2></h2>
+                </div>
             case "Headphones":
-                return <></>
+                return <div>
+                    <h2></h2>
+                </div>
             case "Keyboard":
-                return <></>
+                return <div>
+                    <h2></h2>
+                </div>
             case "Mouse":
-                return <></>
+                return <div>
+                    <h2></h2>
+                </div>
             case "Speakers":
-                return <></>
+                return <div>
+                    <h2></h2>
+                </div>
             case "Webcam":
-                return <></>
+                return <div>
+                    <h2></h2>
+                </div>
             case "CaseFan":
-                return <></>
+                return <div>
+                    <h2></h2>
+                </div>
             default:
                 return <>
                     <h2 className='font-medium text-sm'>No description for this component</h2>
@@ -148,7 +269,7 @@ const CardComponent = ({ title, category, image, amazonLink, cores, frequency }:
                                 Read More
                             </div>
                         </DialogTrigger>
-                        <DetailPage amazonLink={amazonLink} cores={cores} frequency={frequency} category={category} imageUrl={image} title={title} />
+                        <DetailPage amazonLink={amazonLink} cores={cores} frequency={frequency} category={category} imageUrl={image} title={title} airflow={airflow} aspect_ratio={aspect_ratio} audio={audio} backlit={backlit} bluetooth={bluetooth} cache={cache} capacity={capacity} cas={cas} channels={channels} chipset={chipset} color={color} configuration={configuration} connection={connection} connection_type={connection_type} digital_audio={digital_audio} efficiency={efficiency} enclosure_type={enclosure_type} focus_type={focus_type} form_factor={form_factor} fov={fov} freq_resp={freq_resp} frequency_boost={frequency_boost} frequency_response={frequency_response} graphics={graphics} hand_orientation={hand_orientation} interf_ace={interf_ace} length={length} max_dpi={max_dpi} max_memory={max_memory} memory_slots={memory_slots} microphone={microphone} modular={modular} modules={modules} noise_cancel={noise_cancel} noise_level={noise_level} os={os} power={power} pressure={pressure} read={read} key={title} refresh_rate={refresh_rate} resolution={resolution} resolutions={resolutions} response_time={response_time} rpm={rpm} rpm_max={rpm_max} rpm_min={rpm_min} sample_rate={sample_rate} screen_size={screen_size} size={size} smt={smt} snr={snr} socket={socket} speed={speed} style={style} support={support} switches={switches} tdp={tdp} tdp_max={tdp_max} tenkeyless={tenkeyless} threads={threads} tracking_method={tracking_method} type={type} wattage={wattage} wifi={wifi} wireless={wireless} write={write} />
                     </Dialog>
                 </div>
             </div>
