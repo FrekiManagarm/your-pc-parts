@@ -88,7 +88,7 @@ const DetailPage = ({ title, amazonLink, category, imageUrl, cores, frequency, f
   }
 
   return (
-    <DialogContent className='max-w-5xl flex flex-row p-2 bg-white'>
+    <DialogContent className='max-w-5xl flex flex-row p-2 bg-white text-primary-foreground'>
       <Image
         src={imageUrl}
         alt={title}
