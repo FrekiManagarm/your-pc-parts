@@ -17,13 +17,15 @@ const DashboardNavbar = () => {
     <div className="h-[95%] w-1/6 bg-card border border-white/20 shadow-md rounded-xl m-5 p-3 flex flex-col justify-between">
       <div className="flex flex-col">
         <div className="flex flex-row justify-start items-center">
-          <Image
-            src='/logo-ypcp.png'
-            alt="Site logo"
-            width={50}
-            height={50}
-            className="rounded-xl"
-          />
+          <Link href="/">
+            <Image
+              src='/logo-ypcp.png'
+              alt="Site logo"
+              width={50}
+              height={50}
+              className="rounded-xl"
+            />
+          </Link>
           <span className="px-1" />
           <h3 className="font-bold text-xl">Your PC Parts</h3>
         </div>

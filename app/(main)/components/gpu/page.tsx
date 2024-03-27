@@ -19,7 +19,7 @@ export default async function GPUListPage() {
       <section className="w-full grid place-items-center lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5 py-5">
         {gpus && gpus.length != 0 ? gpus.map((gpu) => (
           <>
-            <CardComponent title={gpu.name} amazonLink={gpu.amazonLink as string} category="GPU" image={gpu.imageUrl as string} />
+            <CardComponent title={gpu.name} power={gpu.power as number} color={gpu.color as string} length={gpu.length as number} memory={gpu.memory as number} frequency={gpu.core_clock as number} cores={gpu.proc_unit as number} frequency_boost={gpu.boost_clock as number} amazonLink={gpu.amazonLink as string} category="GPU" image={gpu.imageUrl as string} />
           </>
         )) : <Loader />}
       </section>

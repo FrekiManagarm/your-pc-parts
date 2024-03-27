@@ -18,7 +18,7 @@ export default async function CaseFanListPage() {
       <div className="w-full grid place-items-center lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5 py-5">
         {caseFans && caseFans.length != 0 ? caseFans.map((caseFan) => (
           <>
-            <CardComponent title={caseFan.name} amazonLink={caseFan.amazonLink as string} category="Case Fan" image={caseFan.imageUrl ?? ""} />
+            <CardComponent title={caseFan.name} amazonLink={caseFan.amazonLink as string} size={caseFan.size} rpm={caseFan.rpm} airflow={caseFan.airflow} category="Case Fan" image={caseFan.imageUrl ?? ""} />
           </>
         )) : <Loader />}
       </div>

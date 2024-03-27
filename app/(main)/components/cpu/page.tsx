@@ -18,7 +18,7 @@ export default async function CPUListPage() {
       <section className="w-full grid place-items-center lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-5 py-5">
         {cpus.length != 0 ? cpus.map((cpu) => (
           <>
-            <CardComponent title={cpu.name} frequency={cpu.core_clock} cores={cpu.core_count} amazonLink={cpu.amazonLink as string} category="CPU" image={cpu.imageUrl ?? ""} />
+            <CardComponent title={cpu.name} frequency={cpu.core_clock} frequency_boost={cpu.boost_clock} socket={cpu.socket as string} type={cpu.cpu_type} cores={cpu.core_count} threads={cpu.threads_count} graphics={cpu.graphics as boolean} cache={cpu.cache as number} tdp={cpu.tdp as number} amazonLink={cpu.amazonLink as string} category="CPU" image={cpu.imageUrl ?? ""} />
           </>
         )) : <Loader />}
       </section>

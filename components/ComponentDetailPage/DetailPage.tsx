@@ -3,9 +3,10 @@ import React from 'react'
 import { Button } from '../ui/button';
 import { IconBrandAmazon } from '@tabler/icons-react';
 import { DialogContent } from '../ui/dialog';
-import { Cpu, PackagePlus } from 'lucide-react';
+import { BatteryCharging, BookmarkCheck, BookmarkX, Cpu, PackagePlus } from 'lucide-react';
 import Link from 'next/link';
-import { FaGauge, FaGaugeHigh } from 'react-icons/fa6';
+import { FaGauge, FaGaugeHigh, FaDisplay } from 'react-icons/fa6';
+import { FaTemperatureHigh } from "react-icons/fa";
 
 type DetailPageProps = {
   title: string;
@@ -17,7 +18,8 @@ type DetailPageProps = {
   cache?: number;
   tdp?: number;
   graphics?: boolean;
-  smt?: boolean
+  memory?: number;
+  smt?: boolean;
   frequency?: number;
   frequency_boost?: number;
   pressure?: string;
@@ -80,6 +82,7 @@ type DetailPageProps = {
   size?: number;
   rpm?: number[];
   airflow?: number[];
+  proc_unit?: number;
 }
 
 const DetailPage = ({ title,
@@ -90,6 +93,7 @@ const DetailPage = ({ title,
   frequency,
   threads,
   frequency_boost,
+  memory,
   airflow,
   aspect_ratio,
   audio, backlit,
@@ -152,57 +156,97 @@ const DetailPage = ({ title,
   wattage,
   wifi,
   wireless,
-  write }: DetailPageProps) => {
+  write,
+  proc_unit,
+}: DetailPageProps) => {
 
   const uiConstructor = (type: string) => {
     switch (type) {
       case 'CPU':
-        return <div>
-          <div>
-            <h2 className="font-medium text-sm flex flex-row items-center">
-              <Cpu size={15} />
-              {cores} cores
+        return <div className='flex flex-col gap-5'>
+          <div className='flex gap-16 justify-between items-stretch w-full'>
+            <h2 className="font-medium text-sm flex flex-col items-start gap-1">
+              <div className='flex items-center gap-1'>
+                <Cpu size={15} />
+                <p className='font-bold'>Cores / Threads</p>
+              </div>
+              {cores} cores / {threads} threads
             </h2>
-            <h2 className="font-medium text-sm flex flex-row items-center">
-              <Cpu size={15} />
-              {threads}
-            </h2>
-          </div>
-          <div>
-            <h2 className="font-medium text-sm flex flex-row items-center">
-              <FaGauge size={15} className="text-primary-foreground" />
-              {frequency}
-            </h2>
-            <h2 className="font-medium text-sm flex flex-row items-center">
-              <FaGaugeHigh size={15} className="text-primary-foreground" />
-              {frequency_boost}
+            <h2 className="font-medium text-sm flex flex-col items-start gap-1">
+              <div className='flex items-center gap-1'>
+                <FaGauge size={15} />
+                <p className='font-bold'>Core / Boost clock</p>
+              </div>
+              {frequency} GHz / {frequency_boost} GHz
             </h2>
           </div>
-          <div>
-            <h2>
+          <div className='flex gap-16 items-center'>
+            <h2 className='font-medium text-sm flex flex-col items-start gap-1'>
+              <div className='flex items-center gap-1'>
+                <p className='font-bold'>Socket</p>
+              </div>
               {socket}
             </h2>
-            <h2>
-              {type}
-            </h2>
-            <h2>
-              {cache}
+            <h2 className='font-medium text-sm flex flex-col items-start gap-1'>
+              <div className='flex items-center gap-1'>
+                <p className='font-bold'>Cache</p>
+              </div>
+              {cache} MB
             </h2>
           </div>
-          <div>
-            <h2>
-              {tdp}
+          <div className='flex gap-16 items-center'>
+            <h2 className='font-medium text-sm flex flex-col items-start gap-1'>
+              <div className='flex items-center gap-1'>
+                <FaTemperatureHigh size={15} />
+                <p className='font-bold'>TDP</p>
+              </div>
+              {tdp} W
+            </h2>
+            <h2 className='font-medium text-sm flex flex-col items-start gap-1'>
+              <div className='flex items-center gap-1'>
+                <FaDisplay size={15} />
+                <p className='font-bold'>Graphics</p>
+              </div>
+              {graphics ? <BookmarkCheck className='text-green-600' /> : <BookmarkX className='text-red-600' />}
             </h2>
             <h2>
-              {graphics ? "oui" : "non"}
-            </h2>
-            <h2>
-              {smt ? "oui" : "non"}
+              <p className='font-bold'>SMT</p>
+              {smt ? <BookmarkCheck className='text-green-600' /> : <BookmarkX className='text-red-600' />}
             </h2>
           </div>
         </div>
       case 'GPU':
-        return <div></div>
+        return <div className='flex flex-col gap-5'>
+          <div className='flex gap-16 items-center'>
+            <h2 className='font-medium text-sm flex flex-col items-start gap-1'>
+              <div className='flex items-center gap-2'>
+                <Cpu size={15} />
+                <p className='font-bold'>Cores</p>
+              </div>
+              {proc_unit} units
+            </h2>
+            <h2 className='font-medium text-sm flex flex-col items-start gap-1'>
+              <div className='flex items-center gap-2'>
+                <FaGauge size={15} />
+                <p className='font-bold'>Core / Boost clock</p>
+              </div>
+              {frequency} GHz / {frequency_boost} GHz
+            </h2>
+            <h2 className='font-medium text-sm flex flex-col items-start gap-1'>
+              <div className='flex items-center gap-2'>
+                <BatteryCharging size={15} />
+                <p className='font-bold'>Power</p>
+              </div>
+              {power} W
+            </h2>
+          </div>
+          <div>
+
+          </div>
+          <div>
+
+          </div>
+        </div>
       case "HDD":
         return <div></div>
       case "SSD":
@@ -241,7 +285,7 @@ const DetailPage = ({ title,
   }
 
   return (
-    <DialogContent className='max-w-5xl flex flex-row p-2 bg-white text-primary-foreground'>
+    <DialogContent className='max-w-4xl flex flex-row p-2 bg-white text-primary-foreground'>
       <Image
         src={imageUrl}
         alt={title}
@@ -254,10 +298,10 @@ const DetailPage = ({ title,
         <h2 className="font-semibold my-2 px-2 py-1 rounded-xl text-sm text-white bg-gradient-to-tr from-primary via-secondary to-pink-400 shadow-md">
           {category}
         </h2>
-        <div className='flex'>
+        <div>
           {uiConstructor(category)}
         </div>
-        <div className='flex flex-row'>
+        <div className='flex flex-row mt-auto'>
           <Link href={amazonLink} className='flex flex-row justify-center px-3 items-center text-white bg-orange-400 hover:bg-orange-700 transition-colors font-semibold rounded-xl hover:shadow-lg' target='_blank'>
             <IconBrandAmazon />
             <span className='px-1' />
